@@ -1,6 +1,8 @@
 package cn.annpeter.graduation.project.dal.model;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     /**
      * INTEGER(10) 必填
      * 
@@ -18,6 +20,8 @@ public class User {
      * 密码
      */
     private String pwd;
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * INTEGER(10) 必填

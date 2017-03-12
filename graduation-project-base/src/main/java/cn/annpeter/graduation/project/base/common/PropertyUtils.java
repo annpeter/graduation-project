@@ -21,7 +21,7 @@ public class PropertyUtils {
         }
     }
 
-    public static int getIntProperty(String key) {
+    public static Integer getIntProperty(String key) {
         return Integer.valueOf(getProperty(key));
     }
 
