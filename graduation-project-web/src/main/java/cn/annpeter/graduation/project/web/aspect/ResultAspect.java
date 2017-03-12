@@ -32,14 +32,14 @@ public class ResultAspect {
         Object obj;
         try {
             long startTime = System.currentTimeMillis();
-            logger.info("====开始执行{}, 参数名称{}, 值{}.", methodSign.getMethod().getName(),
+            logger.info("开始执行{}, 参数名称{}, 值{}.", methodSign.getMethod().getName(),
                     Arrays.toString(methodSign.getParameterNames()), Arrays.toString(pig.getArgs()));
             // 执行controller
             obj = pig.proceed();
-            logger.info("====结束执行{}, 总耗时{}ms.",
+            logger.info("结束执行{}, 总耗时{}ms.",
                     methodSign.getMethod().getName(), System.currentTimeMillis() - startTime);
         } catch (ComExp ex) {
-            logger.error("====执行{}出错, 参数名称{}, 值{}.", methodSign.getMethod().getName(),
+            logger.error("执行{}出错, 参数名称{}, 值{}.", methodSign.getMethod().getName(),
                     Arrays.toString(methodSign.getParameterNames()), Arrays.toString(pig.getArgs()), ex);
 
             // 构造返回对象
@@ -55,7 +55,7 @@ public class ResultAspect {
                 throw ex;
             }
         } catch (Exception ex) {
-            logger.error("====执行{}出错, 参数名称{}, 值{}.", methodSign.getMethod().getName(),
+            logger.error("执行{}出错, 参数名称{}, 值{}.", methodSign.getMethod().getName(),
                     Arrays.toString(methodSign.getParameterNames()), Arrays.toString(pig.getArgs()), ex);
 
             // 构造返回对象
@@ -74,6 +74,5 @@ public class ResultAspect {
         }
         return obj;
     }
-
 
 }

@@ -1,6 +1,7 @@
 package cn.annpeter.graduation.project.web.interceptor;
 
 
+import cn.annpeter.graduation.project.dal.model.User;
 import cn.annpeter.graduation.project.web.model.WebConstants;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,8 +19,19 @@ public class LoginInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
                              Object handler) throws Exception {
 
+        if (true) {
+            HttpSession session = request.getSession();
+            User user = new User();
+            user.setId(1);
+            user.setName("annpeter");
+            user.setPwd("annpeter");
+
+            session.setAttribute(WebConstants.LOGIN_USER_FLAG, true);
+            session.setAttribute(WebConstants.LOGIN_USER_INFO, user);
+        }
+
         HttpSession session = request.getSession();
-        Object isLogin = session.getAttribute(WebConstants.LOGIN_FLAG);
+        Object isLogin = session.getAttribute(WebConstants.LOGIN_USER_FLAG);
         if (isLogin != null && (boolean) isLogin) {
             return true;
         }

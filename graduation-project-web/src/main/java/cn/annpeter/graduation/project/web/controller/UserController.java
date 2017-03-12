@@ -6,7 +6,6 @@ import cn.annpeter.graduation.project.core.service.UserService;
 import cn.annpeter.graduation.project.dal.model.User;
 import cn.annpeter.graduation.project.web.model.ResultModel;
 import cn.annpeter.graduation.project.web.model.WebConstants;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -47,6 +46,7 @@ public class UserController {
      *      "error_stack_trace": null
      *  }
      */
+    // @formatter:on
     @ResponseBody
     @RequestMapping(value = "register", method = RequestMethod.POST)
     public ResultModel<String> register(@RequestParam("name") String name,
@@ -83,6 +83,7 @@ public class UserController {
      *      "error_stack_trace": null
      *  }
      */
+    // @formatter:on
     @ResponseBody
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public ResultModel<String> login(@RequestParam("name") String name,
@@ -93,8 +94,8 @@ public class UserController {
         user.setPwd(pwd);
 
         user = userService.login(user);
-        session.setAttribute(WebConstants.LOGIN_FLAG, true);
-        session.setAttribute(WebConstants.LOGIN_INFO, user);
+        session.setAttribute(WebConstants.LOGIN_USER_FLAG, true);
+        session.setAttribute(WebConstants.LOGIN_USER_INFO, user);
         return ResultModel.success("登录成功");
     }
 }
