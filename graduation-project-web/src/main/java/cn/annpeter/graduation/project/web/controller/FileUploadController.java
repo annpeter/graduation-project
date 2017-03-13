@@ -78,7 +78,7 @@ public class FileUploadController {
      * @apiName uploadMultiple
      * @apiGroup Upload
      *
-     * @apiParam {MultipartFile} file 文件
+     * @apiParam {MultipartFile} file 文件(MultipartFile的key可随意规定)
      *
      * @apiSuccess (Code) {string} 200 上传成功
      * @apiSuccessExample {json} Response 200 Example
@@ -159,6 +159,7 @@ public class FileUploadController {
         if (localFile.createNewFile()) {
             return localFile;
         } else {
+            // 当文件名重复的时候, 采用添加后缀的形式
             return getUseAbleFile(fileUri, filename + "_" + RandomStringUtils.randomNumeric(4), suffix);
         }
     }

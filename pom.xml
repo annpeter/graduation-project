@@ -14,6 +14,7 @@
         <module>graduation-project-web</module>
         <module>graduation-project-dal</module>
         <module>graduation-project-base</module>
+        <module>graduation-project-chat</module>
     </modules>
 
     <properties>
@@ -176,6 +177,12 @@
             <!-- LogBack End -->
 
             <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-all</artifactId>
+                <version>4.1.6.Final</version>
+            </dependency>
+
+            <dependency>
                 <groupId>javax.mail</groupId>
                 <artifactId>mail</artifactId>
                 <version>1.4.7</version>
@@ -230,7 +237,6 @@
                 <version>${org.mortbay.jetty.version}</version>
             </dependency>
             <!-- jetty End -->
-
         </dependencies>
     </dependencyManagement>
 
