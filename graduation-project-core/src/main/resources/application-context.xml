@@ -9,4 +9,5 @@
     <context:component-scan base-package="cn.annpeter.graduation.project.core.service"/>
 
     <import resource="classpath:spring-dao.xml"/>
+    <import resource="classpath:spring-quartz.xml"/>
 </beans>
