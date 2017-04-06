@@ -35,13 +35,13 @@ import static cn.annpeter.graduation.project.web.model.WebConstants.File_UPLOAD_
  * @author annpeter.it@gmail.com
  */
 @RestController
-@RequestMapping("/api/upload")
+@RequestMapping("/api/file")
 @Produces(MediaType.APPLICATION_JSON)
-public class FileUploadController {
+public class FileController {
 
     // @formatter:off
     /**
-     * @api {post} /api/upload//file/single 上传单个文件
+     * @api {post} /api/file/upload/single 上传单个文件
      * @apiName uploadSingle
      * @apiGroup Upload
      *
@@ -60,7 +60,7 @@ public class FileUploadController {
      */
     // @formatter:on
     @ResponseBody
-    @RequestMapping(value = "/file/single", method = RequestMethod.POST)
+    @RequestMapping(value = "/upload/single", method = RequestMethod.POST)
     public ResultModel<Map> uploadSingle(@RequestParam("file") MultipartFile file, HttpSession session) throws IOException {
         if (file == null) {
             return ResultModel.fail(ComResEnum.RESOURCE_NOT_FOUND, "上传文件不能为空");
@@ -74,7 +74,7 @@ public class FileUploadController {
 
     // @formatter:off
      /**
-     * @api {post} /api/upload//file/multiple 上传多个文件
+     * @api {post} /api/file/upload/multiple 上传多个文件
      * @apiName uploadMultiple
      * @apiGroup Upload
      *
@@ -127,7 +127,7 @@ public class FileUploadController {
          return ResultModel.success(result);
      }
 
-    // 返回上传后的url全路径
+    // 上传单个文件, 返回上传后的url全路径
     private String handleSingleFile(MultipartFile file, Integer userId) throws IOException {
         if (file != null) {
             // 取得当前上传文件的文件名称
@@ -152,6 +152,7 @@ public class FileUploadController {
         return null;
     }
 
+    // 获取一个没有被使用的file用于文件上传时保存文件
     private File getUseAbleFile(String fileUri, String filename, String suffix) throws IOException {
         String filePath = File_UPLOAD_BASE_DIR + fileUri;
         File localFile = new File(filePath, filename + suffix);

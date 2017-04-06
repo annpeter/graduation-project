@@ -19,7 +19,7 @@
 
     <properties>
         <org.aspectj.version>1.8.9</org.aspectj.version>
-        <ch.qos.logback.version>1.0.1</ch.qos.logback.version>
+        <ch.qos.logback.version>1.1.11</ch.qos.logback.version>
         <org.mortbay.jetty.version>6.1.9</org.mortbay.jetty.version>
         <org.springframework.version>4.3.5.RELEASE</org.springframework.version>
     </properties>
@@ -91,12 +91,6 @@
             <!-- AspectJ end -->
 
             <dependency>
-                <groupId>cn.annpeter</groupId>
-                <artifactId>spring-template-base</artifactId>
-                <version>1.0-SNAPSHOT</version>
-            </dependency>
-
-            <dependency>
                 <groupId>org.mybatis</groupId>
                 <artifactId>mybatis-spring</artifactId>
                 <version>1.3.0</version>
@@ -158,23 +152,11 @@
                 <version>2.8.5</version>
             </dependency>
 
-            <!-- LogBack Begin -->
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
                 <version>${ch.qos.logback.version}</version>
             </dependency>
-            <dependency>
-                <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-core</artifactId>
-                <version>${ch.qos.logback.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-access</artifactId>
-                <version>${ch.qos.logback.version}</version>
-            </dependency>
-            <!-- LogBack End -->
 
             <!--quartz start-->
             <dependency>
@@ -205,6 +187,12 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>3.4</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.msgpack</groupId>
+                <artifactId>msgpack</artifactId>
+                <version>0.6.12</version>
             </dependency>
 
             <dependency>
