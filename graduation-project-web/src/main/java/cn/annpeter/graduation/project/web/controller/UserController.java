@@ -1,17 +1,18 @@
 package cn.annpeter.graduation.project.web.controller;
 
-import cn.annpeter.graduation.project.core.common.exception.ComExp;
-import cn.annpeter.graduation.project.core.common.exception.ComResEnum;
+import cn.annpeter.graduation.project.base.common.exception.CommonException;
+import cn.annpeter.graduation.project.base.common.model.ResultCodeEnum;
+import cn.annpeter.graduation.project.base.common.model.ResultModel;
 import cn.annpeter.graduation.project.core.service.UserService;
 import cn.annpeter.graduation.project.dal.model.User;
-import cn.annpeter.graduation.project.web.model.ResultModel;
-import cn.annpeter.graduation.project.web.model.WebConstants;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+
+import static cn.annpeter.graduation.project.core.config.GlobalConfig.web;
 
 /**
  * Created on 2017/03/04
@@ -58,7 +59,7 @@ public class UserController {
         if(1 == userService.register(user)){
            return ResultModel.success("注册成功");
         }else {
-            throw new ComExp(ComResEnum.UNKNOWN_ERROR);
+            throw new CommonException(ResultCodeEnum.UNKNOWN_ERROR);
         }
     }
 
@@ -94,8 +95,9 @@ public class UserController {
         user.setPwd(pwd);
 
         user = userService.login(user);
-        session.setAttribute(WebConstants.LOGIN_USER_FLAG, true);
-        session.setAttribute(WebConstants.LOGIN_USER_INFO, user);
+
+        session.setAttribute(web.loggedUserFlag, true);
+        session.setAttribute(web.loggedUserInfo, user);
         return ResultModel.success("登录成功");
     }
 }

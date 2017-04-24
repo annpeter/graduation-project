@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 
-import static cn.annpeter.graduation.project.web.model.WebConstants.File_UPLOAD_BASE_DIR;
+import static cn.annpeter.graduation.project.core.config.GlobalConfig.web;
 
 /**
  * Created on 2017/03/12
@@ -26,7 +26,7 @@ public class TestCommon {
 
 
     private File getUseAbleFile(String fileUri, String filename, String suffix) throws IOException {
-        String filePath = File_UPLOAD_BASE_DIR + fileUri;
+        String filePath = web.fileUploadBaseDir + fileUri;
         File localFile = new File(filePath, filename + "." + suffix);
         localFile.getParentFile().mkdirs();
         if (localFile.createNewFile()) {

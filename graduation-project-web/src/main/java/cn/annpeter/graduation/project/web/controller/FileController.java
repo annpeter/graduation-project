@@ -1,10 +1,9 @@
 package cn.annpeter.graduation.project.web.controller;
 
-import cn.annpeter.graduation.project.core.common.exception.ComResEnum;
+import cn.annpeter.graduation.project.base.common.model.ResultCodeEnum;
+import cn.annpeter.graduation.project.base.common.model.ResultModel;
 import cn.annpeter.graduation.project.dal.model.User;
 import cn.annpeter.graduation.project.web.model.FileUploadResultVO;
-import cn.annpeter.graduation.project.web.model.ResultModel;
-import cn.annpeter.graduation.project.web.model.WebConstants;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
@@ -26,8 +25,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static cn.annpeter.graduation.project.web.model.WebConstants.FILE_UPLOAD_URL_FREFIX;
-import static cn.annpeter.graduation.project.web.model.WebConstants.File_UPLOAD_BASE_DIR;
+import static cn.annpeter.graduation.project.core.config.GlobalConfig.web;
 
 /**
  * Created on 2017/03/12
@@ -63,9 +61,9 @@ public class FileController {
     @RequestMapping(value = "/upload/single", method = RequestMethod.POST)
     public ResultModel<Map> uploadSingle(@RequestParam("file") MultipartFile file, HttpSession session) throws IOException {
         if (file == null) {
-            return ResultModel.fail(ComResEnum.RESOURCE_NOT_FOUND, "上传文件不能为空");
+            return ResultModel.fail(ResultCodeEnum.RESOURCE_NOT_FOUND, "上传文件不能为空");
         }
-        Integer userId = ((User) session.getAttribute(WebConstants.LOGIN_USER_INFO)).getId();
+        Integer userId = ((User) session.getAttribute(web.loggedUserFlag)).getId();
         String url = handleSingleFile(file, userId);
         return ResultModel.success(Stream.of(new SimpleEntry<>("file_url", url))
                 .collect(Collectors.toMap(SimpleEntry::getKey, SimpleEntry::getValue)));
@@ -104,7 +102,7 @@ public class FileController {
      public ResultModel<FileUploadResultVO> uploadMultiple(HttpServletRequest request) throws Exception {
          FileUploadResultVO result = new FileUploadResultVO();
 
-         Integer userId = ((User) request.getSession().getAttribute(WebConstants.LOGIN_USER_INFO)).getId();
+         Integer userId = ((User) request.getSession().getAttribute(web.loggedUserFlag)).getId();
 
          // 创建一个通用的多部分解析器
          CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
@@ -145,7 +143,7 @@ public class FileController {
                 File localFile = getUseAbleFile(fileUri, filename, fileSuffix);
                 file.transferTo(localFile);
 
-                return FILE_UPLOAD_URL_FREFIX + fileUri + localFile.getName();
+                return web.fileUploadUrlPrefix + fileUri + localFile.getName();
             }
         }
 
@@ -154,7 +152,7 @@ public class FileController {
 
     // 获取一个没有被使用的file用于文件上传时保存文件
     private File getUseAbleFile(String fileUri, String filename, String suffix) throws IOException {
-        String filePath = File_UPLOAD_BASE_DIR + fileUri;
+        String filePath = web.fileUploadBaseDir + fileUri;
         File localFile = new File(filePath, filename + suffix);
         localFile.getParentFile().mkdirs();
         if (localFile.createNewFile()) {

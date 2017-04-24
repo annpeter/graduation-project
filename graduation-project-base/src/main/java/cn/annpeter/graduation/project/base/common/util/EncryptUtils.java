@@ -1,4 +1,4 @@
-package cn.annpeter.graduation.project.base.common;
+package cn.annpeter.graduation.project.base.common.util;
 
 import cn.annpeter.graduation.project.base.common.exception.CrackErrorException;
 
@@ -14,7 +14,7 @@ import java.util.Base64;
  *
  * @author annpeter.it@gmail.com
  */
-public class EncryptUtil {
+public class EncryptUtils {
 
     public static String MD5_16(String data) {
         return MD5_16(data.getBytes());
@@ -44,7 +44,7 @@ public class EncryptUtil {
 
     public static byte[] aesEncrypt(byte[] data, byte[] key) {
         try {
-            String iv = EncryptUtil.MD5_16(key);
+            String iv = EncryptUtils.MD5_16(key);
 
             Cipher cipher = Cipher.getInstance("AES/CBC/NoPadding");
             int blockSize = cipher.getBlockSize();
@@ -75,7 +75,7 @@ public class EncryptUtil {
 
     public static byte[] aesDecrypt(byte[] data, byte[] key) {
         try {
-            String iv = EncryptUtil.MD5_16(key);
+            String iv = EncryptUtils.MD5_16(key);
 
             byte[] encrypted = Base64.getDecoder().decode(data);
 

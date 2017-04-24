@@ -1,6 +1,6 @@
 package cn.annpeter.graduation.project.base.restful.rpc.utils;
 
-import cn.annpeter.graduation.project.base.common.JsonUtil;
+import cn.annpeter.graduation.project.base.common.util.JsonUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,7 +49,7 @@ public class HttpConnectionUtils {
             }
             logger.info("ready to send post http request:{}, params:{}, body:{}, header:{}.",
                     new Object[]{url, queryParam.length() > 0 ? queryParam.deleteCharAt(0) : queryParam,
-                            JsonUtil.parseObject2String(bodyParams), header});
+                            JsonUtils.object2String(bodyParams), header});
 
             String targetUrl = url;
             if (!queryParams.isEmpty()) {
@@ -108,7 +108,7 @@ public class HttpConnectionUtils {
                     body = sb.toString();
                 } else if (isPostJson(targetMediaType)) {
                     for (Entry<String, Object> entry : bodyParams.entrySet()) {
-                        body = JsonUtil.parseObject2String(entry.getValue());
+                        body = JsonUtils.object2String(entry.getValue());
                     }
                 }
 

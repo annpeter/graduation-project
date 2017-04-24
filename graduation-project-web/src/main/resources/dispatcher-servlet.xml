@@ -48,7 +48,7 @@
 
             <mvc:exclude-mapping path="/api/user/register.htm"/>
             <mvc:exclude-mapping path="/api/user/login.htm"/>
-            <bean class="cn.annpeter.graduation.project.web.interceptor.LoginInterceptor"/>
+            <bean class="cn.annpeter.graduation.project.web.aspect.LoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 

@@ -1,9 +1,6 @@
-/**
- *
- */
 package cn.annpeter.graduation.project.base.restful.rpc.utils;
 
-import cn.annpeter.graduation.project.base.common.EncryptUtil;
+import cn.annpeter.graduation.project.base.common.util.EncryptUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -73,7 +70,7 @@ public abstract class HttpSignCalculator {
             sb.deleteCharAt(0);
         }
         logger.info("sign calculate param:{}", sb.toString());
-        return EncryptUtil.MD5(sb.toString());
+        return EncryptUtils.MD5(sb.toString());
     }
 
     /**
@@ -92,7 +89,7 @@ public abstract class HttpSignCalculator {
             sb.append(signKey);
         }
         logger.info("sign calculate param:{} ", sb.toString());
-        return EncryptUtil.MD5(sb.toString());
+        return EncryptUtils.MD5(sb.toString());
     }
 
     private static String paramSort(HttpServletRequest request) {

@@ -1,7 +1,8 @@
 package cn.annpeter.graduation.project.core.service;
 
-import cn.annpeter.graduation.project.core.common.exception.ComExp;
-import cn.annpeter.graduation.project.core.common.exception.ComResEnum;
+
+import cn.annpeter.graduation.project.base.common.exception.CommonException;
+import cn.annpeter.graduation.project.base.common.model.ResultCodeEnum;
 import cn.annpeter.graduation.project.dal.dao.UserMapper;
 import cn.annpeter.graduation.project.dal.model.User;
 import cn.annpeter.graduation.project.dal.model.UserExample;
@@ -28,7 +29,7 @@ public class UserService {
         example.createCriteria().andNameEqualTo(user.getName());
         List userList = userMapper.selectByExample(example);
         if (userList.size() > 0) {
-            throw new ComExp(ComResEnum.RESOURCE_CONFLICT, "此用户名已被注册");
+            throw new CommonException(ResultCodeEnum.RESOURCE_CONFLICT, "此用户名已被注册");
         }
 
         return userMapper.insert(user);
@@ -39,12 +40,12 @@ public class UserService {
         example.createCriteria().andNameEqualTo(user.getName());
         List<User> userList = userMapper.selectByExample(example);
         if (userList.size() == 0) {
-            throw new ComExp(ComResEnum.RESOURCE_NOT_FOUND, "用户不存在");
+            throw new CommonException(ResultCodeEnum.RESOURCE_NOT_FOUND, "用户不存在");
         } else {
             if (StringUtils.equals(user.getPwd(), userList.get(0).getPwd())) {
                 return userList.get(0);
             } else {
-                throw new ComExp(ComResEnum.FORBIDDEN, "密码错误");
+                throw new CommonException(ResultCodeEnum.FORBIDDEN, "密码错误");
             }
         }
     }

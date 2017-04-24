@@ -3,7 +3,7 @@ package cn.annpeter.graduation.project.dal.model;
 import java.io.Serializable;
 import java.util.Date;
 
-public class User implements Serializable {
+public class Notice implements Serializable {
     /**
      * INTEGER(10) 必填
      * 
@@ -11,28 +11,28 @@ public class User implements Serializable {
     private Integer id;
 
     /**
-     * VARCHAR(20) 必填
-     * 用户名
+     * INTEGER(10)
+     * 公告类型(0: 校内公告, 1:院内公告)
      */
-    private String name;
+    private Integer type;
 
     /**
-     * VARCHAR(20) 必填
-     * 密码
-     */
-    private String pwd;
-
-    /**
-     * TINYINT(3) 默认值[0] 必填
-     * 是否为管理员, 0否 1是
-     */
-    private Short isAdmin;
-
-    /**
-     * INTEGER(10) 必填
-     * 所属课程
+     * INTEGER(10)
+     * 所属课程id
      */
     private Integer courseId;
+
+    /**
+     * VARCHAR(256)
+     * 标题
+     */
+    private String title;
+
+    /**
+     * VARCHAR(65535)
+     * 内容
+     */
+    private String content;
 
     /**
      * TIMESTAMP(19) 默认值[CURRENT_TIMESTAMP]
@@ -65,67 +65,67 @@ public class User implements Serializable {
     }
 
     /**
-     * VARCHAR(20) 必填
-     * 获得 用户名
+     * INTEGER(10)
+     * 获得 公告类型(0: 校内公告, 1:院内公告)
      */
-    public String getName() {
-        return name;
+    public Integer getType() {
+        return type;
     }
 
     /**
-     * VARCHAR(20) 必填
-     * 设置 用户名
+     * INTEGER(10)
+     * 设置 公告类型(0: 校内公告, 1:院内公告)
      */
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setType(Integer type) {
+        this.type = type;
     }
 
     /**
-     * VARCHAR(20) 必填
-     * 获得 密码
-     */
-    public String getPwd() {
-        return pwd;
-    }
-
-    /**
-     * VARCHAR(20) 必填
-     * 设置 密码
-     */
-    public void setPwd(String pwd) {
-        this.pwd = pwd == null ? null : pwd.trim();
-    }
-
-    /**
-     * TINYINT(3) 默认值[0] 必填
-     * 获得 是否为管理员, 0否 1是
-     */
-    public Short getIsAdmin() {
-        return isAdmin;
-    }
-
-    /**
-     * TINYINT(3) 默认值[0] 必填
-     * 设置 是否为管理员, 0否 1是
-     */
-    public void setIsAdmin(Short isAdmin) {
-        this.isAdmin = isAdmin;
-    }
-
-    /**
-     * INTEGER(10) 必填
-     * 获得 所属课程
+     * INTEGER(10)
+     * 获得 所属课程id
      */
     public Integer getCourseId() {
         return courseId;
     }
 
     /**
-     * INTEGER(10) 必填
-     * 设置 所属课程
+     * INTEGER(10)
+     * 设置 所属课程id
      */
     public void setCourseId(Integer courseId) {
         this.courseId = courseId;
+    }
+
+    /**
+     * VARCHAR(256)
+     * 获得 标题
+     */
+    public String getTitle() {
+        return title;
+    }
+
+    /**
+     * VARCHAR(256)
+     * 设置 标题
+     */
+    public void setTitle(String title) {
+        this.title = title == null ? null : title.trim();
+    }
+
+    /**
+     * VARCHAR(65535)
+     * 获得 内容
+     */
+    public String getContent() {
+        return content;
+    }
+
+    /**
+     * VARCHAR(65535)
+     * 设置 内容
+     */
+    public void setContent(String content) {
+        this.content = content == null ? null : content.trim();
     }
 
     /**
@@ -167,10 +167,10 @@ public class User implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", name=").append(name);
-        sb.append(", pwd=").append(pwd);
-        sb.append(", isAdmin=").append(isAdmin);
+        sb.append(", type=").append(type);
         sb.append(", courseId=").append(courseId);
+        sb.append(", title=").append(title);
+        sb.append(", content=").append(content);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
         sb.append("]");
@@ -188,12 +188,12 @@ public class User implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        User other = (User) that;
+        Notice other = (Notice) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
-            && (this.getPwd() == null ? other.getPwd() == null : this.getPwd().equals(other.getPwd()))
-            && (this.getIsAdmin() == null ? other.getIsAdmin() == null : this.getIsAdmin().equals(other.getIsAdmin()))
+            && (this.getType() == null ? other.getType() == null : this.getType().equals(other.getType()))
             && (this.getCourseId() == null ? other.getCourseId() == null : this.getCourseId().equals(other.getCourseId()))
+            && (this.getTitle() == null ? other.getTitle() == null : this.getTitle().equals(other.getTitle()))
+            && (this.getContent() == null ? other.getContent() == null : this.getContent().equals(other.getContent()))
             && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
             && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
     }
@@ -203,10 +203,10 @@ public class User implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
-        result = prime * result + ((getPwd() == null) ? 0 : getPwd().hashCode());
-        result = prime * result + ((getIsAdmin() == null) ? 0 : getIsAdmin().hashCode());
+        result = prime * result + ((getType() == null) ? 0 : getType().hashCode());
         result = prime * result + ((getCourseId() == null) ? 0 : getCourseId().hashCode());
+        result = prime * result + ((getTitle() == null) ? 0 : getTitle().hashCode());
+        result = prime * result + ((getContent() == null) ? 0 : getContent().hashCode());
         result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
         return result;

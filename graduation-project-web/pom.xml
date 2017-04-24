@@ -97,6 +97,11 @@
             <artifactId>logback-ext-spring</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+        </dependency>
+
         <!-- Jackson Begin -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>

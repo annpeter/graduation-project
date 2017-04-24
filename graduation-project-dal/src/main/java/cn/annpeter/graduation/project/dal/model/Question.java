@@ -3,7 +3,7 @@ package cn.annpeter.graduation.project.dal.model;
 import java.io.Serializable;
 import java.util.Date;
 
-public class User implements Serializable {
+public class Question implements Serializable {
     /**
      * INTEGER(10) 必填
      * 
@@ -11,38 +11,26 @@ public class User implements Serializable {
     private Integer id;
 
     /**
-     * VARCHAR(20) 必填
-     * 用户名
+     * VARCHAR(256)
+     * 
      */
-    private String name;
+    private String content;
 
     /**
-     * VARCHAR(20) 必填
-     * 密码
+     * VARCHAR(256)
+     * 
      */
-    private String pwd;
-
-    /**
-     * TINYINT(3) 默认值[0] 必填
-     * 是否为管理员, 0否 1是
-     */
-    private Short isAdmin;
-
-    /**
-     * INTEGER(10) 必填
-     * 所属课程
-     */
-    private Integer courseId;
+    private String answer;
 
     /**
      * TIMESTAMP(19) 默认值[CURRENT_TIMESTAMP]
-     * 创建时间
+     * 
      */
     private Date createTime;
 
     /**
      * TIMESTAMP(19) 默认值[CURRENT_TIMESTAMP]
-     * 修改时间
+     * 
      */
     private Date updateTime;
 
@@ -65,72 +53,40 @@ public class User implements Serializable {
     }
 
     /**
-     * VARCHAR(20) 必填
-     * 获得 用户名
+     * VARCHAR(256)
+     * 获得 
      */
-    public String getName() {
-        return name;
+    public String getContent() {
+        return content;
     }
 
     /**
-     * VARCHAR(20) 必填
-     * 设置 用户名
+     * VARCHAR(256)
+     * 设置 
      */
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setContent(String content) {
+        this.content = content == null ? null : content.trim();
     }
 
     /**
-     * VARCHAR(20) 必填
-     * 获得 密码
+     * VARCHAR(256)
+     * 获得 
      */
-    public String getPwd() {
-        return pwd;
+    public String getAnswer() {
+        return answer;
     }
 
     /**
-     * VARCHAR(20) 必填
-     * 设置 密码
+     * VARCHAR(256)
+     * 设置 
      */
-    public void setPwd(String pwd) {
-        this.pwd = pwd == null ? null : pwd.trim();
-    }
-
-    /**
-     * TINYINT(3) 默认值[0] 必填
-     * 获得 是否为管理员, 0否 1是
-     */
-    public Short getIsAdmin() {
-        return isAdmin;
-    }
-
-    /**
-     * TINYINT(3) 默认值[0] 必填
-     * 设置 是否为管理员, 0否 1是
-     */
-    public void setIsAdmin(Short isAdmin) {
-        this.isAdmin = isAdmin;
-    }
-
-    /**
-     * INTEGER(10) 必填
-     * 获得 所属课程
-     */
-    public Integer getCourseId() {
-        return courseId;
-    }
-
-    /**
-     * INTEGER(10) 必填
-     * 设置 所属课程
-     */
-    public void setCourseId(Integer courseId) {
-        this.courseId = courseId;
+    public void setAnswer(String answer) {
+        this.answer = answer == null ? null : answer.trim();
     }
 
     /**
      * TIMESTAMP(19) 默认值[CURRENT_TIMESTAMP]
-     * 获得 创建时间
+     * 获得 
      */
     public Date getCreateTime() {
         return createTime;
@@ -138,7 +94,7 @@ public class User implements Serializable {
 
     /**
      * TIMESTAMP(19) 默认值[CURRENT_TIMESTAMP]
-     * 设置 创建时间
+     * 设置 
      */
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
@@ -146,7 +102,7 @@ public class User implements Serializable {
 
     /**
      * TIMESTAMP(19) 默认值[CURRENT_TIMESTAMP]
-     * 获得 修改时间
+     * 获得 
      */
     public Date getUpdateTime() {
         return updateTime;
@@ -154,7 +110,7 @@ public class User implements Serializable {
 
     /**
      * TIMESTAMP(19) 默认值[CURRENT_TIMESTAMP]
-     * 设置 修改时间
+     * 设置 
      */
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
@@ -167,10 +123,8 @@ public class User implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", name=").append(name);
-        sb.append(", pwd=").append(pwd);
-        sb.append(", isAdmin=").append(isAdmin);
-        sb.append(", courseId=").append(courseId);
+        sb.append(", content=").append(content);
+        sb.append(", answer=").append(answer);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
         sb.append("]");
@@ -188,12 +142,10 @@ public class User implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        User other = (User) that;
+        Question other = (Question) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
-            && (this.getPwd() == null ? other.getPwd() == null : this.getPwd().equals(other.getPwd()))
-            && (this.getIsAdmin() == null ? other.getIsAdmin() == null : this.getIsAdmin().equals(other.getIsAdmin()))
-            && (this.getCourseId() == null ? other.getCourseId() == null : this.getCourseId().equals(other.getCourseId()))
+            && (this.getContent() == null ? other.getContent() == null : this.getContent().equals(other.getContent()))
+            && (this.getAnswer() == null ? other.getAnswer() == null : this.getAnswer().equals(other.getAnswer()))
             && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
             && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
     }
@@ -203,10 +155,8 @@ public class User implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
-        result = prime * result + ((getPwd() == null) ? 0 : getPwd().hashCode());
-        result = prime * result + ((getIsAdmin() == null) ? 0 : getIsAdmin().hashCode());
-        result = prime * result + ((getCourseId() == null) ? 0 : getCourseId().hashCode());
+        result = prime * result + ((getContent() == null) ? 0 : getContent().hashCode());
+        result = prime * result + ((getAnswer() == null) ? 0 : getAnswer().hashCode());
         result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
         return result;

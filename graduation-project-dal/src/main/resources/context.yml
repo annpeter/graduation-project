@@ -1,0 +1,4 @@
+# web层相关配置
+web:
+  loggedUserFlag: LOGIN_USER_FLAG
+  loggedUserInfo: LOGIN_USER_INFO

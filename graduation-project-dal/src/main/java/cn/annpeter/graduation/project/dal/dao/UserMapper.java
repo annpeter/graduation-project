@@ -4,11 +4,10 @@ import cn.annpeter.graduation.project.base.mybatis.page.model.Page;
 import cn.annpeter.graduation.project.base.mybatis.page.model.PageRowBounds;
 import cn.annpeter.graduation.project.dal.model.User;
 import cn.annpeter.graduation.project.dal.model.UserExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 
-@Repository
+import java.util.List;
+
 public interface UserMapper {
     long countByExample(UserExample example);
 
