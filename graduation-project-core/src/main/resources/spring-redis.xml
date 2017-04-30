@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!-- 解析redis-cluster.properties 下面可以使用标记引用配置文件中的变量 -->
+    <util:properties id="redis" location="classpath:redis-cluster.properties"/>
+
+    <bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+        <constructor-arg index="0">
+            <bean class="org.springframework.data.redis.connection.RedisClusterConfiguration">
+                <constructor-arg index="0">
+                    <set>
+                        <!--理论上只需要配置一个节点(master)即可,配置多个是为了防止单个节点挂掉-->
+                        <value>#{redis['redis.redisClusterConfiguration.clusters']}</value>
+                    </set>
+                </constructor-arg>
+
+                <!--
+                用于 JedisCluster(Set<HostAndPort>, int, int, GenericObjectPoolConfig) 第三个参数 maxRedirections
+                默认值是5
+                一般当此值设置过大时，容易报：Too many Cluster redirections
+                -->
+                <property name="maxRedirects" value="#{redis['redis.redisClusterConfiguration.maxRedirects']}"/>
+            </bean>
+        </constructor-arg>
+
+        <constructor-arg index="1">
+            <bean class="redis.clients.jedis.JedisPoolConfig">
+                <property name="maxIdle" value="#{redis['redis.jedisPoolConfig.MaxIdle']}"/>
+                <property name="testOnBorrow" value="#{redis['redis.jedisPoolConfig.testOnBorrow']}"/>
+                <property name="testOnReturn" value="#{redis['redis.jedisPoolConfig.testOnReturn']}"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+        <property name="connectionFactory"   ref="jedisConnectionFactory" />
+        <property name="keySerializer">
+            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+        </property>
+        <property name="valueSerializer">
+            <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer" />
+        </property>
+        <property name="hashKeySerializer">
+            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+        </property>
+        <property name="hashValueSerializer">
+            <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
+        </property>
+    </bean>
+</beans>

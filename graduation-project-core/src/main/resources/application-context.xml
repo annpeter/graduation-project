@@ -10,4 +10,5 @@
 
     <import resource="classpath:spring-dao.xml"/>
     <import resource="classpath:spring-quartz.xml"/>
+    <import resource="classpath:spring-redis.xml"/>
 </beans>

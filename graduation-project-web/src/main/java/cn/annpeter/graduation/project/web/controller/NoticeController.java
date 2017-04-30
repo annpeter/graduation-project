@@ -76,11 +76,12 @@ public class NoticeController {
      */
     // @formatter:on
     @ResponseBody
-    @RequestMapping(value = "add", method = RequestMethod.GET)
+    @RequestMapping(value = "add", method = RequestMethod.POST)
     public ResultModel addNotice(@NotNull Integer courseId,
                                  @NotNull Integer type,
-                                 String content){
-        noticeService.addNotice(courseId, type, content);
+                                 @NotNull String title,
+                                 @NotNull String content){
+        noticeService.addNotice(courseId, type, title, content);
         return ResultModel.success(null, "添加成功");
     }
 }
