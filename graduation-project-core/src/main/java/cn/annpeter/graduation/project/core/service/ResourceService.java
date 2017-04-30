@@ -24,4 +24,12 @@ public class ResourceService {
         return resourceMapper.selectByExample(example);
     }
 
+    public void addResource(String type,
+                            String name,
+                            String url,
+                            Integer courseId){
+        Resource resource = new Resource();
+        resource.setUrl(url);
+    }
+
 }

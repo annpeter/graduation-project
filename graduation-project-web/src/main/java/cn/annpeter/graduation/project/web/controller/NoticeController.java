@@ -29,7 +29,7 @@ public class NoticeController {
     /**
      * @api {post} /api/notice/list 公告列表
      * @apiName list
-     * @apiGroup Course
+     * @apiGroup Notice
      *
      * @apiSuccessExample {json} Response 200 Example
      * {
@@ -52,7 +52,35 @@ public class NoticeController {
     // @formatter:on
     @ResponseBody
     @RequestMapping(value = "list", method = RequestMethod.GET)
-    public ResultModel getCourseList(@NotNull Integer courseId){
+    public ResultModel getNoticeList(@NotNull Integer courseId){
         return ResultModel.success(noticeService.getNoticeListByCourseId(courseId));
+    }
+
+    // @formatter:off
+    /**
+     * @api {post} /api/notice/add 添加公告
+     * @apiName add
+     * @apiGroup Notice
+     *
+     * @apiParam {int} courseId 课程id
+     * @apiParam {int} type 公告类型(0: 校内公告, 1:院内公告)
+     * @apiParam {string} content 公告内容
+     *
+     * @apiSuccessExample {json} Response 200 Example
+     * {
+     *     "code": 200,
+     *     "data": null,
+     *     "result_msg": "执行成功",
+     *     "error_stack_trace": null
+     * }
+     */
+    // @formatter:on
+    @ResponseBody
+    @RequestMapping(value = "add", method = RequestMethod.GET)
+    public ResultModel addNotice(@NotNull Integer courseId,
+                                 @NotNull Integer type,
+                                 String content){
+        noticeService.addNotice(courseId, type, content);
+        return ResultModel.success(null, "添加成功");
     }
 }

@@ -42,25 +42,72 @@ public class UserController {
      * @apiSuccessExample {json} Response 200 Example
      *  {
      *      "code": 200,
-     *      "data": "注册成功",
-     *      "result_msg": "执行成功",
+     *      "data": null,
+     *      "result_msg": "注册成功",
      *      "error_stack_trace": null
      *  }
      */
     // @formatter:on
     @ResponseBody
     @RequestMapping(value = "register", method = RequestMethod.POST)
-    public ResultModel<String> register(@RequestParam("name") String name,
+    public ResultModel register(@RequestParam("name") String name,
                                         @RequestParam("pwd") String pwd) {
         User user = new User();
         user.setName(name);
         user.setPwd(pwd);
 
         if(1 == userService.register(user)){
-           return ResultModel.success("注册成功");
+           return ResultModel.success();
         }else {
             throw new CommonException(ResultCodeEnum.UNKNOWN_ERROR);
         }
+    }
+
+
+    // @formatter:off
+    /**
+     * @api {post} /api/user/delete 用户删除
+     * @apiName delete
+     * @apiGroup User
+     *
+     * @apiParam {int} id 用户id
+     *
+     * @apiSuccessExample {json} Response 200 Example
+     *  {
+     *      "code": 200,
+     *      "data": null,
+     *      "result_msg": "删除成功",
+     *      "error_stack_trace": null
+     *  }
+     */
+    // @formatter:on
+    @ResponseBody
+    @RequestMapping(value = "delete", method = RequestMethod.POST)
+    public ResultModel delete(@RequestParam("id") Integer id) {
+        userService.delete(id);
+        return ResultModel.success();
+    }
+
+
+    // @formatter:off
+    /**
+     * @api {post} /api/user/list 用户列表
+     * @apiName list
+     * @apiGroup User
+     *
+     * @apiSuccessExample {json} Response 200 Example
+     *  {
+     *      "code": 200,
+     *      "data": null,
+     *      "result_msg": "获取成功",
+     *      "error_stack_trace": null
+     *  }
+     */
+    // @formatter:on
+    @ResponseBody
+    @RequestMapping(value = "list", method = RequestMethod.POST)
+    public ResultModel list() {
+        return ResultModel.success(userService.list());
     }
 
 
@@ -79,8 +126,8 @@ public class UserController {
      * @apiSuccessExample {json} Response 200 Example
      *  {
      *      "code": 200,
-     *      "data": "登录成功",
-     *      "result_msg": "执行成功",
+     *      "data": null,
+     *      "result_msg": "登录成功",
      *      "error_stack_trace": null
      *  }
      */
@@ -98,6 +145,6 @@ public class UserController {
 
         session.setAttribute(web.loggedUserFlag, true);
         session.setAttribute(web.loggedUserInfo, user);
-        return ResultModel.success("登录成功");
+        return ResultModel.success(null, "登录成功");
     }
 }

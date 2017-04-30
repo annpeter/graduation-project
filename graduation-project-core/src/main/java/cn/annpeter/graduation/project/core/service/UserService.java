@@ -24,6 +24,11 @@ public class UserService {
     @Resource
     private UserMapper userMapper;
 
+    public void delete(int id){
+        userMapper.deleteByPrimaryKey(id);
+    }
+
+
     public int register(User user) {
         UserExample example = new UserExample();
         example.createCriteria().andNameEqualTo(user.getName());
@@ -48,6 +53,11 @@ public class UserService {
                 throw new CommonException(ResultCodeEnum.FORBIDDEN, "密码错误");
             }
         }
+    }
+
+    public List<User> list(){
+        UserExample example = new UserExample();
+        return userMapper.selectByExample(example);
     }
 
 }

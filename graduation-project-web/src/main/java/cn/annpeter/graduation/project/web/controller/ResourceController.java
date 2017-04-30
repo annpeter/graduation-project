@@ -54,4 +54,34 @@ public class ResourceController {
     public ResultModel getResourceList(){
         return ResultModel.success(resourceService.getResourceList());
     }
+
+
+    // @formatter:off
+    /**
+     * @api {post} /api/resource/add 添加资源
+     * @apiName add
+     * @apiGroup Resource
+     *
+     * @apiParam {string} type 资源类型
+     * @apiParam {string} name 资源名称
+     * @apiParam {string} url  资源URL
+     * @apiParam {int} courseId  课程id
+     *
+     * @apiSuccessExample {json} Response 200 Example
+     * {
+     *     "code": 200,
+     *     "data": null,
+     *     "result_msg": "执行成功",
+     *     "error_stack_trace": null
+     * }
+     */
+    // @formatter:on
+    @ResponseBody
+    @RequestMapping(value = "list", method = RequestMethod.GET)
+    public ResultModel addResource(String type,
+                                   String name,
+                                   String url,
+                                   Integer courseId) {
+        return ResultModel.success();
+    }
 }

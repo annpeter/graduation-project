@@ -25,4 +25,12 @@ public class NoticeService {
                 .andCourseIdEqualTo(courseId);
         return noticeMapper.selectByExample(example);
     }
+
+    public void addNotice(Integer courseId, Integer type, String content){
+        Notice notice = new Notice();
+        notice.setCourseId(courseId);
+        notice.setType(type);
+        notice.setContent(content);
+        noticeMapper.insert(notice);
+    }
 }
