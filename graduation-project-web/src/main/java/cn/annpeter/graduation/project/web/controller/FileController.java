@@ -63,7 +63,7 @@ public class FileController {
         if (file == null) {
             return ResultModel.fail(ResultCodeEnum.RESOURCE_NOT_FOUND, "上传文件不能为空");
         }
-        Integer userId = ((User) session.getAttribute(web.loggedUserFlag)).getId();
+        Integer userId = ((User) session.getAttribute(web.loggedUserInfo)).getId();
         String url = handleSingleFile(file, userId);
         return ResultModel.success(Stream.of(new SimpleEntry<>("file_url", url))
                 .collect(Collectors.toMap(SimpleEntry::getKey, SimpleEntry::getValue)));

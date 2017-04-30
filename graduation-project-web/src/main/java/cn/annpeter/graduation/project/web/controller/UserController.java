@@ -105,7 +105,7 @@ public class UserController {
      */
     // @formatter:on
     @ResponseBody
-    @RequestMapping(value = "list", method = RequestMethod.POST)
+    @RequestMapping(value = "list", method = RequestMethod.GET)
     public ResultModel list() {
         return ResultModel.success(userService.list());
     }

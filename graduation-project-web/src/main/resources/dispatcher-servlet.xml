@@ -24,9 +24,9 @@
           class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
         <property name="supportedMediaTypes">
             <list>
+                <value>text/json;charset=UTF-8</value>
                 <value>text/html;charset=UTF-8</value>
                 <value>text/plain;charset=UTF-8</value>
-                <value>text/json;charset=UTF-8</value>
                 <value>application/json;charset=UTF-8</value>
             </list>
         </property>
@@ -43,11 +43,16 @@
 
     <mvc:interceptors>
         <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="cn.annpeter.graduation.project.web.aspect.MediaTypeInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
             <!-- 拦截所有URL -->
             <mvc:mapping path="/**"/>
 
             <mvc:exclude-mapping path="/api/user/register.htm"/>
             <mvc:exclude-mapping path="/api/user/login.htm"/>
+            <mvc:exclude-mapping path="/static/**"/>
             <bean class="cn.annpeter.graduation.project.web.aspect.LoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>

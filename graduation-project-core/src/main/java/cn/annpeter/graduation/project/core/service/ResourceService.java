@@ -5,6 +5,7 @@ import cn.annpeter.graduation.project.dal.model.Resource;
 import cn.annpeter.graduation.project.dal.model.ResourceExample;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,12 +25,14 @@ public class ResourceService {
         return resourceMapper.selectByExample(example);
     }
 
-    public void addResource(String type,
-                            String name,
-                            String url,
-                            Integer courseId){
+    public void addResource(String type, String name, String url, Integer courseId) {
         Resource resource = new Resource();
         resource.setUrl(url);
+        resource.setType(type);
+        resource.setName(name);
+        resource.setCourseId(courseId);
+        resource.setCreateTime(new Date());
+        resourceMapper.insert(resource);
     }
 
 }

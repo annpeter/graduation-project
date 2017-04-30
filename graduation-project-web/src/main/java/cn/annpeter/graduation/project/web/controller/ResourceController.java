@@ -77,11 +77,9 @@ public class ResourceController {
      */
     // @formatter:on
     @ResponseBody
-    @RequestMapping(value = "list", method = RequestMethod.GET)
-    public ResultModel addResource(String type,
-                                   String name,
-                                   String url,
-                                   Integer courseId) {
+    @RequestMapping(value = "add", method = RequestMethod.POST)
+    public ResultModel addResource(String type, String name, String url, Integer courseId) {
+        resourceService.addResource(type, name, url, courseId);
         return ResultModel.success();
     }
 }
