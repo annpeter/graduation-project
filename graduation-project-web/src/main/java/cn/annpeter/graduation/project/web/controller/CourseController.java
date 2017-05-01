@@ -108,7 +108,7 @@ public class CourseController {
     // @formatter:on
     @ResponseBody
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public ResultModel addNotice(@NotNull String name,
+    public ResultModel addCourse(@NotNull String name,
                                  @NotNull String imgUrl,
                                  @NotNull String intro) {
         courseService.addCourse(name, imgUrl, intro);
