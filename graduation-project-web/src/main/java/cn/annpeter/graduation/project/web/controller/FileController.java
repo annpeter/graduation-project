@@ -143,7 +143,7 @@ public class FileController {
                 File localFile = getUseAbleFile(fileUri, filename, fileSuffix);
                 file.transferTo(localFile);
 
-                return web.fileUploadUrlPrefix + fileUri + localFile.getName();
+                return "/fileUpload/" + fileUri + localFile.getName();
             }
         }
 

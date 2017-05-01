@@ -9,5 +9,4 @@ public class Web {
     public String loggedUserFlag;
     public String loggedUserInfo;
     public String fileUploadBaseDir;
-    public String fileUploadUrlPrefix;
 }

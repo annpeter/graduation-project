@@ -3,4 +3,3 @@ web:
   loggedUserFlag: LOGIN_USER_FLAG
   loggedUserInfo: LOGIN_USER_INFO
   fileUploadBaseDir: /Users/annpeter/Desktop/fileUpload/
-  fileUploadUrlPrefix: http://127.0.0.1:8080/upload/
