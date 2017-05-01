@@ -1,7 +1,6 @@
 package cn.annpeter.graduation.project.core.service;
 
 import cn.annpeter.graduation.project.base.common.exception.CommonException;
-import cn.annpeter.graduation.project.base.common.model.ResultCodeEnum;
 import cn.annpeter.graduation.project.dal.dao.HomeWorkCommitMapper;
 import cn.annpeter.graduation.project.dal.dao.HomeWorkMapper;
 import cn.annpeter.graduation.project.dal.model.HomeWork;
@@ -35,13 +34,22 @@ public class HomeWorkService {
         return homeWorkMapper.selectByExample(example);
     }
 
-    public void commitHomeWork(Integer userId, String url){
+    public void commitHomeWork(Integer userId, String url) {
         HomeWorkCommit commit = new HomeWorkCommit();
         commit.setUserId(userId);
         commit.setUrl(url);
         int ret = homeWorkCommitMapper.insert(commit);
-        if(ret < 1){
+        if (ret < 1) {
             throw new CommonException(UNKNOWN_ERROR, "作业提交失败");
         }
+    }
+
+    public void addHomeWork(Integer courseId, String title, String url, Integer state) {
+        HomeWork homeWork = new HomeWork();
+        homeWork.setTitle(title);
+        homeWork.setCourseId(courseId);
+        homeWork.setState(state);
+        homeWork.setUrl(url);
+        homeWorkMapper.insertSelective(homeWork);
     }
 }

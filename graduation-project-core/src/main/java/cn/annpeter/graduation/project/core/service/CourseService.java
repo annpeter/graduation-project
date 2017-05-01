@@ -6,6 +6,7 @@ import cn.annpeter.graduation.project.dal.model.CourseExample;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,6 +30,15 @@ public class CourseService {
     public Course getCourseInfo(Integer courseId) {
 
         return courseMapper.selectByPrimaryKey(courseId);
+    }
+
+    public void addCourse(String name, String imgUrl, String intro) {
+        Course course = new Course();
+        course.setName(name);
+        course.setImgUrl(imgUrl);
+        course.setIntro(intro);
+        course.setCreateTime(new Date());
+        courseMapper.insertSelective(course);
     }
 
 }

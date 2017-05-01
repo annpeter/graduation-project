@@ -5,6 +5,7 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="seq" jdbcType="INTEGER" property="seq" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
     <result column="intro" jdbcType="VARCHAR" property="intro" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, seq, intro, create_time, update_time
+    id, name, seq, img_url, intro, create_time, update_time
   </sql>
   <select id="selectByExample" parameterType="cn.annpeter.graduation.project.dal.model.CourseExample" resultMap="BaseResultMap">
     select
@@ -104,10 +105,12 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into TB_COURSE (name, seq, intro, 
-      create_time, update_time)
-    values (#{name,jdbcType=VARCHAR}, #{seq,jdbcType=INTEGER}, #{intro,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    insert into TB_COURSE (name, seq, img_url, 
+      intro, create_time, update_time
+      )
+    values (#{name,jdbcType=VARCHAR}, #{seq,jdbcType=INTEGER}, #{imgUrl,jdbcType=VARCHAR}, 
+      #{intro,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="cn.annpeter.graduation.project.dal.model.Course">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -120,6 +123,9 @@
       </if>
       <if test="seq != null">
         seq,
+      </if>
+      <if test="imgUrl != null">
+        img_url,
       </if>
       <if test="intro != null">
         intro,
@@ -137,6 +143,9 @@
       </if>
       <if test="seq != null">
         #{seq,jdbcType=INTEGER},
+      </if>
+      <if test="imgUrl != null">
+        #{imgUrl,jdbcType=VARCHAR},
       </if>
       <if test="intro != null">
         #{intro,jdbcType=VARCHAR},
@@ -167,6 +176,9 @@
       <if test="record.seq != null">
         seq = #{record.seq,jdbcType=INTEGER},
       </if>
+      <if test="record.imgUrl != null">
+        img_url = #{record.imgUrl,jdbcType=VARCHAR},
+      </if>
       <if test="record.intro != null">
         intro = #{record.intro,jdbcType=VARCHAR},
       </if>
@@ -186,6 +198,7 @@
     set id = #{record.id,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
       seq = #{record.seq,jdbcType=INTEGER},
+      img_url = #{record.imgUrl,jdbcType=VARCHAR},
       intro = #{record.intro,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP}
@@ -201,6 +214,9 @@
       </if>
       <if test="seq != null">
         seq = #{seq,jdbcType=INTEGER},
+      </if>
+      <if test="imgUrl != null">
+        img_url = #{imgUrl,jdbcType=VARCHAR},
       </if>
       <if test="intro != null">
         intro = #{intro,jdbcType=VARCHAR},
@@ -218,6 +234,7 @@
     update TB_COURSE
     set name = #{name,jdbcType=VARCHAR},
       seq = #{seq,jdbcType=INTEGER},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
       intro = #{intro,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}

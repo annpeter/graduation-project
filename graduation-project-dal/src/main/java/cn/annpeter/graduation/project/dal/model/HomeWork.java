@@ -1,6 +1,7 @@
 package cn.annpeter.graduation.project.dal.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class HomeWork implements Serializable {
     /**
@@ -32,6 +33,18 @@ public class HomeWork implements Serializable {
      * 1表示可用, 0表示不可用
      */
     private Integer state;
+
+    /**
+     * TIMESTAMP(19) 默认值[CURRENT_TIMESTAMP]
+     * 
+     */
+    private Date createTime;
+
+    /**
+     * TIMESTAMP(19) 默认值[CURRENT_TIMESTAMP]
+     * 
+     */
+    private Date updateTime;
 
     private static final long serialVersionUID = 1L;
 
@@ -115,6 +128,38 @@ public class HomeWork implements Serializable {
         this.state = state;
     }
 
+    /**
+     * TIMESTAMP(19) 默认值[CURRENT_TIMESTAMP]
+     * 获得 
+     */
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    /**
+     * TIMESTAMP(19) 默认值[CURRENT_TIMESTAMP]
+     * 设置 
+     */
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    /**
+     * TIMESTAMP(19) 默认值[CURRENT_TIMESTAMP]
+     * 获得 
+     */
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    /**
+     * TIMESTAMP(19) 默认值[CURRENT_TIMESTAMP]
+     * 设置 
+     */
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -126,6 +171,8 @@ public class HomeWork implements Serializable {
         sb.append(", title=").append(title);
         sb.append(", url=").append(url);
         sb.append(", state=").append(state);
+        sb.append(", createTime=").append(createTime);
+        sb.append(", updateTime=").append(updateTime);
         sb.append("]");
         return sb.toString();
     }
@@ -146,7 +193,9 @@ public class HomeWork implements Serializable {
             && (this.getCourseId() == null ? other.getCourseId() == null : this.getCourseId().equals(other.getCourseId()))
             && (this.getTitle() == null ? other.getTitle() == null : this.getTitle().equals(other.getTitle()))
             && (this.getUrl() == null ? other.getUrl() == null : this.getUrl().equals(other.getUrl()))
-            && (this.getState() == null ? other.getState() == null : this.getState().equals(other.getState()));
+            && (this.getState() == null ? other.getState() == null : this.getState().equals(other.getState()))
+            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
+            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
     }
 
     @Override
@@ -158,6 +207,8 @@ public class HomeWork implements Serializable {
         result = prime * result + ((getTitle() == null) ? 0 : getTitle().hashCode());
         result = prime * result + ((getUrl() == null) ? 0 : getUrl().hashCode());
         result = prime * result + ((getState() == null) ? 0 : getState().hashCode());
+        result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
+        result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
         return result;
     }
 }

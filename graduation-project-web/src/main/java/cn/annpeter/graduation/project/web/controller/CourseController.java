@@ -85,4 +85,33 @@ public class CourseController {
     public ResultModel getCourseInfo(@NotNull Integer courseId) {
         return ResultModel.success(courseService.getCourseInfo(courseId));
     }
+
+
+    // @formatter:off
+    /**
+     * @api {post} /api/course/add 添加课程
+     * @apiName add
+     * @apiGroup Course
+     *
+     * @apiParam {string} name 课程名字
+     * @apiParam {string} imgUrl 课程logo
+     * @apiParam {string} intro 课程简介
+     *
+     * @apiSuccessExample {json} Response 200 Example
+     * {
+     *     "code": 200,
+     *     "data": null,
+     *     "result_msg": "添加成功",
+     *     "error_stack_trace": null
+     * }
+     */
+    // @formatter:on
+    @ResponseBody
+    @RequestMapping(value = "add", method = RequestMethod.POST)
+    public ResultModel addNotice(@NotNull String name,
+                                 @NotNull String imgUrl,
+                                 @NotNull String intro) {
+        courseService.addCourse(name, imgUrl, intro);
+        return ResultModel.success(null, "添加成功");
+    }
 }

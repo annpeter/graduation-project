@@ -8,6 +8,8 @@
     <result column="score" jdbcType="REAL" property="score" />
     <result column="comment" jdbcType="VARCHAR" property="comment" />
     <result column="home_work_id" jdbcType="INTEGER" property="homeWorkId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, user_id, url, score, comment, home_work_id
+    id, user_id, url, score, comment, home_work_id, create_time, update_time
   </sql>
   <select id="selectByExample" parameterType="cn.annpeter.graduation.project.dal.model.HomeWorkCommitExample" resultMap="BaseResultMap">
     select
@@ -105,9 +107,11 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into TB_HOME_WORK_COMMIT (user_id, url, score, 
-      comment, home_work_id)
+      comment, home_work_id, create_time, 
+      update_time)
     values (#{userId,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{score,jdbcType=REAL}, 
-      #{comment,jdbcType=VARCHAR}, #{homeWorkId,jdbcType=INTEGER})
+      #{comment,jdbcType=VARCHAR}, #{homeWorkId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="cn.annpeter.graduation.project.dal.model.HomeWorkCommit">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -130,6 +134,12 @@
       <if test="homeWorkId != null">
         home_work_id,
       </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userId != null">
@@ -146,6 +156,12 @@
       </if>
       <if test="homeWorkId != null">
         #{homeWorkId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -176,6 +192,12 @@
       <if test="record.homeWorkId != null">
         home_work_id = #{record.homeWorkId,jdbcType=INTEGER},
       </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -188,7 +210,9 @@
       url = #{record.url,jdbcType=VARCHAR},
       score = #{record.score,jdbcType=REAL},
       comment = #{record.comment,jdbcType=VARCHAR},
-      home_work_id = #{record.homeWorkId,jdbcType=INTEGER}
+      home_work_id = #{record.homeWorkId,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -211,6 +235,12 @@
       <if test="homeWorkId != null">
         home_work_id = #{homeWorkId,jdbcType=INTEGER},
       </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -220,7 +250,9 @@
       url = #{url,jdbcType=VARCHAR},
       score = #{score,jdbcType=REAL},
       comment = #{comment,jdbcType=VARCHAR},
-      home_work_id = #{homeWorkId,jdbcType=INTEGER}
+      home_work_id = #{homeWorkId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectPageByExample" parameterType="cn.annpeter.graduation.project.dal.model.HomeWorkCommitExample" resultMap="BaseResultMap">

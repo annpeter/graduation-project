@@ -1,6 +1,7 @@
 package cn.annpeter.graduation.project.dal.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class HomeWorkCommit implements Serializable {
     /**
@@ -38,6 +39,18 @@ public class HomeWorkCommit implements Serializable {
      * 作业id
      */
     private Integer homeWorkId;
+
+    /**
+     * TIMESTAMP(19) 默认值[CURRENT_TIMESTAMP]
+     * 
+     */
+    private Date createTime;
+
+    /**
+     * TIMESTAMP(19)
+     * 
+     */
+    private Date updateTime;
 
     private static final long serialVersionUID = 1L;
 
@@ -137,6 +150,38 @@ public class HomeWorkCommit implements Serializable {
         this.homeWorkId = homeWorkId;
     }
 
+    /**
+     * TIMESTAMP(19) 默认值[CURRENT_TIMESTAMP]
+     * 获得 
+     */
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    /**
+     * TIMESTAMP(19) 默认值[CURRENT_TIMESTAMP]
+     * 设置 
+     */
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    /**
+     * TIMESTAMP(19)
+     * 获得 
+     */
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    /**
+     * TIMESTAMP(19)
+     * 设置 
+     */
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -149,6 +194,8 @@ public class HomeWorkCommit implements Serializable {
         sb.append(", score=").append(score);
         sb.append(", comment=").append(comment);
         sb.append(", homeWorkId=").append(homeWorkId);
+        sb.append(", createTime=").append(createTime);
+        sb.append(", updateTime=").append(updateTime);
         sb.append("]");
         return sb.toString();
     }
@@ -170,7 +217,9 @@ public class HomeWorkCommit implements Serializable {
             && (this.getUrl() == null ? other.getUrl() == null : this.getUrl().equals(other.getUrl()))
             && (this.getScore() == null ? other.getScore() == null : this.getScore().equals(other.getScore()))
             && (this.getComment() == null ? other.getComment() == null : this.getComment().equals(other.getComment()))
-            && (this.getHomeWorkId() == null ? other.getHomeWorkId() == null : this.getHomeWorkId().equals(other.getHomeWorkId()));
+            && (this.getHomeWorkId() == null ? other.getHomeWorkId() == null : this.getHomeWorkId().equals(other.getHomeWorkId()))
+            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
+            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
     }
 
     @Override
@@ -183,6 +232,8 @@ public class HomeWorkCommit implements Serializable {
         result = prime * result + ((getScore() == null) ? 0 : getScore().hashCode());
         result = prime * result + ((getComment() == null) ? 0 : getComment().hashCode());
         result = prime * result + ((getHomeWorkId() == null) ? 0 : getHomeWorkId().hashCode());
+        result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
+        result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
         return result;
     }
 }

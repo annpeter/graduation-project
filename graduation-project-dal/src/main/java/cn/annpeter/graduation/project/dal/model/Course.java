@@ -23,6 +23,12 @@ public class Course implements Serializable {
     private Integer seq;
 
     /**
+     * VARCHAR(256)
+     * 课程logo
+     */
+    private String imgUrl;
+
+    /**
      * VARCHAR(65535)
      * 课程简介
      */
@@ -91,6 +97,22 @@ public class Course implements Serializable {
     }
 
     /**
+     * VARCHAR(256)
+     * 获得 课程logo
+     */
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    /**
+     * VARCHAR(256)
+     * 设置 课程logo
+     */
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl == null ? null : imgUrl.trim();
+    }
+
+    /**
      * VARCHAR(65535)
      * 获得 课程简介
      */
@@ -147,6 +169,7 @@ public class Course implements Serializable {
         sb.append(", id=").append(id);
         sb.append(", name=").append(name);
         sb.append(", seq=").append(seq);
+        sb.append(", imgUrl=").append(imgUrl);
         sb.append(", intro=").append(intro);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
@@ -169,6 +192,7 @@ public class Course implements Serializable {
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
             && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
             && (this.getSeq() == null ? other.getSeq() == null : this.getSeq().equals(other.getSeq()))
+            && (this.getImgUrl() == null ? other.getImgUrl() == null : this.getImgUrl().equals(other.getImgUrl()))
             && (this.getIntro() == null ? other.getIntro() == null : this.getIntro().equals(other.getIntro()))
             && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
             && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
@@ -181,6 +205,7 @@ public class Course implements Serializable {
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
         result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
         result = prime * result + ((getSeq() == null) ? 0 : getSeq().hashCode());
+        result = prime * result + ((getImgUrl() == null) ? 0 : getImgUrl().hashCode());
         result = prime * result + ((getIntro() == null) ? 0 : getIntro().hashCode());
         result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
