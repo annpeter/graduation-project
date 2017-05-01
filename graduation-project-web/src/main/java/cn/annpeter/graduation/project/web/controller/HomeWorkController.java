@@ -62,6 +62,9 @@ public class HomeWorkController {
      * @apiName commit
      * @apiGroup HomeWork
      *
+     * @apiParam {int} homeWorkId 作业id
+     * @apiParam {url} url 作业url
+     *
      * @apiSuccessExample {json} Response 200 Example
      * {
      *     "code": 200,
@@ -79,9 +82,9 @@ public class HomeWorkController {
     // @formatter:on
     @ResponseBody
     @RequestMapping(value = "commit", method = RequestMethod.POST)
-    public ResultModel commitHomeWork(HttpSession session, String url) {
+    public ResultModel commitHomeWork(HttpSession session, Integer homeWorkId, String url) {
         User sessionUser = (User) session.getAttribute(web.loggedUserInfo);
-        homeWorkService.commitHomeWork(sessionUser.getId(), url);
+        homeWorkService.commitHomeWork(sessionUser.getId(), homeWorkId, url);
         return ResultModel.success();
     }
 

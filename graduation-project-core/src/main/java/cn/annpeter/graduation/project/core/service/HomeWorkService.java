@@ -34,10 +34,11 @@ public class HomeWorkService {
         return homeWorkMapper.selectByExample(example);
     }
 
-    public void commitHomeWork(Integer userId, String url) {
+    public void commitHomeWork(Integer userId, Integer homeWorkId, String url) {
         HomeWorkCommit commit = new HomeWorkCommit();
         commit.setUserId(userId);
         commit.setUrl(url);
+        commit.setHomeWorkId(homeWorkId);
         int ret = homeWorkCommitMapper.insert(commit);
         if (ret < 1) {
             throw new CommonException(UNKNOWN_ERROR, "作业提交失败");

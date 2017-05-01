@@ -34,6 +34,12 @@ public class Question implements Serializable {
      */
     private Date updateTime;
 
+    /**
+     * INTEGER(10)
+     * 
+     */
+    private Integer courseId;
+
     private static final long serialVersionUID = 1L;
 
     /**
@@ -116,6 +122,22 @@ public class Question implements Serializable {
         this.updateTime = updateTime;
     }
 
+    /**
+     * INTEGER(10)
+     * 获得 
+     */
+    public Integer getCourseId() {
+        return courseId;
+    }
+
+    /**
+     * INTEGER(10)
+     * 设置 
+     */
+    public void setCourseId(Integer courseId) {
+        this.courseId = courseId;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -127,6 +149,7 @@ public class Question implements Serializable {
         sb.append(", answer=").append(answer);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
+        sb.append(", courseId=").append(courseId);
         sb.append("]");
         return sb.toString();
     }
@@ -147,7 +170,8 @@ public class Question implements Serializable {
             && (this.getContent() == null ? other.getContent() == null : this.getContent().equals(other.getContent()))
             && (this.getAnswer() == null ? other.getAnswer() == null : this.getAnswer().equals(other.getAnswer()))
             && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
-            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
+            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()))
+            && (this.getCourseId() == null ? other.getCourseId() == null : this.getCourseId().equals(other.getCourseId()));
     }
 
     @Override
@@ -159,6 +183,7 @@ public class Question implements Serializable {
         result = prime * result + ((getAnswer() == null) ? 0 : getAnswer().hashCode());
         result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
+        result = prime * result + ((getCourseId() == null) ? 0 : getCourseId().hashCode());
         return result;
     }
 }

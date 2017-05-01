@@ -62,7 +62,7 @@
             <!--<generatedKey column="ID" sqlStatement="MySql" identity="true"/>-->
         <!--</table>-->
         <table schema="GRADUATION_PROJECT" tableName="TB_QUESTION" domainObjectName="Question">
-        <generatedKey column="ID" sqlStatement="MySql" identity="true"/>
+            <generatedKey column="ID" sqlStatement="MySql" identity="true"/>
         </table>
     </context>
 </generatorConfiguration>
