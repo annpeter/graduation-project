@@ -85,20 +85,21 @@ public class QuestionController {
      * @apiParam {int} courseId 课程id
      *
      * @apiSuccessExample {json} Response 200 Example
-     * {
-     *     "code": 200,
-     *     "data": {
-     *         "id": 1,
-     *         "type": "公共资源",
-     *         "name": "你懂的",
-     *         "url": "http://www.baidu.com",
-     *         "course_id": 2,
-     *         "create_time": "2017-04-22 15:30:14",
-     *         "update_time": "2017-04-22 15:46:20"
-     *     },
-     *     "result_msg": "执行成功",
-     *     "error_stack_trace": null
-     * }
+     *  {
+     *    "code": 200,
+     *    "data": [
+     *      {
+     *        "id": 1,
+     *        "content": "问题内容",
+     *        "answer": null,
+     *        "create_time": null,
+     *        "update_time": "2017-05-01 13:23:44",
+     *        "course_id": 1
+     *      }
+     *    ],
+     *    "result_msg": "执行成功",
+     *    "error_stack_trace": null
+     *  }
      */
     // @formatter:on
     @ResponseBody
