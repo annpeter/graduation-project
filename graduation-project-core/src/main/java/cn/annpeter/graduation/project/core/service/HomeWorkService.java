@@ -45,11 +45,10 @@ public class HomeWorkService {
         }
     }
 
-    public void addHomeWork(Integer courseId, String title, String url, Integer state) {
+    public void addHomeWork(Integer courseId, String title, String url) {
         HomeWork homeWork = new HomeWork();
         homeWork.setTitle(title);
         homeWork.setCourseId(courseId);
-        homeWork.setState(state);
         homeWork.setUrl(url);
         homeWorkMapper.insertSelective(homeWork);
     }

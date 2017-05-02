@@ -20,8 +20,6 @@ public class UserConnectionInfoVO {
         @JsonFormat(pattern = "yyyy-MM-dd")
         private Date date;
         private Integer view = 0;
-        private Integer storage = 0;
-        private Integer add = 0;
 
         public Date getDate() {
             return date;
@@ -37,22 +35,6 @@ public class UserConnectionInfoVO {
 
         public void setView(Integer view) {
             this.view = view;
-        }
-
-        public int getStorage() {
-            return storage;
-        }
-
-        public void setStorage(Integer storage) {
-            this.storage = storage;
-        }
-
-        public int getAdd() {
-            return add;
-        }
-
-        public void setAdd(Integer add) {
-            this.add = add;
         }
     }
 

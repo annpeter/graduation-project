@@ -91,13 +91,13 @@ public class HomeWorkController {
 
     // @formatter:off
     /**
-     * @api {post} /api/homework/add 添加课程
+     * @api {post} /api/homework/add 添加作业
      * @apiName add
-     * @apiGroup Course
+     * @apiGroup HomeWork
      *
-     * @apiParam {string} name 课程名字
-     * @apiParam {string} imgUrl 课程logo
-     * @apiParam {string} intro 课程简介
+     * @apiParam {int} courseId 课程Id
+     * @apiParam {string} title 作业title
+     * @apiParam {string} url 作业文档url
      *
      * @apiSuccessExample {json} Response 200 Example
      * {
@@ -112,9 +112,8 @@ public class HomeWorkController {
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public ResultModel addHomeWork(@NotNull Integer courseId,
                                    @NotNull String title,
-                                   @NotNull String url,
-                                   @NotNull Integer state) {
-        homeWorkService.addHomeWork(courseId, title, url, state);
+                                   @NotNull String url) {
+        homeWorkService.addHomeWork(courseId, title, url);
         return ResultModel.success(null, "添加成功");
     }
 }

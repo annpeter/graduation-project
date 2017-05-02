@@ -34,6 +34,6 @@ public class NoticeService {
         notice.setTitle(title);
         notice.setContent(content);
         notice.setCreateTime(new Date());
-        noticeMapper.insert(notice);
+        noticeMapper.insertSelective(notice);
     }
 }

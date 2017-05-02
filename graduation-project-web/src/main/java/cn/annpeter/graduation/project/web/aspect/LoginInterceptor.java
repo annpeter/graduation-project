@@ -27,7 +27,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         session.setAttribute(web.loggedUserFlag, true);
         User user = new User();
         user.setId(1);
-        user.setIsAdmin((short)0);
+        user.setIsAdmin((short) 0);
         session.setAttribute(web.loggedUserInfo, user);
 
         Object isLogin = session.getAttribute(web.loggedUserFlag);

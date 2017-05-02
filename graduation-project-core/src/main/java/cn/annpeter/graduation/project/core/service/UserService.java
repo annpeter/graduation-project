@@ -37,7 +37,7 @@ public class UserService {
             throw new CommonException(ResultCodeEnum.RESOURCE_CONFLICT, "此用户名已被注册");
         }
 
-        return userMapper.insert(user);
+        return userMapper.insertSelective(user);
     }
 
     public User login(User user) {
