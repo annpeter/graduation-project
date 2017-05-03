@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>精品课程</title>
+<link href="css/style.css" rel="stylesheet" media="screen"/>
+<link href="css/lesson_sourse_style.css" rel="stylesheet" media="screen"/>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/lesson_sourse.js"></script>
+</head>
+
+<body>
+	<!--top-->
+	<div class="head">
+		<div class="head_top">
+			<div class="lesson_logo"><img src="images/lesson1_logo.png" /></div>
+			<div class="lesson_login_success">
+				<p></p>
+			</div>
+		</div>
+		<div class="head_bottom">
+			<ul>
+				<li><a href="lesson_index.html">课程首页</a></li>
+				<li><a href="lesson_sourse_n.html">课程资源</a></li>
+				<li><a href="lesson_work_n.html">在线作业</a></li>
+				<li><a href="lesson_qa_n.html">在线答疑</a></li>
+				<li><a href="lesson_community.html">在线交流</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="return_top">
+		<a href="index.html" title="返回首页"><img src="images/return_top.jpg" /></a>
+	</div>
+
+	<!--top end-->
+
+	<div class="main">
+		<div class="lesson_left">
+			<ul>
+				<li><a id="sourse_management" href="javascript:">资源管理</a></li>
+				<li><a id="sourse_upload" href="javascript:">资源上传</a></li>
+			</ul>
+		</div>
+		<div class="lesson_main">
+			<p class="lesson_p_title">资源管理</p>
+			<div class="lesson_main_line"></div>
+			<div class="lesson_sourse_list">
+				<ul>
+				</ul>
+			</div>
+		</div>
+		<div class="lesson_upload">
+			<p class="lesson_p_title">资源上传</p>
+			<div class="lesson_main_line"></div>
+
+			<form action="" method="post" enctype="multipart/form-data">
+				<input type="file" name="fileField" class="file" id="fileField" size="28" onchange="document.getElementById('textfield').value=this.value" />
+				<input type="submit" name="submit" class="btn" value="上传" />
+			</form>
+		</div>
+	</div>
+	
+	<!--预览界面-->
+	<div class="preview_div">
+		<div class="preview_close"><img src="images/return.png" /></div>
+		<div class="preview_content">
+			<p>adfdfadsf</p>
+		</div>
+	</div>
+
+</body>
+</html>

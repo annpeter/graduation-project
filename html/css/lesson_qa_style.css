@@ -1,0 +1,145 @@
+.lesson_qa_form{
+	margin-top: 20px;
+}
+.question_description_label{
+	width: 100px;
+	float: left;
+	margin-left: 40px;
+}
+.question_description_label p{
+	font-size: 16px;
+	color: #2336a9;
+}
+.lesson_qa_form textarea{
+	width: 600px;
+	height: 150px;
+	padding: 10px;
+	border: 1px solid #666;
+	resize: none;
+	box-sizing: border-box;
+}
+.lesson_qa_button_div{
+	height: 30px;
+	margin-top: 20px;
+	text-align: center;
+}
+.lesson_qa_button_div button{
+	width: 80px;
+	height: 30px;
+	display: inline-block;
+	margin-left: 20px;
+}
+.lesson_qa_list{
+	margin-top: 30px;
+	margin-bottom: 100px;
+}
+.lesson_qa_list li{
+	margin-top: 50px;
+}
+.question{
+	height: auto;
+	margin-bottom: 10px;
+}
+.q_label{
+	width: 25px;
+	float: left;
+}
+.q_label p{
+	font-size: 24px;
+	color: #2336a9;
+}
+.q_description{
+	width: 500px;
+	height: 30px;
+	float: left;
+	margin-left: 10px;
+	overflow: hidden;
+}
+.q_description p{
+	font-size: 16px;
+	color: #333;
+	line-height: 30px;
+}
+.q_check{
+	width: 100px;
+	float: right;
+	text-align: center;
+}
+.q_check p{
+	font-size: 16px;
+	color: #333;
+	line-height: 30px;
+	cursor: pointer;
+	-webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+.q_check p:hover{
+	color: #0077fe;
+}
+.answer{
+	margin-bottom: 10px;
+	display: none;
+}
+.a_label{
+	width: 25px;
+	float: left;
+}
+.a_label p{
+	font-size: 24px;
+	color: #e83b3b;
+}
+.a_description{
+	width: 700px;
+	height: auto;
+	float: left;
+	margin-left: 10px;
+	overflow: hidden;
+}
+.a_description p{
+	font-size: 16px;
+	color: #333;
+	line-height: 30px;
+}
+.a_explain{
+	width: 700px;
+	height: 150px;
+	float: left;
+	margin-left: 10px;
+}
+.a_explain textarea{
+	width: 700px;
+	height: 100px;
+	box-sizing: border-box;
+	padding: 10px;
+	resize: none;
+}
+.a_explain_button{
+	margin-top: 20px;
+	text-align: center;
+}
+.a_explain_button button{
+	width: 80px;
+	height: 30px;
+	display: inline-block;
+	margin-left: 20px;
+}
+.q_detail{
+	width: 100px;
+	float: right;
+	text-align: center;
+}
+.q_detail p{
+	font-size: 16px;
+	color: #333;
+	line-height: 30px;
+	cursor: pointer;
+	-webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+.q_detail p:hover{
+	color: #0077fe;
+}

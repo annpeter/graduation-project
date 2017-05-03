@@ -1,0 +1,77 @@
+.lesson_sourse_list{
+	margin-top: 50px;
+}
+.lesson_sourse_list li{
+	height: 30px;
+}
+.lesson_sourse_name{
+	width: 550px;
+	float: left;
+	margin-left: 20px;
+}
+.lesson_sourse_name p{
+	font-size: 15px;
+	color: #000;
+	line-height: 30px;
+}
+.lesson_sourse_option{
+	width: 200px;
+	float: right;
+	margin-right: 20px;
+}
+.lesson_sourse_option a{
+	width: 30px;
+	height: 30px;
+	margin-left: 20px;
+	float: right;
+	line-height: 30px;
+	font-size: 15px;
+	color: #000;
+}
+.lesson_sourse_option a:hover{
+	color: #0056fe;
+}
+.lesson_sourse_download{
+	display: none;
+}
+.lesson_sourse_delete{
+	color: #f00 !important;
+	display: none;
+}
+.preview_div{
+	width: 100%;
+	height: 100%;
+	filter: alpha(opacity:80);
+	background: rgba(0,0,0,0.8);
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	z-index: 10;
+	display: none;
+}
+.preview_content{
+	width: 100%;
+	height: 100%;
+	margin: auto;
+	padding: 50px;
+	background-color: #fff;
+	box-sizing: border-box;
+}
+.preview_content div{
+	margin: auto !important;
+	margin-top: 50px !important;
+}
+.preview_close{
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	right: 30px;
+	top: 20px;
+	cursor: pointer;
+	overflow: hidden;
+}
+.preview_close img{
+	width: 100%;
+	height: 100%;
+	display: block;
+}
