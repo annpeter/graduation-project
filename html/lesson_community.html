@@ -39,20 +39,49 @@
 	<!--top end-->
 
 	<div class="main">
-		<h3>请先登录后使用</h3>
-		<div class="lesson_commnunity">
+		<p class="warning">请先<a href="lesson_index.html">返回首页</a>登录后使用</p>
+
+		<!-- <div class="lesson_commnunity">
 			<div class="communityroom">
 				<ul id="communityroom_ul">
 					
 				</ul>
 			</div>
+			<div class="clear"></div>
 			<div class="send_box">
 				<div class="message_box">
 					<textarea id="textarea"></textarea>
 					<div class="send_button" id="button"><span>发送</span></div>
 				</div>
 			</div>
+			<div class="clear"></div>
+		</div> -->
+
+
+		<div class="chat-box">
+			<div class="chat_message fn-clear">
+			    <div class="chat_left">
+			      	<div class="message_box" id="message_box">
+				    </div>
+					    <div class="write_box">
+					    	<textarea id="message" name="message" class="write_area" placeholder="说点啥吧..."></textarea>
+					    	<div class="facebox fn-clear">
+					        	<div class="expression"></div>
+					        	<button name="" class="sub_but">提 交</button>
+					    	</div>
+					    </div>
+				</div>
+			    <div class="chat_right">
+			    	<ul class="user_list">
+			    		<li class="fn-clear selected"><em>在线用户</em></li>
+			    		<li class="fn-clear" data-id="1"><em>河图</em></li>
+			    		<li class="fn-clear" data-id="2"><em>猫猫</em></li>
+			    		<li class="fn-clear" data-id="3"><em>白猫</em></li>
+			    	</ul>
+			    </div>
+			</div>
 		</div>
+
 	</div>
 </body>
 </html>
