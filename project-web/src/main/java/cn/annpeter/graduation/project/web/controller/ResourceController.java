@@ -37,26 +37,45 @@ public class ResourceController {
      * @apiParam {int} pageSize  页的大小(默认值10)
      *
      * @apiSuccessExample {json} Response 200 Example
-     * {
-     *     "code": 200,
-     *     "data": {
-     *         "id": 1,
-     *         "type": "公共资源",
-     *         "name": "你懂的",
-     *         "url": "http://www.baidu.com",
-     *         "course_id": 2,
-     *         "create_time": "2017-04-22 15:30:14",
-     *         "update_time": "2017-04-22 15:46:20"
-     *     },
-     *     "result_msg": "执行成功",
-     *     "error_stack_trace": null
-     * }
+     *  {
+     *    "code": 200,
+     *    "data": {
+     *      "currPage": 0,
+     *      "sliderList": [
+     *        "1"
+     *      ],
+     *      "prePage": 1,
+     *      "nextPage": 1,
+     *      "dataList": [
+     *        {
+     *          "id": 4,
+     *          "type": "公共资源",
+     *          "name": "江苏科技大学博士、硕士学位论文抽检评议结果处理办法",
+     *          "url": "/fileUpload/1/2017-05-02/225.docx",
+     *          "courseId": 2,
+     *          "createTime": "2017-05-02 10:20:05",
+     *          "updateTime": "2017-05-02 10:20:03"
+     *        },
+     *        {
+     *          "id": 1,
+     *          "type": "公共资源",
+     *          "name": "国务院学位委员会关于开展2017年博士硕士学位授权审核工作的通知",
+     *          "url": "/fileUpload/1/2017-05-02/245.docx",
+     *          "courseId": 1,
+     *          "createTime": "2017-04-22 15:30:14",
+     *          "updateTime": "2017-05-02 09:23:39"
+     *        }
+     *      ]
+     *    },
+     *    "resultMsg": "执行成功",
+     *    "errorStackTrace": null
+     *  }
      */
     // @formatter:on
     @GetMapping(value = "list")
-    public ResultModel getResourceList(@DefaultValue("0") @QueryParam("curr_page") int currPage,
-                                       @Min(message = "page_size 最小为1", value = 1)
-                                       @DefaultValue("10") @QueryParam("page_size") int pageSize){
+    public ResultModel getResourceList(@RequestParam(defaultValue = "0") int currPage,
+                                       @Min(message = "pageSize 最小为1", value = 1)
+                                       @RequestParam(defaultValue = "10") int pageSize){
         return ResultModel.success(resourceService.getResourceList(currPage, pageSize));
     }
 

@@ -65,11 +65,11 @@ public class Page<E> extends ArrayList<E> {
         return this.pageSize;
     }
 
-    public int getPrePage() {
+    public int getPrePageNo() {
         return this.currPageNo > 2 ? this.currPageNo - 1 : 1;
     }
 
-    public int getNextPage() {
+    public int getNextPageNo() {
         return this.currPageNo < this.totalPage ? this.currPageNo + 1 : this.totalPage;
     }
 

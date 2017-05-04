@@ -22,7 +22,7 @@ public class NoticeService {
     @Resource
     private NoticeMapper noticeMapper;
 
-    public Page<Notice> getNoticeListByCourseId(Integer courseId, Integer type){
+    public List<Notice> getNoticeListByCourseId(Integer courseId, Integer type){
         NoticeExample example = new NoticeExample();
         example.createCriteria()
                 .andCourseIdEqualTo(courseId)

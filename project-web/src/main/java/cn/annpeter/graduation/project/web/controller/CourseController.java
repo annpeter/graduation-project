@@ -6,8 +6,11 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -48,8 +51,10 @@ public class CourseController {
      */
     // @formatter:on
     @GetMapping(value = "list")
-    public ResultModel getCourseList() {
-        return ResultModel.success(courseService.getCourseList());
+    public ResultModel getCourseList(@RequestParam(defaultValue = "0") int currPage,
+                                     @Min(message = "pageSize 最小为1", value = 1)
+                                     @RequestParam(defaultValue = "10") int pageSize) {
+        return ResultModel.success(courseService.getCourseList(currPage, pageSize));
     }
 
 

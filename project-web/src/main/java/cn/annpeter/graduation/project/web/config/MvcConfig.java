@@ -1,6 +1,7 @@
 package cn.annpeter.graduation.project.web.config;
 
 import cn.annpeter.graduation.project.web.aspect.GlobalExceptionResolver;
+import cn.annpeter.graduation.project.web.aspect.LoginInterceptor;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -97,7 +98,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         // 多个拦截器组成一个拦截器链
         // addPathPatterns 用于添加拦截规则
         // excludePathPatterns 用户排除拦截
-
+        registry.addInterceptor(new LoginInterceptor());
         super.addInterceptors(registry);
     }
 
