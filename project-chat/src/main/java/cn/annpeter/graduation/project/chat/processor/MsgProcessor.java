@@ -54,16 +54,17 @@ public class MsgProcessor {
                 IMPMessage msg;
                 if (channel != client) {
                     msg = new IMPMessage(IMP.SYSTEM.getName(), System.currentTimeMillis(), null, originMsg.getSender() + "已加入");
-
-                    String userList = JsonUtils.object2String(onlineUsers
-                            .parallelStream()
-                            .map(item -> item.attr(MsgProcessor.USER_NAME_KEY))
-                            .collect(Collectors.toList()));
-                    IMPMessage userMsg = new IMPMessage(IMP.USER.getName(), System.currentTimeMillis(), null, userList);
-                    channel.write(new TextWebSocketFrame(encoder.encode(userMsg)));
                 } else {
                     msg = new IMPMessage(IMP.SYSTEM.getName(), System.currentTimeMillis(), null, originMsg.getSender() + "已与服务器建立连接");
                 }
+
+                String userList = JsonUtils.object2String(onlineUsers
+                        .parallelStream()
+                        .map(item -> item.attr(MsgProcessor.USER_NAME_KEY))
+                        .collect(Collectors.toList()));
+                IMPMessage userMsg = new IMPMessage(IMP.USER.getName(), System.currentTimeMillis(), null, userList);
+                channel.write(new TextWebSocketFrame(encoder.encode(userMsg)));
+
                 channel.writeAndFlush(new TextWebSocketFrame(encoder.encode(msg)));
             }
         } else if (IMP.CHAT.getName().equals(originMsg.getCmd())) {
