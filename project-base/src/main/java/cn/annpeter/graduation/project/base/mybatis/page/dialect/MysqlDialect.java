@@ -22,7 +22,7 @@ public class MysqlDialect implements Dialect {
             if (pageSize > 0) {
                 StringBuilder sb = new StringBuilder();
                 sb.append("SELECT * FROM (").append(sql).append(") T_TEMP");
-                if (sql.toUpperCase().contains("ORDER BY")) {
+                if (!sql.toUpperCase().contains("ORDER BY")) {
                     sb.append(" ORDER BY 1 ");
                 }
                 sb.append(" LIMIT ")

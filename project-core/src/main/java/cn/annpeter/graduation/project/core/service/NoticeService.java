@@ -21,11 +21,12 @@ public class NoticeService {
     @Resource
     private NoticeMapper noticeMapper;
 
-    public List<Notice> getNoticeListByCourseId(Integer courseId){
+    public List<Notice> getNoticeListByCourseId(Integer courseId, Integer type){
         NoticeExample example = new NoticeExample();
         example.createCriteria()
-                .andCourseIdEqualTo(courseId);
-        example.setOrderByClause(" create_time ASC ");
+                .andCourseIdEqualTo(courseId)
+                .andTypeEqualTo(type);
+        example.setOrderByClause(" create_time DESC ");
 
         return noticeMapper.selectPageByExample(example, new PageRowBounds(0, 5));
     }

@@ -27,6 +27,9 @@ public class NoticeController {
      * @apiName list
      * @apiGroup Notice
      *
+     * @apiParam {int} courseId 课程id
+     * @apiParam {int} type 公告类型(0: 校内公告, 1:院内公告)
+     *
      * @apiSuccessExample {json} Response 200 Example
      * {
      *     "code": 200,
@@ -47,8 +50,8 @@ public class NoticeController {
      */
     // @formatter:on
     @GetMapping(value = "list")
-    public ResultModel getNoticeList(@NotNull Integer courseId){
-        return ResultModel.success(noticeService.getNoticeListByCourseId(courseId));
+    public ResultModel getNoticeList(@NotNull Integer courseId, @NotNull Integer type){
+        return ResultModel.success(noticeService.getNoticeListByCourseId(courseId, type));
     }
 
     // @formatter:off
