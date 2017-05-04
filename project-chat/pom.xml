@@ -13,6 +13,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>cn.annpeter</groupId>
+            <artifactId>project-base</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
         </dependency>

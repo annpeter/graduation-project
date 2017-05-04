@@ -8,6 +8,7 @@ import io.netty.channel.Channel;
 import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
+import io.netty.util.AttributeKey;
 import io.netty.util.concurrent.GlobalEventExecutor;
 
 /**
@@ -19,9 +20,11 @@ import io.netty.util.concurrent.GlobalEventExecutor;
 public class MsgProcessor {
 
     private static final ChannelGroup onlineUsers = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
+    public static final AttributeKey<String> USER_NAME_KEY = AttributeKey.valueOf("userName");
 
     private IMPDecoder decoder = new IMPDecoder();
     private IMPEncoder encoder = new IMPEncoder();
+
 
     // 如果有用户登录, 把所有在线用户信息保存到一个统一的容器中
     public void login(Channel client) {
@@ -41,13 +44,14 @@ public class MsgProcessor {
         // 分发逻辑
         if (IMP.LOGIN.getName().equals(originMsg.getCmd())) {
             onlineUsers.add(client);
-
             for (Channel channel : onlineUsers) {
                 IMPMessage msg;
                 if (channel != client) {
                     msg = new IMPMessage(IMP.SYSTEM.getName(), System.currentTimeMillis(), null, originMsg.getSender() + "已加入");
                 } else {
                     msg = new IMPMessage(IMP.SYSTEM.getName(), System.currentTimeMillis(), null, "已与服务器建立连接");
+                    client.attr(USER_NAME_KEY).set(originMsg.getSender());
+
                 }
                 channel.writeAndFlush(new TextWebSocketFrame(encoder.encode(msg)));
             }
@@ -63,5 +67,9 @@ public class MsgProcessor {
 
     public void sendMsg(Channel client, String msg) {
         sendMsg(client, decoder.decode(msg));
+    }
+
+    public static ChannelGroup getOnlineUsers() {
+        return onlineUsers;
     }
 }
