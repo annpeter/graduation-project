@@ -1,5 +1,6 @@
 package cn.annpeter.graduation.project.chat.processor;
 
+import cn.annpeter.graduation.project.base.common.util.JsonUtils;
 import cn.annpeter.graduation.project.chat.protocol.IMP;
 import cn.annpeter.graduation.project.chat.protocol.IMPDecoder;
 import cn.annpeter.graduation.project.chat.protocol.IMPEncoder;
@@ -10,6 +11,9 @@ import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.util.AttributeKey;
 import io.netty.util.concurrent.GlobalEventExecutor;
+
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * 消息处理相关逻辑(消息分发)
@@ -44,14 +48,21 @@ public class MsgProcessor {
         // 分发逻辑
         if (IMP.LOGIN.getName().equals(originMsg.getCmd())) {
             onlineUsers.add(client);
+            client.attr(USER_NAME_KEY).set(originMsg.getSender());
+
             for (Channel channel : onlineUsers) {
                 IMPMessage msg;
                 if (channel != client) {
                     msg = new IMPMessage(IMP.SYSTEM.getName(), System.currentTimeMillis(), null, originMsg.getSender() + "已加入");
-                } else {
-                    msg = new IMPMessage(IMP.SYSTEM.getName(), System.currentTimeMillis(), null, "已与服务器建立连接");
-                    client.attr(USER_NAME_KEY).set(originMsg.getSender());
 
+                    String userList = JsonUtils.object2String(onlineUsers
+                            .parallelStream()
+                            .map(item -> item.attr(MsgProcessor.USER_NAME_KEY))
+                            .collect(Collectors.toList()));
+                    IMPMessage userMsg = new IMPMessage(IMP.USER.getName(), System.currentTimeMillis(), null, userList);
+                    channel.write(new TextWebSocketFrame(encoder.encode(userMsg)));
+                } else {
+                    msg = new IMPMessage(IMP.SYSTEM.getName(), System.currentTimeMillis(), null, originMsg.getSender() + "已与服务器建立连接");
                 }
                 channel.writeAndFlush(new TextWebSocketFrame(encoder.encode(msg)));
             }
@@ -67,9 +78,5 @@ public class MsgProcessor {
 
     public void sendMsg(Channel client, String msg) {
         sendMsg(client, decoder.decode(msg));
-    }
-
-    public static ChannelGroup getOnlineUsers() {
-        return onlineUsers;
     }
 }

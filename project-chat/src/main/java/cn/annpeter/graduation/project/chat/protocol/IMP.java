@@ -9,9 +9,10 @@ public enum IMP {
     SYSTEM("SYSTEM"),   // 系统消息
     LOGIN("LOGIN"),     // 登录命令
     LOGOUT("LOGOUT"),   // 登出命令
+    USER("USER"),       // 所有用户
     CHAT("CHAT");       // 聊天
 
-    public static boolean isSupport(String msg){
+    public static boolean isSupport(String msg) {
         return msg.matches("^\\[(SYSTEM|LOGIN|LOGOUT|CHAT)\\]");
     }
 
