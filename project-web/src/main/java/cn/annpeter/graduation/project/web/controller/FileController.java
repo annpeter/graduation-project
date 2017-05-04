@@ -7,6 +7,7 @@ import cn.annpeter.graduation.project.dal.bean.vo.FileUploadResultVO;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -32,6 +33,7 @@ import static cn.annpeter.graduation.project.core.config.GlobalConfig.web;
  *
  * @author annpeter.it@gmail.com
  */
+@Validated
 @RestController
 @RequestMapping("/api/file")
 public class FileController {

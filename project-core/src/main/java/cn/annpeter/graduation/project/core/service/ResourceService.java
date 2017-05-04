@@ -1,5 +1,6 @@
 package cn.annpeter.graduation.project.core.service;
 
+import cn.annpeter.graduation.project.base.mybatis.page.model.PageRowBounds;
 import cn.annpeter.graduation.project.dal.dao.ResourceMapper;
 import cn.annpeter.graduation.project.dal.model.Resource;
 import cn.annpeter.graduation.project.dal.model.ResourceExample;
@@ -19,10 +20,11 @@ public class ResourceService {
     @javax.annotation.Resource
     private ResourceMapper resourceMapper;
 
-    public List<Resource> getResourceList() {
+    public List<Resource> getResourceList(Integer currPage, Integer pageSize) {
         ResourceExample example = new ResourceExample();
         example.createCriteria();
-        return resourceMapper.selectByExample(example);
+        example.setOrderByClause(" update_time DESC  ");
+        return resourceMapper.selectPageByExample(example, new PageRowBounds(currPage, pageSize));
     }
 
     public void addResource(String type, String name, String url, Integer courseId) {

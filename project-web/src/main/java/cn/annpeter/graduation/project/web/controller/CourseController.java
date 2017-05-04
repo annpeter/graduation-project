@@ -2,6 +2,7 @@ package cn.annpeter.graduation.project.web.controller;
 
 import cn.annpeter.graduation.project.base.common.model.ResultModel;
 import cn.annpeter.graduation.project.core.service.CourseService;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -14,6 +15,7 @@ import javax.ws.rs.core.MediaType;
  *
  * @author annpeter.it@gmail.com
  */
+@Validated
 @RestController
 @RequestMapping("/api/course")
 public class CourseController {

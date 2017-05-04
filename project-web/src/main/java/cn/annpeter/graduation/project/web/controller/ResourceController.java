@@ -4,10 +4,14 @@ import cn.annpeter.graduation.project.base.common.model.ResultModel;
 import cn.annpeter.graduation.project.core.service.NoticeService;
 import cn.annpeter.graduation.project.core.service.ResourceService;
 import com.sun.istack.internal.NotNull;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.validation.constraints.Min;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -15,6 +19,7 @@ import javax.ws.rs.core.MediaType;
  *
  * @author annpeter.it@gmail.com
  */
+@Validated
 @RestController
 @RequestMapping("/api/resource")
 public class ResourceController {
@@ -27,6 +32,9 @@ public class ResourceController {
      * @api {post} /api/resource/list 资源列表
      * @apiName list
      * @apiGroup Resource
+     *
+     * @apiParam {int} currPage  当前页(默认值0)
+     * @apiParam {int} pageSize  页的大小(默认值10)
      *
      * @apiSuccessExample {json} Response 200 Example
      * {
@@ -46,8 +54,10 @@ public class ResourceController {
      */
     // @formatter:on
     @GetMapping(value = "list")
-    public ResultModel getResourceList(){
-        return ResultModel.success(resourceService.getResourceList());
+    public ResultModel getResourceList(@DefaultValue("0") @QueryParam("curr_page") int currPage,
+                                       @Min(message = "page_size 最小为1", value = 1)
+                                       @DefaultValue("10") @QueryParam("page_size") int pageSize){
+        return ResultModel.success(resourceService.getResourceList(currPage, pageSize));
     }
 
 

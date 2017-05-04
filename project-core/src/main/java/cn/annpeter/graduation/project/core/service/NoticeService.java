@@ -1,5 +1,6 @@
 package cn.annpeter.graduation.project.core.service;
 
+import cn.annpeter.graduation.project.base.mybatis.page.model.Page;
 import cn.annpeter.graduation.project.base.mybatis.page.model.PageRowBounds;
 import cn.annpeter.graduation.project.dal.dao.NoticeMapper;
 import cn.annpeter.graduation.project.dal.model.Notice;
@@ -21,12 +22,12 @@ public class NoticeService {
     @Resource
     private NoticeMapper noticeMapper;
 
-    public List<Notice> getNoticeListByCourseId(Integer courseId, Integer type){
+    public Page<Notice> getNoticeListByCourseId(Integer courseId, Integer type){
         NoticeExample example = new NoticeExample();
         example.createCriteria()
                 .andCourseIdEqualTo(courseId)
                 .andTypeEqualTo(type);
-        example.setOrderByClause(" create_time DESC ");
+        example.setOrderByClause(" update_time DESC ");
 
         return noticeMapper.selectPageByExample(example, new PageRowBounds(0, 5));
     }

@@ -6,6 +6,7 @@ import cn.annpeter.graduation.project.base.common.model.ResultModel;
 import cn.annpeter.graduation.project.core.service.CountingService;
 import cn.annpeter.graduation.project.core.service.UserService;
 import cn.annpeter.graduation.project.dal.model.User;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -20,6 +21,7 @@ import static cn.annpeter.graduation.project.core.config.GlobalConfig.web;
  *
  * @author annpeter.it@gmail.com
  */
+@Validated
 @RestController
 @RequestMapping("/api/user")
 public class UserController {

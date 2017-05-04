@@ -2,18 +2,21 @@ package cn.annpeter.graduation.project.web.controller;
 
 import cn.annpeter.graduation.project.base.common.model.ResultModel;
 import cn.annpeter.graduation.project.core.service.NoticeService;
-import com.sun.istack.internal.NotNull;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created on 2017/04/15
  *
  * @author annpeter.it@gmail.com
  */
+@Validated
 @RestController
 @RequestMapping("/api/notice")
 public class NoticeController {
@@ -50,7 +53,8 @@ public class NoticeController {
      */
     // @formatter:on
     @GetMapping(value = "list")
-    public ResultModel getNoticeList(@NotNull Integer courseId, @NotNull Integer type){
+    public ResultModel getNoticeList(@NotNull(message = "courseId不能为空") Integer courseId,
+                                     @NotNull(message = "type不能为空") Integer type) {
         return ResultModel.success(noticeService.getNoticeListByCourseId(courseId, type));
     }
 
@@ -74,10 +78,10 @@ public class NoticeController {
      */
     // @formatter:on
     @PostMapping(value = "add")
-    public ResultModel addNotice(@NotNull Integer courseId,
-                                 @NotNull Integer type,
-                                 @NotNull String title,
-                                 @NotNull String content){
+    public ResultModel addNotice(@NotNull(message = "courseId不能为空") Integer courseId,
+                                 @NotNull(message = "type不能为空") Integer type,
+                                 @NotNull(message = "title不能为空") String title,
+                                 @NotNull(message = "content不能为空") String content) {
         noticeService.addNotice(courseId, type, title, content);
         return ResultModel.success(null, "添加成功");
     }

@@ -3,6 +3,7 @@ package cn.annpeter.graduation.project.web.controller;
 import cn.annpeter.graduation.project.base.common.model.ResultModel;
 import cn.annpeter.graduation.project.core.service.HomeWorkService;
 import cn.annpeter.graduation.project.dal.model.User;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ import static cn.annpeter.graduation.project.core.config.GlobalConfig.web;
  *
  * @author annpeter.it@gmail.com
  */
+@Validated
 @RestController
 @RequestMapping("/api/homework")
 public class HomeWorkController {
