@@ -2,6 +2,7 @@ package cn.annpeter.graduation.project.web.controller;
 
 import cn.annpeter.graduation.project.base.common.model.ResultModel;
 import cn.annpeter.graduation.project.core.service.CourseService;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -108,9 +109,9 @@ public class CourseController {
      */
     // @formatter:on
     @PostMapping(value = "add")
-    public ResultModel addCourse(@NotNull String name,
-                                 @NotNull String imgUrl,
-                                 @NotNull String intro) {
+    public ResultModel addCourse(@NotEmpty(message = "name不能为空") String name,
+                                 @NotEmpty(message = "imgUrl不能为空") String imgUrl,
+                                 @NotEmpty(message = "intro不能为空") String intro) {
         courseService.addCourse(name, imgUrl, intro);
         return ResultModel.success(null, "添加成功");
     }

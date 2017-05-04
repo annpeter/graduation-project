@@ -24,7 +24,7 @@ public class UserService {
     @Resource
     private UserMapper userMapper;
 
-    public void delete(int id){
+    public void delete(int id) {
         userMapper.deleteByPrimaryKey(id);
     }
 
@@ -55,8 +55,10 @@ public class UserService {
         }
     }
 
-    public List<User> list(){
+    public List<User> list(Integer courseId) {
         UserExample example = new UserExample();
+        example.createCriteria()
+                .andCourseIdEqualTo(courseId);
         return userMapper.selectByExample(example);
     }
 

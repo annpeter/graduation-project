@@ -2,12 +2,13 @@ package cn.annpeter.graduation.project.web.controller;
 
 import cn.annpeter.graduation.project.base.common.model.ResultModel;
 import cn.annpeter.graduation.project.core.service.WordConvertService;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 /**
  * Created on 2017/05/01
@@ -40,7 +41,7 @@ public class WordConvertController {
      */
     // @formatter:on
     @PostMapping(value = "convert")
-    public ResultModel convert(String url) {
+    public ResultModel convert(@NotEmpty(message = "url不能为空") String url) {
         return ResultModel.success(wordConvertService.docxToHtml(url));
     }
 

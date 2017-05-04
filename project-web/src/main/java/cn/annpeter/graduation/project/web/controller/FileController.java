@@ -18,6 +18,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.constraints.NotNull;
 import java.io.File;
 import java.io.IOException;
 import java.util.AbstractMap.SimpleEntry;
@@ -60,7 +61,8 @@ public class FileController {
      */
     // @formatter:on
     @PostMapping(value = "/upload/single")
-    public ResultModel<Map> uploadSingle(@RequestParam("file") MultipartFile file, HttpServletRequest request, HttpSession session) throws IOException {
+    public ResultModel<Map> uploadSingle(@NotNull(message = "file不能为空") @RequestParam("file") MultipartFile file,
+                                         HttpSession session) throws IOException {
         if (file == null) {
             return ResultModel.fail(ResultCodeEnum.RESOURCE_NOT_FOUND, "上传文件不能为空");
         }

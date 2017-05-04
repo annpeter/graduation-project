@@ -126,9 +126,9 @@ public class HomeWorkController {
      */
     // @formatter:on
     @PostMapping(value = "add")
-    public ResultModel addHomeWork(@NotNull Integer courseId,
-                                   @NotNull String title,
-                                   @NotNull String url) {
+    public ResultModel addHomeWork(@NotNull(message = "courseId不能为空") Integer courseId,
+                                   @NotEmpty(message = "title不能为空") String title,
+                                   @NotEmpty(message = "url不能为空")  String url) {
         homeWorkService.addHomeWork(courseId, title, url);
         return ResultModel.success(null, "添加成功");
     }

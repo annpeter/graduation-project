@@ -2,6 +2,7 @@ package cn.annpeter.graduation.project.web.controller;
 
 import cn.annpeter.graduation.project.base.common.model.ResultModel;
 import cn.annpeter.graduation.project.core.service.QuestionService;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -66,7 +67,8 @@ public class QuestionController {
      */
     // @formatter:on
     @PostMapping(value = "answer")
-    public ResultModel<String> answerQuestion(Integer questionId, String answer) {
+    public ResultModel<String> answerQuestion(@NotNull(message = "questionId不能为空") Integer questionId,
+                                              @NotEmpty(message = "answer不能为空") String answer) {
         questionService.updateAnswer(answer, questionId);
         return ResultModel.success(null, "回答成功");
     }

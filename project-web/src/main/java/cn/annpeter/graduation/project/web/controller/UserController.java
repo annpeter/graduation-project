@@ -6,13 +6,16 @@ import cn.annpeter.graduation.project.base.common.model.ResultModel;
 import cn.annpeter.graduation.project.core.service.CountingService;
 import cn.annpeter.graduation.project.core.service.UserService;
 import cn.annpeter.graduation.project.dal.model.User;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+import javax.validation.constraints.NotNull;
 
 import static cn.annpeter.graduation.project.core.config.GlobalConfig.web;
 
@@ -55,7 +58,10 @@ public class UserController {
      */
     // @formatter:on
     @PostMapping(value = "register")
-    public ResultModel register(String name, String pwd, Integer isAdmin, Integer courseId) {
+    public ResultModel register(@NotEmpty(message = "name不能为空") String name,
+                                @NotEmpty(message = "pwd不能为空") String pwd,
+                                @NotNull(message = "isAdmin不能为空") Integer isAdmin,
+                                @NotNull(message = "courseId不能为空") Integer courseId) {
         User user = new User();
         user.setName(name);
         user.setPwd(pwd);
@@ -88,7 +94,7 @@ public class UserController {
      */
     // @formatter:on
     @PostMapping(value = "delete")
-    public ResultModel delete(@RequestParam("id") Integer id) {
+    public ResultModel delete(@NotNull(message = "用户id不能为空") Integer id) {
         userService.delete(id);
         return ResultModel.success();
     }
@@ -127,8 +133,8 @@ public class UserController {
      */
     // @formatter:on
     @GetMapping(value = "list")
-    public ResultModel list() {
-        return ResultModel.success(userService.list());
+    public ResultModel list(@NotNull(message = "courseId不能为空") Integer courseId) {
+        return ResultModel.success(userService.list(courseId));
     }
 
 
@@ -162,10 +168,10 @@ public class UserController {
      */
     // @formatter:on
     @PostMapping(value = "login")
-    public ResultModel login(@RequestParam("name") String name,
-                                     @RequestParam("pwd") String pwd,
-                                     @RequestParam("courseId") Integer courseId,
-                                     HttpSession session) {
+    public ResultModel login(@NotEmpty(message = "name不能为空") String name,
+                             @NotEmpty(message = "pwd不能为空") String pwd,
+                             @NotNull(message = "courseId不能为空") Integer courseId,
+                             HttpSession session) {
         // 如果已经登录过了, 就不必重复登录了
         Object isLogin = session.getAttribute(web.loggedUserFlag);
         if (isLogin != null && (boolean) isLogin) {
