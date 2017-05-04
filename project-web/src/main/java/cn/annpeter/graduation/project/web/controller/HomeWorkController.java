@@ -3,14 +3,13 @@ package cn.annpeter.graduation.project.web.controller;
 import cn.annpeter.graduation.project.base.common.model.ResultModel;
 import cn.annpeter.graduation.project.core.service.HomeWorkService;
 import cn.annpeter.graduation.project.dal.model.User;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import static cn.annpeter.graduation.project.core.config.GlobalConfig.web;
@@ -34,24 +33,43 @@ public class HomeWorkController {
      * @apiName list
      * @apiGroup HomeWork
      *
+     * @apiParam {int} currPage  当前页(默认值0)
+     * @apiParam {int} pageSize  页的大小(默认值10)
+     * @apiParam {int} courseId  课程id
+     *
      * @apiSuccessExample {json} Response 200 Example
-     * {
+     *   {
      *     "code": 200,
      *     "data": {
-     *          "id": 1,
-     *          "course_id": 1,
-     *          "title": "作业标题",
-     *          "url": "http://www.baidu.com",
-     *          "state": 1
-     *      },
-     *     "result_msg": "执行成功",
-     *     "error_stack_trace": null
-     * }
+     *       "currPage": 0,
+     *       "sliderList": [
+     *         "1"
+     *       ],
+     *       "prePage": 1,
+     *       "nextPage": 1,
+     *       "dataList": [
+     *         {
+     *           "id": 4,
+     *           "courseId": 1,
+     *           "title": "请同学们于4月底完成Word测试练习",
+     *           "url": "/fileUpload/1/2017-05-02/230.docx",
+     *           "state": 1,
+     *           "createTime": "2017-05-02 10:40:52",
+     *           "updateTime": "2017-05-02 10:40:52"
+     *         }
+     *       ]
+     *     },
+     *     "resultMsg": "执行成功",
+     *     "errorStackTrace": null
+     *   }
      */
     // @formatter:on
     @GetMapping(value = "list")
-    public ResultModel getResourceList(@NotNull Integer courseId) {
-        return ResultModel.success(homeWorkService.getHomeWorkListByCourseId(courseId));
+    public ResultModel getResourceList(@NotNull(message = "courseId不能为空") Integer courseId,
+                                       @RequestParam(defaultValue = "0") int currPage,
+                                       @Min(message = "pageSize 最小为1", value = 1)
+                                       @RequestParam(defaultValue = "10") int pageSize) {
+        return ResultModel.success(homeWorkService.getHomeWorkListByCourseId(currPage, pageSize, courseId));
     }
 
     // @formatter:off
@@ -79,7 +97,9 @@ public class HomeWorkController {
      */
     // @formatter:on
     @PostMapping(value = "commit")
-    public ResultModel commitHomeWork(HttpSession session, Integer homeWorkId, String url) {
+    public ResultModel commitHomeWork(HttpSession session,
+                                      @NotNull(message = "homeWorkId不能为空") Integer homeWorkId,
+                                      @NotEmpty(message = "url不能为空") String url) {
         User sessionUser = (User) session.getAttribute(web.loggedUserInfo);
         homeWorkService.commitHomeWork(sessionUser.getId(), homeWorkId, url);
         return ResultModel.success();

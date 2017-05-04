@@ -1,6 +1,9 @@
 package cn.annpeter.graduation.project.core.service;
 
 import cn.annpeter.graduation.project.base.common.exception.CommonException;
+import cn.annpeter.graduation.project.base.common.util.PageUtils;
+import cn.annpeter.graduation.project.base.mybatis.page.model.Page;
+import cn.annpeter.graduation.project.base.mybatis.page.model.PageRowBounds;
 import cn.annpeter.graduation.project.dal.dao.HomeWorkCommitMapper;
 import cn.annpeter.graduation.project.dal.dao.HomeWorkMapper;
 import cn.annpeter.graduation.project.dal.model.HomeWork;
@@ -9,7 +12,7 @@ import cn.annpeter.graduation.project.dal.model.HomeWorkExample;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.List;
+import java.util.Map;
 
 import static cn.annpeter.graduation.project.base.common.model.ResultCodeEnum.UNKNOWN_ERROR;
 
@@ -26,12 +29,16 @@ public class HomeWorkService {
     @Resource
     private HomeWorkCommitMapper homeWorkCommitMapper;
 
-    public List<HomeWork> getHomeWorkListByCourseId(Integer courseId) {
+    public Map getHomeWorkListByCourseId(Integer currPage, Integer pageSize, Integer courseId) {
         HomeWorkExample example = new HomeWorkExample();
         example.createCriteria()
                 .andStateEqualTo(1)
                 .andCourseIdEqualTo(courseId);
-        return homeWorkMapper.selectByExample(example);
+
+        example.setOrderByClause(" update_time DESC  ");
+
+        Page resourcePage = homeWorkMapper.selectPageByExample(example, new PageRowBounds(currPage, pageSize));
+        return PageUtils.getPageInfo(resourcePage);
     }
 
     public void commitHomeWork(Integer userId, Integer homeWorkId, String url) {
@@ -53,7 +60,7 @@ public class HomeWorkService {
         homeWorkMapper.insertSelective(homeWork);
     }
 
-    public void checkHomeWorkCommit(Integer homeWorkCommitId, Float score, String comment){
+    public void checkHomeWorkCommit(Integer homeWorkCommitId, Float score, String comment) {
         HomeWorkCommit commit = new HomeWorkCommit();
         commit.setId(homeWorkCommitId);
         commit.setScore(score);

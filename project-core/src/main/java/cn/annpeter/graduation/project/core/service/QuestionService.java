@@ -1,6 +1,9 @@
 package cn.annpeter.graduation.project.core.service;
 
 import cn.annpeter.graduation.project.base.common.exception.CommonException;
+import cn.annpeter.graduation.project.base.common.util.PageUtils;
+import cn.annpeter.graduation.project.base.mybatis.page.model.Page;
+import cn.annpeter.graduation.project.base.mybatis.page.model.PageRowBounds;
 import cn.annpeter.graduation.project.dal.dao.QuestionMapper;
 import cn.annpeter.graduation.project.dal.model.Question;
 import cn.annpeter.graduation.project.dal.model.QuestionExample;
@@ -8,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Date;
-import java.util.List;
+import java.util.Map;
 
 import static cn.annpeter.graduation.project.base.common.model.ResultCodeEnum.UNKNOWN_ERROR;
 
@@ -34,12 +37,15 @@ public class QuestionService {
         }
     }
 
-    public List<Question> list(Integer courseId) {
+    public Map list(Integer currPage, Integer pageSize, Integer courseId) {
         QuestionExample example = new QuestionExample();
         example.createCriteria()
                 .andCourseIdEqualTo(courseId);
 
-        return questionMapper.selectByExample(example);
+        example.setOrderByClause(" create_time DESC  ");
+        Page resourcePage = questionMapper.selectPageByExample(example, new PageRowBounds(currPage, pageSize));
+
+        return PageUtils.getPageInfo(resourcePage);
     }
 
     public void updateAnswer(String answer, Integer questionId) {

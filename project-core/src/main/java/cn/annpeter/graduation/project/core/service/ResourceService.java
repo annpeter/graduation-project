@@ -22,9 +22,11 @@ public class ResourceService {
     @javax.annotation.Resource
     private ResourceMapper resourceMapper;
 
-    public Map getResourceList(Integer currPage, Integer pageSize) {
+    public Map getResourceList(Integer currPage, Integer pageSize, Integer courseId) {
         ResourceExample example = new ResourceExample();
-        example.createCriteria();
+        example.createCriteria()
+                .andCourseIdEqualTo(courseId);
+
         example.setOrderByClause(" update_time DESC  ");
         Page resourcePage = resourceMapper.selectPageByExample(example, new PageRowBounds(currPage, pageSize));
 

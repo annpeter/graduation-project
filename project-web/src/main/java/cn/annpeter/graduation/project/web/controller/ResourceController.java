@@ -1,18 +1,14 @@
 package cn.annpeter.graduation.project.web.controller;
 
 import cn.annpeter.graduation.project.base.common.model.ResultModel;
-import cn.annpeter.graduation.project.core.service.NoticeService;
 import cn.annpeter.graduation.project.core.service.ResourceService;
-import com.sun.istack.internal.NotNull;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.constraints.Min;
-import javax.ws.rs.DefaultValue;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.MediaType;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created on 2017/04/15
@@ -35,6 +31,7 @@ public class ResourceController {
      *
      * @apiParam {int} currPage  当前页(默认值0)
      * @apiParam {int} pageSize  页的大小(默认值10)
+     * @apiParam {int} courseId  课程id
      *
      * @apiSuccessExample {json} Response 200 Example
      *  {
@@ -75,8 +72,9 @@ public class ResourceController {
     @GetMapping(value = "list")
     public ResultModel getResourceList(@RequestParam(defaultValue = "0") int currPage,
                                        @Min(message = "pageSize 最小为1", value = 1)
-                                       @RequestParam(defaultValue = "10") int pageSize){
-        return ResultModel.success(resourceService.getResourceList(currPage, pageSize));
+                                       @RequestParam(defaultValue = "10") int pageSize,
+                                       @NotNull(message = "courseId不能为空") Integer courseId) {
+        return ResultModel.success(resourceService.getResourceList(currPage, pageSize, courseId));
     }
 
 
@@ -101,7 +99,10 @@ public class ResourceController {
      */
     // @formatter:on
     @PostMapping(value = "add")
-    public ResultModel addResource(String type, String name, String url, Integer courseId) {
+    public ResultModel addResource(@NotEmpty(message = "type不能为空") String type,
+                                   @NotEmpty(message = "name不能为空") String name,
+                                   @NotEmpty(message = "url不能为空") String url,
+                                   @NotNull(message = "courseId不能为空") Integer courseId) {
         resourceService.addResource(type, name, url, courseId);
         return ResultModel.success();
     }

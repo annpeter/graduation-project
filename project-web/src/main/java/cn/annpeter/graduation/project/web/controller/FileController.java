@@ -2,21 +2,22 @@ package cn.annpeter.graduation.project.web.controller;
 
 import cn.annpeter.graduation.project.base.common.model.ResultCodeEnum;
 import cn.annpeter.graduation.project.base.common.model.ResultModel;
-import cn.annpeter.graduation.project.dal.model.User;
 import cn.annpeter.graduation.project.dal.bean.vo.FileUploadResultVO;
+import cn.annpeter.graduation.project.dal.model.User;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 import java.io.File;
 import java.io.IOException;
 import java.util.AbstractMap.SimpleEntry;
@@ -59,7 +60,7 @@ public class FileController {
      */
     // @formatter:on
     @PostMapping(value = "/upload/single")
-    public ResultModel<Map> uploadSingle(@RequestParam("file") MultipartFile file, HttpSession session) throws IOException {
+    public ResultModel<Map> uploadSingle(@RequestParam("file") MultipartFile file, HttpServletRequest request, HttpSession session) throws IOException {
         if (file == null) {
             return ResultModel.fail(ResultCodeEnum.RESOURCE_NOT_FOUND, "上传文件不能为空");
         }

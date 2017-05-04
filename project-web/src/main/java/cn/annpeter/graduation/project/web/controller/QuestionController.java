@@ -6,8 +6,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created on 2017/04/23
@@ -77,29 +77,42 @@ public class QuestionController {
      * @apiName list
      * @apiGroup Question
      *
-     * @apiParam {int} courseId 课程id
+     * @apiParam {int} currPage  当前页(默认值0)
+     * @apiParam {int} pageSize  页的大小(默认值10)
+     * @apiParam {int} courseId  课程id
      *
      * @apiSuccessExample {json} Response 200 Example
      *  {
      *    "code": 200,
-     *    "data": [
-     *      {
-     *        "id": 1,
-     *        "content": "问题内容",
-     *        "answer": null,
-     *        "create_time": null,
-     *        "update_time": "2017-05-01 13:23:44",
-     *        "course_id": 1
-     *      }
-     *    ],
-     *    "result_msg": "执行成功",
-     *    "error_stack_trace": null
+     *    "data": {
+     *      "currPage": 0,
+     *      "sliderList": [
+     *        "1"
+     *      ],
+     *      "prePage": 1,
+     *      "nextPage": 1,
+     *      "dataList": [
+     *        {
+     *          "id": 6,
+     *          "content": "你好 我有个问题",
+     *          "answer": null,
+     *          "createTime": "2017-05-03 17:02:57",
+     *          "updateTime": "2017-05-03 17:02:57",
+     *          "courseId": 1
+     *        }
+     *      ]
+     *    },
+     *    "resultMsg": "执行成功",
+     *    "errorStackTrace": null
      *  }
      */
     // @formatter:on
     @GetMapping(value = "list")
-    public ResultModel getQuestionList(Integer courseId) {
-        return ResultModel.success(questionService.list(courseId));
+    public ResultModel getQuestionList(@RequestParam(defaultValue = "0") int currPage,
+                                       @Min(message = "pageSize 最小为1", value = 1)
+                                       @RequestParam(defaultValue = "10") int pageSize,
+                                       @NotNull(message = "courseId不能为空") Integer courseId) {
+        return ResultModel.success(questionService.list(currPage, pageSize, courseId));
     }
 
 
