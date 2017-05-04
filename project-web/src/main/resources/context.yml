@@ -1,0 +1,59 @@
+# web层相关配置
+web:
+  loggedUserFlag: LOGIN_USER_FLAG
+  loggedUserInfo: LOGIN_USER_INFO
+  fileUploadBaseDir: /Users/annpeter/Desktop/fileUpload/
+
+redis:
+  pool:
+    maxIdle: 3000
+    testOnBorrow: true
+    testOnReturn: true
+
+  standAlone:
+      redisHostName: centos-7
+      redisPort: 63791
+      password:
+
+  dbIndex: 0
+  cacheOn: true
+
+datasource:
+  driverClassName: com.mysql.jdbc.Driver
+  url: jdbc:mysql://centos-7:3306/GRADUATION_PROJECT?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&autoReconnectForPools=true&zeroDateTimeBehavior=convertToNull&useSSL=false
+  username: root
+  password: annpeter
+  # 初始化连接数量
+  initialSize: 5
+  # 最大并发连接数
+  maxActive: 20
+  # 最小空闲连接数
+  minIdle: 5
+
+  # 配置获取连接等待超时的时间
+  maxWait: 60000
+
+  # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+  timeBetweenEvictionRunsMillis: 60000
+
+  # 配置一个连接在池中最小生存的时间，单位是毫秒
+  minEvictableIdleTimeMillis: 300000
+
+  # 用来检测连接是否有效的sql，要求是一个查询语句
+  validationQuery: SELECT 1
+  # 申请连接的时候检测
+  testWhileIdle: true
+  # 申请连接时执行validationQuery检测连接是否有效，配置为true会降低性能
+  testOnBorrow: false
+  # 归还连接时执行validationQuery检测连接是否有效，配置为true会降低性能
+  testOnReturn: false
+
+  initConnectionSqls: "set names utf8mb4;"
+
+  # 打开PSCache，并且指定每个连接上PSCache的大小
+  poolPreparedStatements: false
+  # 属性类型是字符串，通过别名的方式配置扩展插件，常用的插件有：
+  # 监控统计用的filter:stat
+  # 日志用的filter:log4j
+  # 防御SQL注入的filter:wall
+  filters: stat,log4j
