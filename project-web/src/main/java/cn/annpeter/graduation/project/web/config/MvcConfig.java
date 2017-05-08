@@ -105,7 +105,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
                 .excludePathPatterns("/api/user/login.htm")
                 .excludePathPatterns("/api/course/list.htm")
                 .excludePathPatterns("/api/course/info.htm")
-                .excludePathPatterns("eckpreload.htm");
+                .excludePathPatterns("checkpreload.htm");
         super.addInterceptors(registry);
 
     }
