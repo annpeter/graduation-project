@@ -23,7 +23,7 @@ $(document).ready(function(){
 
         $.get("/api/resource/list.htm",{courseId:id},function( res ) {
 
-            var dataArr = res.data || [];
+            var dataArr = res.data.dataList || [];
 
             // 遍历
             $('.lesson_sourse_list > ul').html("");

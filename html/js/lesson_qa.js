@@ -53,7 +53,7 @@ $(document).ready(function(){
 
 		$.get("/api/question/list.htm",{courseId:id},function( res ) {
 
-			var dataArr = res.data || [];
+			var dataArr = res.data.dataList || [];
 
 			// 遍历
 			$('.lesson_qa_list > ul').html("");

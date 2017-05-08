@@ -15,24 +15,16 @@ $(document).ready(function(){
 	})
 
 	$.ajax({
-		url:"/api/notice/list.htm?courseId="+course_id,
+		url:"/api/notice/list.htm?courseId="+course_id+"&type=0",
 		dataType:'json',
 		success:function(result){
-			$(".outside_announcement > ul").html("");
 			$(".inside_announcement > ul").html("");
-			var ret_o='';
-			var ret_i='';
+			var ret='';
 			var dataArr = result.data || [];
 			$.each(dataArr,function(index,item){
-				if(item.type==0){
-					ret_i+='<li><a href="javascript:">'+item.title+'</a></li>';
-				}
-				else{
-					ret_o+='<li><a href="javascript:">'+item.title+'</a></li>';
-				}
+				ret+='<li><a href="javascript:">'+item.title+'</a></li>';
 			});
-			$(".outside_announcement > ul").html(ret_o);
-			$(".inside_announcement > ul").html(ret_i);
+			$(".inside_announcement > ul").html(ret);
 			
 			$(".announcement").on("click","a",function(){
 				var notice_index=$(this).index();
@@ -41,5 +33,26 @@ $(document).ready(function(){
 				$(".notice_detail_div").show();
 			});
 		}
-	})
+	});
+
+	$.ajax({
+		url:"/api/notice/list.htm?courseId="+course_id+"&type=1",
+		dataType:'json',
+		success:function(result){
+			$(".outside_announcement > ul").html("");
+			var ret='';
+			var dataArr = result.data || [];
+			$.each(dataArr,function(index,item){
+				ret+='<li><a href="javascript:">'+item.title+'</a></li>';
+			});
+			$(".outside_announcement > ul").html(ret);
+			
+			$(".announcement").on("click", "a", function(){
+				var notice_index=$(this).index();
+				var content=result.data[notice_index].content;
+				$(".notice_detail p").html(content);
+				$(".notice_detail_div").show();
+			});
+		}
+	});
 });

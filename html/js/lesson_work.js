@@ -34,23 +34,23 @@ $(document).ready(function(){
         },
         dataType: 'json',
         success:function(result){
-            var dataArr = result.data || [];
+            var dataArr = result.data.dataList || [];
 
             $(".lesson_work_list ul").html("");
             var ret="";
 
 
             $.each( dataArr, function(index,item){
-                ret+=`<li class='lessson_work_item' data-id='${item.dataList.course_id}'>
-                        <div class="lesson_work_name">
-                            <p>${item.dataList.title}</p>
-                        </div>
-                        <div class="lesson_work_option">
-                            <a class="lesson_work_delete" href="javascript:">删除</a>
-                            <a class="lesson_work_download" href="${item.dataList.url}">下载</a>
-                            <a class="lesson_work_upload" href="javascript:">上传</a>
-                        </div>
-                    </li>`;
+                ret+='<li class="lessson_work_item" data-id=' + item.id + '>'+
+                        '<div class="lesson_work_name">'+
+                            '<p>'+item.title+'</p>'+
+                        '</div>'+
+                        '<div class="lesson_work_option">'+
+                            '<a class="lesson_work_delete" href="javascript:">删除</a>'+
+                            '<a class="lesson_work_download" href="'+item.url+'">下载</a>'+
+                            '<a class="lesson_work_upload" href="javascript:">上传</a>'+
+                        '</div>'+
+                    '</li>';
 
             });
             $(".lesson_work_list ul").html(ret);
