@@ -17,17 +17,17 @@ import javax.annotation.Resource;
  */
 @Validated
 @RestController
-@RequestMapping("/api/word")
-public class WordConvertController {
+@RequestMapping("/api/poi")
+public class PoiConvertController {
 
     @Resource
     private WordConvertService wordConvertService;
 
     // @formatter:off
     /**
-     * @api {post} /api/word/convert word转换为html
-     * @apiName convert
-     * @apiGroup Word
+     * @api {post} /api/poi/word word转换为html
+     * @apiName poi
+     * @apiGroup word
      *
      *  @apiParam {string} url word路径
      *
@@ -40,9 +40,35 @@ public class WordConvertController {
      *  }
      */
     // @formatter:on
-    @PostMapping(value = "convert")
-    public ResultModel convert(@NotEmpty(message = "url不能为空") String url) {
+    @PostMapping(value = "word")
+    public ResultModel word(@NotEmpty(message = "url不能为空") String url) {
         return ResultModel.success(wordConvertService.docxToHtml(url));
     }
+
+
+    // @formatter:off
+    /**
+     * @api {post} /api/poi/ppt ppt转换图片
+     * @apiName poi
+     * @apiGroup ppt
+     *
+     *  @apiParam {string} url ppt路径
+     *
+     * @apiSuccessExample {json} Response 200 Example
+     *  {
+     *      "code": 200,
+     *      "data": [
+     *          "url"       图片url
+     *      ],
+     *      "result_msg": "获取成功",
+     *      "error_stack_trace": null
+     *  }
+     */
+    // @formatter:on
+    @PostMapping(value = "ppt")
+    public ResultModel ppt(@NotEmpty(message = "url不能为空") String url) {
+        return ResultModel.success(wordConvertService.pptToImage(url));
+    }
+
 
 }

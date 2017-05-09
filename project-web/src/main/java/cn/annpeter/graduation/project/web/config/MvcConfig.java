@@ -100,6 +100,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         // excludePathPatterns 用户排除拦截
         registry.addInterceptor(new LoginInterceptor())
                 .addPathPatterns("/**")
+                .excludePathPatterns("/api/poi/**")
                 .excludePathPatterns("/api/notice/**")
                 .excludePathPatterns("/api/resource/**")
                 .excludePathPatterns("/api/user/login.htm")
