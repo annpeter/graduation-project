@@ -74,7 +74,7 @@ $(document).ready(function(){
 
 function preview(url){
      $.ajax({
-            url: '/api/word/convert.htm',
+            url: '/api/poi/word.htm',
             data: {url, url},
             cache: false,
             dataType: 'json',

@@ -65,7 +65,7 @@ public class HomeWorkController {
      */
     // @formatter:on
     @GetMapping(value = "list")
-    public ResultModel getResourceList(@NotNull(message = "courseId不能为空") Integer courseId,
+    public ResultModel getHomeWorkList(@NotNull(message = "courseId不能为空") Integer courseId,
                                        @RequestParam(defaultValue = "0") int currPage,
                                        @Min(message = "pageSize 最小为1", value = 1)
                                        @RequestParam(defaultValue = "10") int pageSize) {
