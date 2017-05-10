@@ -110,9 +110,9 @@ public class QuestionController {
      */
     // @formatter:on
     @GetMapping(value = "list")
-    public ResultModel getQuestionList(@RequestParam(defaultValue = "0") int currPage,
+    public ResultModel getQuestionList(@RequestParam(defaultValue = "0") Integer currPage,
                                        @Min(message = "pageSize 最小为1", value = 1)
-                                       @RequestParam(defaultValue = "10") int pageSize,
+                                       @RequestParam(defaultValue = "10") Integer pageSize,
                                        @NotNull(message = "courseId不能为空") Integer courseId) {
         return ResultModel.success(questionService.list(currPage, pageSize, courseId));
     }

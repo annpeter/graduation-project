@@ -25,9 +25,9 @@ public class StatisticsController {
 
     // @formatter:off
     /**
-     * @api {post} /api/course/list 课程列表
-     * @apiName list
-     * @apiGroup Course
+     * @api {post} /api/statistics/get 浏览量统计
+     * @apiName get
+     * @apiGroup Statistics
      *
      * @apiSuccessExample {json} Response 200 Example
      * {

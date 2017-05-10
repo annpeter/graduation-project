@@ -29,7 +29,7 @@ public class HomeWorkController {
 
     // @formatter:off
     /**
-     * @api {post} /api/homework/list 可用作业列表
+     * @api {get} /api/homework/list 可用作业列表
      * @apiName list
      * @apiGroup HomeWork
      *
@@ -112,9 +112,9 @@ public class HomeWorkController {
      */
     // @formatter:on
     @GetMapping(value = "commitList")
-    public ResultModel getHomeWorkCommitList(@RequestParam(defaultValue = "0") int currPage,
+    public ResultModel getHomeWorkCommitList(@RequestParam(defaultValue = "0") Integer currPage,
                                              @Min(message = "pageSize 最小为1", value = 1)
-                                             @RequestParam(defaultValue = "10") int pageSize,
+                                             @RequestParam(defaultValue = "10") Integer pageSize,
                                              @NotNull(message = "homeWorkId不能为空") Integer homeWorkId,
                                              HttpSession session) {
         User sessionUser = (User) session.getAttribute(web.loggedUserInfo);

@@ -29,9 +29,12 @@ public class CourseController {
 
     // @formatter:off
     /**
-     * @api {post} /api/course/list 课程列表
+     * @api {get} /api/course/list 课程列表
      * @apiName list
      * @apiGroup Course
+     *
+     * @apiParam {int} currPage  当前页(默认值0)
+     * @apiParam {int} pageSize  页的大小(默认值10)
      *
      * @apiSuccessExample {json} Response 200 Example
      * {
@@ -52,9 +55,9 @@ public class CourseController {
      */
     // @formatter:on
     @GetMapping(value = "list")
-    public ResultModel getCourseList(@RequestParam(defaultValue = "0") int currPage,
+    public ResultModel getCourseList(@RequestParam(defaultValue = "0") Integer currPage,
                                      @Min(message = "pageSize 最小为1", value = 1)
-                                     @RequestParam(defaultValue = "10") int pageSize) {
+                                     @RequestParam(defaultValue = "10") Integer pageSize) {
         return ResultModel.success(courseService.getCourseList(currPage, pageSize));
     }
 

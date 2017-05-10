@@ -25,7 +25,7 @@ public class ResourceController {
 
     // @formatter:off
     /**
-     * @api {post} /api/resource/list 资源列表
+     * @api {get} /api/resource/list 资源列表
      * @apiName list
      * @apiGroup Resource
      *
@@ -70,9 +70,9 @@ public class ResourceController {
      */
     // @formatter:on
     @GetMapping(value = "list")
-    public ResultModel getResourceList(@RequestParam(defaultValue = "0") int currPage,
+    public ResultModel getResourceList(@RequestParam(defaultValue = "0") Integer currPage,
                                        @Min(message = "pageSize 最小为1", value = 1)
-                                       @RequestParam(defaultValue = "10") int pageSize,
+                                       @RequestParam(defaultValue = "10") Integer pageSize,
                                        @NotNull(message = "courseId不能为空") Integer courseId) {
         return ResultModel.success(resourceService.getResourceList(currPage, pageSize, courseId));
     }
