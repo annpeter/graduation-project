@@ -52,11 +52,12 @@ public class HomeWorkService {
         }
     }
 
-    public void addHomeWork(Integer courseId, String title, String url) {
+    public void addHomeWork(Integer courseId, String title, String url, Integer userId) {
         HomeWork homeWork = new HomeWork();
         homeWork.setTitle(title);
         homeWork.setCourseId(courseId);
         homeWork.setUrl(url);
+        homeWork.setUserId(userId);
         homeWorkMapper.insertSelective(homeWork);
     }
 

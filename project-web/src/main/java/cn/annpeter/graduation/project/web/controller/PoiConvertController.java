@@ -67,7 +67,7 @@ public class PoiConvertController {
     // @formatter:on
     @PostMapping(value = "ppt")
     public ResultModel ppt(@NotEmpty(message = "url不能为空") String url) {
-        return ResultModel.success(wordConvertService.pptToImage(url));
+        return ResultModel.success(wordConvertService.convertPPTtoImage(url));
     }
 
 

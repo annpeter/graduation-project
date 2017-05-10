@@ -128,8 +128,10 @@ public class HomeWorkController {
     @PostMapping(value = "add")
     public ResultModel addHomeWork(@NotNull(message = "courseId不能为空") Integer courseId,
                                    @NotEmpty(message = "title不能为空") String title,
-                                   @NotEmpty(message = "url不能为空")  String url) {
-        homeWorkService.addHomeWork(courseId, title, url);
+                                   @NotEmpty(message = "url不能为空") String url,
+                                   HttpSession session) {
+        User user = (User) session.getAttribute(web.loggedUserInfo);
+        homeWorkService.addHomeWork(courseId, title, url, user.getId());
         return ResultModel.success(null, "添加成功");
     }
 

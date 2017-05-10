@@ -29,7 +29,7 @@ public class HomeWork implements Serializable {
     private String url;
 
     /**
-     * INTEGER(10) 必填
+     * INTEGER(10) 默认值[1] 必填
      * 1表示可用, 0表示不可用
      */
     private Integer state;
@@ -45,6 +45,12 @@ public class HomeWork implements Serializable {
      * 
      */
     private Date updateTime;
+
+    /**
+     * INTEGER(10) 必填
+     * 老师的id
+     */
+    private Integer userId;
 
     private static final long serialVersionUID = 1L;
 
@@ -113,7 +119,7 @@ public class HomeWork implements Serializable {
     }
 
     /**
-     * INTEGER(10) 必填
+     * INTEGER(10) 默认值[1] 必填
      * 获得 1表示可用, 0表示不可用
      */
     public Integer getState() {
@@ -121,7 +127,7 @@ public class HomeWork implements Serializable {
     }
 
     /**
-     * INTEGER(10) 必填
+     * INTEGER(10) 默认值[1] 必填
      * 设置 1表示可用, 0表示不可用
      */
     public void setState(Integer state) {
@@ -160,6 +166,22 @@ public class HomeWork implements Serializable {
         this.updateTime = updateTime;
     }
 
+    /**
+     * INTEGER(10) 必填
+     * 获得 老师的id
+     */
+    public Integer getUserId() {
+        return userId;
+    }
+
+    /**
+     * INTEGER(10) 必填
+     * 设置 老师的id
+     */
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -173,6 +195,7 @@ public class HomeWork implements Serializable {
         sb.append(", state=").append(state);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
+        sb.append(", userId=").append(userId);
         sb.append("]");
         return sb.toString();
     }
@@ -195,7 +218,8 @@ public class HomeWork implements Serializable {
             && (this.getUrl() == null ? other.getUrl() == null : this.getUrl().equals(other.getUrl()))
             && (this.getState() == null ? other.getState() == null : this.getState().equals(other.getState()))
             && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
-            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
+            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()))
+            && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()));
     }
 
     @Override
@@ -209,6 +233,7 @@ public class HomeWork implements Serializable {
         result = prime * result + ((getState() == null) ? 0 : getState().hashCode());
         result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
+        result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
         return result;
     }
 }
