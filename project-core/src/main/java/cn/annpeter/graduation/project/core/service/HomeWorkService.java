@@ -8,6 +8,7 @@ import cn.annpeter.graduation.project.dal.dao.HomeWorkCommitMapper;
 import cn.annpeter.graduation.project.dal.dao.HomeWorkMapper;
 import cn.annpeter.graduation.project.dal.model.HomeWork;
 import cn.annpeter.graduation.project.dal.model.HomeWorkCommit;
+import cn.annpeter.graduation.project.dal.model.HomeWorkCommitExample;
 import cn.annpeter.graduation.project.dal.model.HomeWorkExample;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +39,18 @@ public class HomeWorkService {
         example.setOrderByClause(" update_time DESC  ");
 
         Page resourcePage = homeWorkMapper.selectPageByExample(example, new PageRowBounds(currPage, pageSize));
+        return PageUtils.getPageInfo(resourcePage);
+    }
+
+    public Map getHomeWorkCommitListByHomeWorkId(Integer currPage, Integer pageSize, Integer homeWorkId, Integer userId){
+        HomeWorkCommitExample example = new HomeWorkCommitExample();
+        example.createCriteria()
+                .andUserIdEqualTo(userId)
+                .andHomeWorkIdEqualTo(homeWorkId);
+
+        example.setOrderByClause(" create_time ASC  ");
+
+        Page resourcePage = homeWorkCommitMapper.selectPageByExample(example, new PageRowBounds(currPage, pageSize));
         return PageUtils.getPageInfo(resourcePage);
     }
 

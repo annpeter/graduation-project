@@ -72,6 +72,57 @@ public class HomeWorkController {
         return ResultModel.success(homeWorkService.getHomeWorkListByCourseId(currPage, pageSize, courseId));
     }
 
+
+    // @formatter:off
+    /**
+     * @api {post} /api/homework/commitList 学生完成作业列表
+     * @apiName commitList
+     * @apiGroup HomeWork
+     *
+     * @apiParam {int} currPage  当前页(默认值0)
+     * @apiParam {int} pageSize  页的大小(默认值10)
+     * @apiParam {int} courseId  课程id
+     *
+     * @apiSuccessExample {json} Response 200 Example
+     * {
+     *   "code": 200,
+     *   "data": {
+     *     "currPage": 0,
+     *     "sliderList": [
+     *       "1"
+     *     ],
+     *     "prePage": 1,
+     *     "nextPage": 1,
+     *     "dataList": [
+     *       {
+     *         "id": 1,
+     *         "userId": 1,
+     *         "url": "www.baidu.com",
+     *         "score": null,
+     *         "comment": null,
+     *         "homeWorkId": 1,
+     *         "createTime": "2017-05-10 12:22:27",
+     *         "updateTime": "2017-05-10 12:22:27"
+     *       }
+     *     ]
+     *   },
+     *   "resultMsg": "执行成功",
+     *   "errorStackTrace": null
+     * }
+     */
+    // @formatter:on
+    @GetMapping(value = "commitList")
+    public ResultModel getHomeWorkCommitList(@RequestParam(defaultValue = "0") int currPage,
+                                             @Min(message = "pageSize 最小为1", value = 1)
+                                             @RequestParam(defaultValue = "10") int pageSize,
+                                             @NotNull(message = "homeWorkId不能为空") Integer homeWorkId,
+                                             HttpSession session) {
+        User sessionUser = (User) session.getAttribute(web.loggedUserInfo);
+
+        return ResultModel.success(homeWorkService.getHomeWorkCommitListByHomeWorkId(currPage, pageSize, homeWorkId, sessionUser.getId()));
+    }
+
+
     // @formatter:off
     /**
      * @api {post} /api/homework/commit 提交作业
