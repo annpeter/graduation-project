@@ -75,7 +75,7 @@ public class HomeWorkController {
 
     // @formatter:off
     /**
-     * @api {post} /api/homework/commitList 学生完成作业列表
+     * @api {get} /api/homework/commitList 学生完成作业列表
      * @apiName commitList
      * @apiGroup HomeWork
      *
