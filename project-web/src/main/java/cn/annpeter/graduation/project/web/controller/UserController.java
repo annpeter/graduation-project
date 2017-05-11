@@ -133,8 +133,8 @@ public class UserController {
      */
     // @formatter:on
     @GetMapping(value = "list")
-    public ResultModel list(@NotNull(message = "courseId不能为空") Integer courseId) {
-        return ResultModel.success(userService.list(courseId));
+    public ResultModel list() {
+        return ResultModel.success(userService.list());
     }
 
 
@@ -172,13 +172,6 @@ public class UserController {
                              @NotEmpty(message = "pwd不能为空") String pwd,
                              @NotNull(message = "courseId不能为空") Integer courseId,
                              HttpSession session) {
-        // 如果已经登录过了, 就不必重复登录了
-        Object isLogin = session.getAttribute(web.loggedUserFlag);
-        if (isLogin != null && (boolean) isLogin) {
-            User user = (User) session.getAttribute(web.loggedUserInfo);
-            return ResultModel.success(user, "登录成功");
-        }
-
         User user = new User();
         user.setName(name);
         user.setPwd(pwd);

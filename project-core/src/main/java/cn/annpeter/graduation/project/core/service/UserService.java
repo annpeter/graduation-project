@@ -42,7 +42,9 @@ public class UserService {
 
     public User login(User user) {
         UserExample example = new UserExample();
-        example.createCriteria().andNameEqualTo(user.getName());
+        example.createCriteria()
+                .andCourseIdEqualTo(user.getCourseId())
+                .andNameEqualTo(user.getName());
         List<User> userList = userMapper.selectByExample(example);
         if (userList.size() == 0) {
             throw new CommonException(ResultCodeEnum.RESOURCE_NOT_FOUND, "用户不存在");
@@ -55,10 +57,8 @@ public class UserService {
         }
     }
 
-    public List<User> list(Integer courseId) {
+    public List<User> list() {
         UserExample example = new UserExample();
-        example.createCriteria()
-                .andCourseIdEqualTo(courseId);
         return userMapper.selectByExample(example);
     }
 
