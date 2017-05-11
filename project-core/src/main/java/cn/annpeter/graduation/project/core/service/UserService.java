@@ -62,4 +62,7 @@ public class UserService {
         return userMapper.selectByExample(example);
     }
 
+    public void updateUser(User user){
+        userMapper.updateByPrimaryKeySelective(user);
+    }
 }

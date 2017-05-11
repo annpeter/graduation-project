@@ -213,4 +213,33 @@ public class UserController {
         session.invalidate();
         return ResultModel.success(null, "登出成功");
     }
+
+    // @formatter:off
+    /**
+     * @api {post} /api/user/changePwd 修改用户密码
+     * @apiName changePwd
+     * @apiGroup User
+     *
+     *  @apiParam {int} userId 用户id，可以为空，即当用户id为空的时候修改自己的密码
+     *
+     * @apiSuccessExample {json} Response 200 Example
+     *  {
+     *      "code": 200,
+     *      "data": null,
+     *      "result_msg": "执行成功",
+     *      "error_stack_trace": null
+     *  }
+     */
+    // @formatter:on
+    @GetMapping(value = "changePwd")
+    public ResultModel changePwd(@NotEmpty(message = "pwd不能为空") String pwd,
+                                 Integer userId,
+                                 HttpSession session) {
+        User sessionUser = (User) session.getAttribute(web.loggedUserInfo);
+        User user = new User();
+        user.setPwd(pwd);
+        user.setId(userId == null ? sessionUser.getId() : userId);
+        userService.updateUser(user);
+        return ResultModel.success(null, "登出成功");
+    }
 }
