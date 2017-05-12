@@ -224,7 +224,7 @@ public class UserController {
      *  }
      */
     // @formatter:on
-    @GetMapping(value = "changePwd")
+    @PostMapping(value = "changePwd")
     public ResultModel changePwd(@NotEmpty(message = "pwd不能为空") String pwd,
                                  Integer userId,
                                  HttpSession session) {
@@ -233,6 +233,6 @@ public class UserController {
         user.setPwd(pwd);
         user.setId(userId == null ? sessionUser.getId() : userId);
         userService.updateUser(user);
-        return ResultModel.success(null, "登出成功");
+        return ResultModel.success(null, "修改成功");
     }
 }

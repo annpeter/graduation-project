@@ -24,12 +24,6 @@ public class LoginInterceptor implements HandlerInterceptor {
                              Object handler) throws Exception {
         HttpSession session = request.getSession();
 
-        //session.setAttribute(web.loggedUserFlag, true);
-        //User user = new User();
-        //user.setId(1);
-        //user.setIsAdmin((short) 0);
-        //session.setAttribute(web.loggedUserInfo, user);
-
         Object isLogin = session.getAttribute(web.loggedUserFlag);
         if (isLogin != null && (boolean) isLogin) {
             return true;
