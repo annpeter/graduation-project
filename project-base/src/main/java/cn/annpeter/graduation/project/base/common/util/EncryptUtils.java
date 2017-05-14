@@ -5,8 +5,8 @@ import cn.annpeter.graduation.project.base.common.exception.CrackErrorException;
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-import java.math.BigInteger;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
 /**
@@ -15,6 +15,7 @@ import java.util.Base64;
  * @author annpeter.it@gmail.com
  */
 public class EncryptUtils {
+    private static final char[] hexDigits = "0123456789abcdef".toCharArray();
 
     public static String MD5_16(String data) {
         return MD5_16(data.getBytes());
@@ -28,14 +29,22 @@ public class EncryptUtils {
         return MD5(data.getBytes());
     }
 
-    public static String MD5(byte[] data) {
+    public static String MD5(byte[] bytes) {
+        MessageDigest messageDigest;
         try {
-            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
-            messageDigest.update(data);
-            return new BigInteger(messageDigest.digest()).toString(16).toUpperCase();
-        } catch (Exception e) {
+            messageDigest = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException e) {
             throw new CrackErrorException("encrypt error.", e);
         }
+        messageDigest.update(bytes);
+        byte[] digestBytes = messageDigest.digest();
+        char[] chars = new char[digestBytes.length * 2];
+        int k = 0;
+        for (byte b : digestBytes) {
+            chars[k++] = hexDigits[b >>> 4 & 15];
+            chars[k++] = hexDigits[b & 15];
+        }
+        return new String(chars).toUpperCase();
     }
 
     public static byte[] aesEncrypt(String data, String key) {

@@ -23,6 +23,7 @@ public class GlobalConfig {
     public static final Redis redis;
     public static final Email email;
     public static final Properties datasource;
+    public static final String userPwdSalt = "1!@8K";
 
     static {
         ResourceLoader loader = new DefaultResourceLoader();

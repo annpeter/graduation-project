@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Untitled Document</title>
+        <script src="js/jquery-1.11.1.min.js"></script>
+        <script src="js/echarts.min.js"></script>
+    </head>
+    
+    <body>
+		
+		<div id="main" style="height: 400px; width: 1200px;"></div>
+
+    </body>
+
+    <script type="text/javascript">
+    	var myChart = echarts.init(document.getElementById('main'));
+
+
+    	$.ajax({
+			url:"/api/statistics/get.htm",
+			dataType: 'json',success:function(result){
+				var dataDate = [];
+				var dataView = [];
+
+				result.data.days.forEach(function(item, index, arr){
+						dataDate.push(item.date);
+						dataView.push(item.view);
+				});
+
+			    myChart.setOption({
+				    title: {
+				        text: '折线图堆叠'
+				    },
+				    tooltip: {
+				        trigger: 'axis'
+				    },
+				    legend: {
+				        data:['访问量']
+				    },
+				    grid: {
+				        left: '3%',
+				        right: '4%',
+				        bottom: '3%',
+				        containLabel: true
+				    },
+				    toolbox: {
+				        feature: {
+				            saveAsImage: {}
+				        }
+				    },
+				    xAxis: {
+				        type: 'category',
+				        boundaryGap: false,
+				        data: dataDate
+				    },
+				    yAxis: {
+				        type: 'value'
+				    },
+				    series: [
+				        {
+				            name:'访问量',
+				            type:'line',
+				            stack: '总量',
+				            data: dataView
+				        }
+				    ]
+				});
+			}
+		});
+
+    </script>
+</html>
