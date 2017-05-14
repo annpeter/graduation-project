@@ -69,7 +69,7 @@ public class HomeWorkController {
                                        @RequestParam(defaultValue = "10") int pageSize,
                                        HttpSession session) {
         User sessionUser = (User) session.getAttribute(web.loggedUserInfo);
-        Integer teacherId = null;
+        Integer teacherId = sessionUser.getTeacherId();
         if (sessionUser.getTeacherId() == null && sessionUser.getIsAdmin() == 1) {
             teacherId = sessionUser.getId();
         }
