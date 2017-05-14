@@ -10,18 +10,38 @@ a img{border: none;}
 	margin-top:30px;
 	text-align:center;
 }
-.page a{
-	padding-left:5px;
-	padding-right:5px;
-	display:inline-table;
-	color:#666;
+.page ul li{
+	width: 30px;
+	height: 30px;
+	display: inline-block;
+	margin: 0px 5px;
+	border: 1px solid #333;
+	box-sizing: border-box;
 }
-.page a:hover{
-	text-decoration:underline;
+.page ul li a{
+	display: block;
+	text-align: center;
+	color:#666;
+	line-height: 30px;
+}
+.page ul li:hover{
+	background-color: #0077fe;
+}
+.page ul li:hover a{
+	color: #fff;
+}
+.page .select{
+	background-color: #0077fe;
+}
+.page .select a{
+	color: #fff;
 }
 .page span{
 	padding-left:5px;
 	padding-right:5px;
+}
+.prev,.next{
+	width: 80px !important;
 }
 .banner{
 	width: 100%;

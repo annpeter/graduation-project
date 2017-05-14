@@ -5,6 +5,7 @@ $(document).ready(function(){
         $(".notice_detail_div").hide();
     });
 
+	//课程简介
 	$.ajax({
 		url:"/api/course/info.htm?courseId="+course_id,
 		dataType:'json',
@@ -14,6 +15,7 @@ $(document).ready(function(){
 		}
 	})
 
+	//公告
 	$.ajax({
 		url:"/api/notice/list.htm?courseId="+course_id+"&type=0",
 		dataType:'json',
@@ -26,7 +28,7 @@ $(document).ready(function(){
 			});
 			$(".inside_announcement > ul").html(ret);
 			
-			$(".announcement").on("click","a",function(){
+			$(".inside_announcement").on("click","a",function(){
 				var notice_index=$(this).index();
 				var content=result.data[notice_index].content;
 				$(".notice_detail p").html(content);
@@ -47,7 +49,7 @@ $(document).ready(function(){
 			});
 			$(".outside_announcement > ul").html(ret);
 			
-			$(".announcement").on("click", "a", function(){
+			$(".outside_announcement").on("click", "a", function(){
 				var notice_index=$(this).index();
 				var content=result.data[notice_index].content;
 				$(".notice_detail p").html(content);

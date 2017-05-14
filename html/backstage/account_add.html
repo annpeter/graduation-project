@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link href="css/select.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.idTabs.min.js"></script>
+<script type="text/javascript" src="js/select-ui.min.js"></script>
+<script type="text/javascript" src="editor/kindeditor.js"></script>
+<script type="text/javascript" src="js/Validform.js"></script>
+<script type="text/javascript" src="js/account_add.js"></script>
+
+<script type="text/javascript">
+    KE.show({
+        id : 'content7',
+        cssPath : './index.css'
+    });
+  </script>
+  
+<script type="text/javascript">
+$(document).ready(function(e) {
+    $(".select1").uedSelect({
+		width : 345			  
+	});
+	$(".select2").uedSelect({
+		width : 167  
+	});
+	$(".select3").uedSelect({
+		width : 100
+	});
+});
+</script>
+</head>
+
+<body>
+
+	<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+    <li><a href="#">首页</a></li>
+    <li><a href="#">系统设置</a></li>
+    </ul>
+    </div>
+    
+    <div class="formbody">
+    
+    
+    <div id="usual1" class="usual"> 
+    
+    <!--
+    <div class="itab">
+  	<ul> 
+    <li><a href="#tab1" class="selected">发布通知</a></li> 
+    <li><a href="#tab2">自定义</a></li> 
+  	</ul>
+    </div>
+    -->
+    
+  	<div id="tab1" class="tabson">
+    
+    
+    <form class="useradd_form">
+    <ul class="forminfo">
+    <li><label>帐号<b>*</b></label><input name="account" type="text" class="dfinput" placeholder="请输入帐号"  style="width:518px;" datatype="s" nullmsg="请输入帐号" errormsg="帐号中包含特殊字符" /></li>
+    <li><label>密码<b>*</b></label><input name="password1" type="password" class="dfinput" placeholder="请输入密码"  style="width:518px;" datatype="s3-12" nullmsg="请输入密码" errormsg="密码范围在3到12位之间" /></li>
+    <li><label>确认密码<b>*</b></label><input name="password2" type="password" class="dfinput" placeholder="请再次输入密码"  style="width:518px;" datatype="*" recheck="password1" nullmsg="请再次输入密码" errormsg="两次输入密码不一致" /></li>
+    <li><label>姓名<b>*</b></label><input name="username" type="text" class="dfinput" placeholder="请输入姓名"  style="width:518px;" datatype="s3-12" nullmsg="请输入姓名" errormsg="姓名范围在3到12个字符之间" /></li>
+    <li><label>班级<b>*</b></label><input name="" type="text" class="dfinput" placeholder="请输入班级"  style="width:518px;" datatype="n1-2" nullmsg="请输入班级" errormsg="请填写正确的班级号" /></li>
+    <li><label>用户组<b>*</b></label><input name="" type="text" class="dfinput" placeholder="是否为管理员, 0否 1是"  style="width:518px;" datatype="n1-1" nullmsg="请输入用户组" errormsg="请填写是否为管理员, 0否 1是" /></li>
+
+    <li><label>&nbsp;</label><input name="" type="submit" class="btn" value="提交"/></li>
+
+    </ul>
+    </form>
+
+    </div> 
+    
+    </div>  
+       
+	</div> 
+ 
+	<script type="text/javascript"> 
+      $("#usual1 ul").idTabs(); 
+    </script>
+    
+    <script type="text/javascript">
+	$('.tablelist tbody tr:odd').addClass('odd');
+	</script>
+    
+    
+    
+    
+    
+    </div>
+
+
+</body>
+
+</html>

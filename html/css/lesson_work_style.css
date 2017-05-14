@@ -1,4 +1,5 @@
 .lesson_work_list{
+	min-height: 200px;
 	margin-top: 50px;
 }
 .lesson_work_list li{

@@ -78,6 +78,7 @@
 	top: 50%;
 	left: 50%;
 	background-color: #fff;
+	overflow: auto;
 }
 .notice_detail p{
 	font-size: 16px;

@@ -67,7 +67,6 @@ $(document).ready(function(){
 			var username=$(".lesson_login_input input").eq(0).val();
 			$(".lesson_login").hide();
 			$(".lesson_login_success p").html("欢迎 "+username+logout);
-			//$(".lesson_login_success p").text("欢迎 "+username);
 			$(".lesson_login_success").show();
 
 		}, "json" );
