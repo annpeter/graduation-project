@@ -4,6 +4,7 @@ package cn.annpeter.graduation.project.web.aspect;
 import cn.annpeter.graduation.project.base.common.exception.CommonException;
 import cn.annpeter.graduation.project.base.common.model.ResultCodeEnum;
 import cn.annpeter.graduation.project.base.common.model.ResultModel;
+import cn.annpeter.graduation.project.core.service.helper.ApplicationExecutorHolder;
 import cn.annpeter.graduation.project.core.service.helper.SendEmailService;
 import javaslang.control.Try;
 import org.apache.commons.io.IOUtils;
@@ -24,8 +25,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+
+import static cn.annpeter.graduation.project.core.config.GlobalConfig.email;
 
 
 /**
@@ -102,6 +107,19 @@ public class GlobalExceptionResolver extends SimpleMappingExceptionResolver {
             String sessionId = request.getSession().getId();
             String body = Try.of(() -> IOUtils.toString(request.getInputStream(), request.getCharacterEncoding())).getOrElseGet((e) -> null);
             logger.error("====未知系统异常==== requestURI:{}, queryString:{}, sessionId:{}, body:{}.", requestURI, queryString, sessionId, body, ex);
+
+            if (email.sendSystemErrorEmail) {
+                // 发送邮件 异步执行
+                ApplicationExecutorHolder.execute("发送系统异常邮件", () -> {
+                    Map<String, Object> parameterMap = new HashMap<>();
+                    parameterMap.put("requestURI", requestURI);
+                    parameterMap.put("queryString", queryString);
+                    parameterMap.put("sessionId", sessionId);
+                    parameterMap.put("body", body);
+
+                    sendEmailService.sendSystemErrorEmail(parameterMap, ex);
+                });
+            }
         }
 
         ModelAndView mav = new ModelAndView();
