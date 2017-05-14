@@ -1,5 +1,6 @@
 package cn.annpeter.graduation.project.core.config;
 
+import cn.annpeter.graduation.project.core.config.bean.Email;
 import cn.annpeter.graduation.project.core.config.bean.Redis;
 import cn.annpeter.graduation.project.core.config.bean.Web;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -20,6 +21,7 @@ import static com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKN
 public class GlobalConfig {
     public static final Web web;
     public static final Redis redis;
+    public static final Email email;
     public static final Properties datasource;
 
     static {
@@ -32,6 +34,7 @@ public class GlobalConfig {
 
             web = configDef.web;
             redis = configDef.redis;
+            email = configDef.email;
             datasource = configDef.datasource;
         } catch (Exception e) {
             throw new Error("加载全局配置文件失败", e);
@@ -41,6 +44,7 @@ public class GlobalConfig {
     private static class GlobalConfigDef {
         public Web web;
         public Redis redis;
+        public Email email;
         public Properties datasource;
     }
 }

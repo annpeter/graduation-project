@@ -1,5 +1,6 @@
 package cn.annpeter.graduation.project.core.service;
 
+import cn.annpeter.graduation.project.base.common.exception.CommonException;
 import cn.annpeter.graduation.project.base.mybatis.page.model.PageRowBounds;
 import cn.annpeter.graduation.project.dal.dao.CourseMapper;
 import cn.annpeter.graduation.project.dal.model.Course;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
+
+import static cn.annpeter.graduation.project.base.common.model.ResultCodeEnum.RESOURCE_NOT_FOUND;
 
 /**
  * Created on 2017/04/15
@@ -28,8 +31,19 @@ public class CourseService {
     }
 
     public Course getCourseInfo(Integer courseId) {
-
         return courseMapper.selectByPrimaryKey(courseId);
+    }
+
+    public Course getCourseInfo(String courseName) {
+        CourseExample example = new CourseExample();
+        example.createCriteria()
+                .andNameEqualTo(courseName);
+        List<Course> courseList = courseMapper.selectByExample(example);
+        if (courseList.size() < 1) {
+            throw new CommonException(RESOURCE_NOT_FOUND, "课程未找到");
+        } else {
+            return courseList.get(0);
+        }
     }
 
     public void addCourse(String name, String imgUrl, String intro) {

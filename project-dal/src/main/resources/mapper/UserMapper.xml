@@ -6,6 +6,7 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="pwd" jdbcType="VARCHAR" property="pwd" />
     <result column="is_admin" jdbcType="TINYINT" property="isAdmin" />
+    <result column="course_name" jdbcType="VARCHAR" property="courseName" />
     <result column="course_id" jdbcType="INTEGER" property="courseId" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
@@ -253,5 +254,15 @@
     <if test="example.orderByClause != null">
       order by ${example.orderByClause}
     </if>
+  </select>
+
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    TB_USER.* , TB_COURSE.name AS course_name
+    from TB_USER LEFT JOIN TB_COURSE ON TB_USER.course_id = TB_COURSE.id ORDER BY TB_USER.course_id;
   </select>
 </mapper>

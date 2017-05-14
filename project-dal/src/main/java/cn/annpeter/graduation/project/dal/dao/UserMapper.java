@@ -34,4 +34,6 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
 
     Page<User> selectPageByExample(@Param("example") UserExample example, PageRowBounds rowBounds);
+
+    List<User> selectAll();
 }

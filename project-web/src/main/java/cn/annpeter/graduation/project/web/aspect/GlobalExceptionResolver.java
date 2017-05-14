@@ -4,6 +4,7 @@ package cn.annpeter.graduation.project.web.aspect;
 import cn.annpeter.graduation.project.base.common.exception.CommonException;
 import cn.annpeter.graduation.project.base.common.model.ResultCodeEnum;
 import cn.annpeter.graduation.project.base.common.model.ResultModel;
+import cn.annpeter.graduation.project.core.service.helper.SendEmailService;
 import javaslang.control.Try;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -18,6 +19,7 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolation;
@@ -35,6 +37,8 @@ public class GlobalExceptionResolver extends SimpleMappingExceptionResolver {
 
     private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionResolver.class);
 
+    @Resource
+    private SendEmailService sendEmailService;
 
     @Override
     public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response,

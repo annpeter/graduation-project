@@ -37,6 +37,8 @@ public class User implements Serializable {
      */
     private Integer courseId;
 
+    private String courseName;
+
     /**
      * TIMESTAMP(19) 默认值[CURRENT_TIMESTAMP]
      * 创建时间
@@ -129,6 +131,14 @@ public class User implements Serializable {
      */
     public void setCourseId(Integer courseId) {
         this.courseId = courseId;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
     }
 
     /**

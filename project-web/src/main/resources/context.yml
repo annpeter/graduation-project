@@ -18,6 +18,19 @@ redis:
   dbIndex: 0
   cacheOn: true
 
+
+email:
+  smtpHost: smtp.mxhichina.com
+  smtpPort: 465
+  smtpTimeout: 5000
+  sslEnable: true
+  sendMailAccount: dev@indata.cc
+  sendMailPwd: Lemiao365
+
+  systemErrorEmailReceiver: 864587669@qq.com  # 系统错误邮件接收人
+  sendSystemErrorEmail: true                # 是否发送系统错误邮件
+
+
 datasource:
   driverClassName: com.mysql.jdbc.Driver
   url: jdbc:mysql://centos-7:3306/GRADUATION_PROJECT?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&autoReconnectForPools=true&zeroDateTimeBehavior=convertToNull&useSSL=false

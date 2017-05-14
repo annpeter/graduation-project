@@ -94,6 +94,36 @@ public class CourseController {
 
     // @formatter:off
     /**
+     * @api {get} /api/course/infoByName 根据课程名称获取信息
+     * @apiName infoByName
+     * @apiGroup Course
+     *
+     * @apiParam {string} courseName 课程名
+     *
+     * @apiSuccessExample {json} Response 200 Example
+     * {
+     *     "code": 200,
+     *     "data": {
+     *         "id": 1,
+     *         "name": "软件工程",
+     *         "seq": 0,
+     *         "intro": "这是软件工程吃介绍啊。。。。",
+     *         "create_time": "2017-04-15 16:58:59",
+     *         "update_time": "2017-04-15 16:59:18"
+     *     },
+     *     "result_msg": "执行成功",
+     *     "error_stack_trace": null
+     * }
+     */
+    // @formatter:on
+    @GetMapping(value = "infoByName")
+    public ResultModel getCourseInfoByName(@NotEmpty String courseName) {
+        return ResultModel.success(courseService.getCourseInfo(courseName));
+    }
+
+
+    // @formatter:off
+    /**
      * @api {post} /api/course/add 添加课程
      * @apiName add
      * @apiGroup Course

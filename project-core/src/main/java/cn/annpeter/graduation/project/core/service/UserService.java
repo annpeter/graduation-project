@@ -58,8 +58,7 @@ public class UserService {
     }
 
     public List<User> list() {
-        UserExample example = new UserExample();
-        return userMapper.selectByExample(example);
+        return userMapper.selectAll();
     }
 
     public void updateUser(User user){
