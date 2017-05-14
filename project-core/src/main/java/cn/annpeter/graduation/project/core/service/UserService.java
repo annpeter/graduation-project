@@ -3,6 +3,8 @@ package cn.annpeter.graduation.project.core.service;
 
 import cn.annpeter.graduation.project.base.common.exception.CommonException;
 import cn.annpeter.graduation.project.base.common.model.ResultCodeEnum;
+import cn.annpeter.graduation.project.base.common.util.EncryptUtils;
+import cn.annpeter.graduation.project.core.config.GlobalConfig;
 import cn.annpeter.graduation.project.dal.dao.UserMapper;
 import cn.annpeter.graduation.project.dal.model.User;
 import cn.annpeter.graduation.project.dal.model.UserExample;
@@ -37,6 +39,7 @@ public class UserService {
             throw new CommonException(ResultCodeEnum.RESOURCE_CONFLICT, "此用户名已被注册");
         }
 
+        user.setPwd(EncryptUtils.MD5(user.getPwd() + GlobalConfig.userPwdSalt));
         return userMapper.insertSelective(user);
     }
 
@@ -49,7 +52,7 @@ public class UserService {
         if (userList.size() == 0) {
             throw new CommonException(ResultCodeEnum.RESOURCE_NOT_FOUND, "用户不存在");
         } else {
-            if (StringUtils.equals(user.getPwd(), userList.get(0).getPwd())) {
+            if (StringUtils.equals(EncryptUtils.MD5(user.getPwd() + GlobalConfig.userPwdSalt), userList.get(0).getPwd())) {
                 return userList.get(0);
             } else {
                 throw new CommonException(ResultCodeEnum.FORBIDDEN, "密码错误");
@@ -61,7 +64,10 @@ public class UserService {
         return userMapper.selectAll();
     }
 
-    public void updateUser(User user){
+    public void updateUser(User user) {
+        if (StringUtils.isNotEmpty(user.getPwd())) {
+            user.setPwd(EncryptUtils.MD5(user.getPwd() + GlobalConfig.userPwdSalt));
+        }
         userMapper.updateByPrimaryKeySelective(user);
     }
 }

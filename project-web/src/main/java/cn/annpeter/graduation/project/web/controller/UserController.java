@@ -4,7 +4,9 @@ import cn.annpeter.graduation.project.base.common.exception.CommonException;
 import cn.annpeter.graduation.project.base.common.model.ResultCodeEnum;
 import cn.annpeter.graduation.project.base.common.model.ResultModel;
 import cn.annpeter.graduation.project.core.service.CountingService;
+import cn.annpeter.graduation.project.core.service.CourseService;
 import cn.annpeter.graduation.project.core.service.UserService;
+import cn.annpeter.graduation.project.dal.model.Course;
 import cn.annpeter.graduation.project.dal.model.User;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.validation.annotation.Validated;
@@ -33,6 +35,8 @@ public class UserController {
     private UserService userService;
     @Resource
     private CountingService countingService;
+    @Resource
+    private CourseService courseService;
 
 
     // @formatter:off
@@ -44,7 +48,7 @@ public class UserController {
      * @apiParam {string} name 用户名称
      * @apiParam {string} pwd 用户密码
      * @apiParam {int} isAdmin 是否为管理员, 0否 1是
-     * @apiParam {int} courseId 课程id
+     * @apiParam {string} courseName 课程名称
      *
      * @apiSuccess (Code) {string} 200 注册成功
      * @apiSuccess (Code) {string} 409 此用户名已被注册
@@ -61,12 +65,15 @@ public class UserController {
     public ResultModel register(@NotEmpty(message = "name不能为空") String name,
                                 @NotEmpty(message = "pwd不能为空") String pwd,
                                 @NotNull(message = "isAdmin不能为空") Integer isAdmin,
-                                @NotNull(message = "courseId不能为空") Integer courseId) {
+                                @NotEmpty(message = "courseName不能为空") String courseName) {
+
+        Course course = courseService.getCourseInfo(courseName);
+
         User user = new User();
         user.setName(name);
         user.setPwd(pwd);
         user.setIsAdmin(isAdmin.shortValue());
-        user.setCourseId(courseId);
+        user.setCourseId(course.getId());
 
         if (1 == userService.register(user)) {
             return ResultModel.success();
@@ -134,7 +141,8 @@ public class UserController {
     // @formatter:on
     @GetMapping(value = "list")
     public ResultModel list() {
-        return ResultModel.success(userService.list());
+        throw new RuntimeException("测试系统抛出异常");
+        //return ResultModel.success(userService.list());
     }
 
 
