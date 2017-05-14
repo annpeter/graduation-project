@@ -5,9 +5,11 @@ import cn.annpeter.graduation.project.base.mybatis.page.model.PageRowBounds;
 import cn.annpeter.graduation.project.dal.model.User;
 import cn.annpeter.graduation.project.dal.model.UserExample;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface UserMapper {
     long countByExample(UserExample example);
 
@@ -32,4 +34,6 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
 
     Page<User> selectPageByExample(@Param("example") UserExample example, PageRowBounds rowBounds);
+
+    List<User> selectAll();
 }
