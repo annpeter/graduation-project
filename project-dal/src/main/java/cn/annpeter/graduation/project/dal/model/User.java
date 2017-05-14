@@ -1,5 +1,7 @@
 package cn.annpeter.graduation.project.dal.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -20,6 +22,7 @@ public class User implements Serializable {
      * VARCHAR(50) 默认值[] 必填
      * 密码
      */
+    @JsonIgnore
     private String pwd;
 
     /**

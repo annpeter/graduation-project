@@ -13,6 +13,9 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Objects;
+
+import static cn.annpeter.graduation.project.base.common.model.ResultCodeEnum.RESOURCE_NOT_FOUND;
 
 
 /**
@@ -45,15 +48,21 @@ public class UserService {
 
     public User login(User user) {
         UserExample example = new UserExample();
+
         example.createCriteria()
-                .andCourseIdEqualTo(user.getCourseId())
                 .andNameEqualTo(user.getName());
+
         List<User> userList = userMapper.selectByExample(example);
         if (userList.size() == 0) {
-            throw new CommonException(ResultCodeEnum.RESOURCE_NOT_FOUND, "用户不存在");
+            throw new CommonException(RESOURCE_NOT_FOUND, "用户不存在");
         } else {
             if (StringUtils.equals(EncryptUtils.MD5(user.getPwd() + GlobalConfig.userPwdSalt), userList.get(0).getPwd())) {
-                return userList.get(0);
+
+                User outUser = userList.get(0);
+                if (outUser.getIsAdmin() != 2 && !Objects.equals(outUser.getCourseId(), user.getCourseId())) {
+                    throw new CommonException(RESOURCE_NOT_FOUND, "您所登录的课程不正确");
+                }
+                return outUser;
             } else {
                 throw new CommonException(ResultCodeEnum.FORBIDDEN, "密码错误");
             }
