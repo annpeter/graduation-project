@@ -9,4 +9,8 @@ public class Web {
     public String loggedUserFlag;
     public String loggedUserInfo;
     public String fileUploadBaseDir;
+
+    public static final String logRequestId = "requestId";
+
+    public static final Integer logRequestIdLength = 12;
 }

@@ -1,7 +1,5 @@
 package cn.annpeter.graduation.project.dal.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -19,10 +17,9 @@ public class User implements Serializable {
     private String name;
 
     /**
-     * VARCHAR(20) 必填
+     * VARCHAR(50) 默认值[] 必填
      * 密码
      */
-    @JsonIgnore
     private String pwd;
 
     /**
@@ -32,12 +29,16 @@ public class User implements Serializable {
     private Short isAdmin;
 
     /**
+     * INTEGER(10)
+     * 老师id
+     */
+    private Integer teacherId;
+
+    /**
      * INTEGER(10) 必填
      * 所属课程
      */
     private Integer courseId;
-
-    private String courseName;
 
     /**
      * TIMESTAMP(19) 默认值[CURRENT_TIMESTAMP]
@@ -86,7 +87,7 @@ public class User implements Serializable {
     }
 
     /**
-     * VARCHAR(20) 必填
+     * VARCHAR(50) 默认值[] 必填
      * 获得 密码
      */
     public String getPwd() {
@@ -94,7 +95,7 @@ public class User implements Serializable {
     }
 
     /**
-     * VARCHAR(20) 必填
+     * VARCHAR(50) 默认值[] 必填
      * 设置 密码
      */
     public void setPwd(String pwd) {
@@ -118,6 +119,22 @@ public class User implements Serializable {
     }
 
     /**
+     * INTEGER(10)
+     * 获得 老师id
+     */
+    public Integer getTeacherId() {
+        return teacherId;
+    }
+
+    /**
+     * INTEGER(10)
+     * 设置 老师id
+     */
+    public void setTeacherId(Integer teacherId) {
+        this.teacherId = teacherId;
+    }
+
+    /**
      * INTEGER(10) 必填
      * 获得 所属课程
      */
@@ -131,14 +148,6 @@ public class User implements Serializable {
      */
     public void setCourseId(Integer courseId) {
         this.courseId = courseId;
-    }
-
-    public String getCourseName() {
-        return courseName;
-    }
-
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
     }
 
     /**
@@ -183,6 +192,7 @@ public class User implements Serializable {
         sb.append(", name=").append(name);
         sb.append(", pwd=").append(pwd);
         sb.append(", isAdmin=").append(isAdmin);
+        sb.append(", teacherId=").append(teacherId);
         sb.append(", courseId=").append(courseId);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
@@ -206,6 +216,7 @@ public class User implements Serializable {
             && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
             && (this.getPwd() == null ? other.getPwd() == null : this.getPwd().equals(other.getPwd()))
             && (this.getIsAdmin() == null ? other.getIsAdmin() == null : this.getIsAdmin().equals(other.getIsAdmin()))
+            && (this.getTeacherId() == null ? other.getTeacherId() == null : this.getTeacherId().equals(other.getTeacherId()))
             && (this.getCourseId() == null ? other.getCourseId() == null : this.getCourseId().equals(other.getCourseId()))
             && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
             && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
@@ -219,6 +230,7 @@ public class User implements Serializable {
         result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
         result = prime * result + ((getPwd() == null) ? 0 : getPwd().hashCode());
         result = prime * result + ((getIsAdmin() == null) ? 0 : getIsAdmin().hashCode());
+        result = prime * result + ((getTeacherId() == null) ? 0 : getTeacherId().hashCode());
         result = prime * result + ((getCourseId() == null) ? 0 : getCourseId().hashCode());
         result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());

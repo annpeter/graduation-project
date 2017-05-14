@@ -64,6 +64,13 @@ public class UserService {
         return userMapper.selectAll();
     }
 
+    public List<User> list(int courseId) {
+        UserExample example = new UserExample();
+        example.createCriteria().andCourseIdEqualTo(courseId)
+                .andIsAdminEqualTo((short) 1);
+        return userMapper.selectByExample(example);
+    }
+
     public void updateUser(User user) {
         if (StringUtils.isNotEmpty(user.getPwd())) {
             user.setPwd(EncryptUtils.MD5(user.getPwd() + GlobalConfig.userPwdSalt));

@@ -30,11 +30,11 @@ public class HomeWorkService {
     @Resource
     private HomeWorkCommitMapper homeWorkCommitMapper;
 
-    public Map getHomeWorkListByCourseId(Integer currPage, Integer pageSize, Integer courseId) {
+    public Map getHomeWorkListByTeacherId(Integer currPage, Integer pageSize, Integer teacherId) {
         HomeWorkExample example = new HomeWorkExample();
         example.createCriteria()
                 .andStateEqualTo(1)
-                .andCourseIdEqualTo(courseId);
+                .andUserIdEqualTo(teacherId);
 
         example.setOrderByClause(" update_time DESC  ");
 

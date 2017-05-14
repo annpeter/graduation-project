@@ -13,6 +13,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 
+import static cn.annpeter.graduation.project.core.config.GlobalConfig.web;
+
 /**
  * Created on 2017/03/16
  *
@@ -27,7 +29,7 @@ public class ControllerLogAspect {
     @Around("execution(* cn.annpeter.graduation.project.web.controller.*Controller.*(..))")
     public Object doAroundMethod(ProceedingJoinPoint pig) throws Throwable {
 
-        MDC.put("request-id", RandomStringUtils.randomAlphabetic(10));
+        MDC.put(web.logRequestId, RandomStringUtils.randomAlphabetic(web.logRequestIdLength));
         MethodSignature methodSign = (MethodSignature) pig.getSignature();
         Class targetClass = pig.getTarget().getClass();
         String methodSignName = methodSign.getMethod().getName();

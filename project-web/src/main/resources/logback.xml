@@ -2,7 +2,7 @@
 <configuration>
 
     <property name="baseDirectory" value="/logs/graduation-project"/>
-    <property name="pattern" value="%d{HH:mm:ss.SSS} [%thread] [%X{${log.requestId}}] %-5level %logger{5} - %msg %n"/>
+    <property name="pattern" value="%d{HH:mm:ss.SSS} [%thread] [%X{requestId}] %-5level %logger{5} - %msg %n"/>
 
     <appender name="rollingAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${baseDirectory}/graduation-project.log</file>

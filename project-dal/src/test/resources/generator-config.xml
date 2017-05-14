@@ -55,9 +55,9 @@
         <!--<table schema="GRADUATION_PROJECT" tableName="TB_RESOURCE" domainObjectName="Resource">-->
             <!--<generatedKey column="ID" sqlStatement="MySql" identity="true"/>-->
         <!--</table>-->
-        <table schema="GRADUATION_PROJECT" tableName="TB_HOME_WORK" domainObjectName="HomeWork">
-            <generatedKey column="ID" sqlStatement="MySql" identity="true"/>
-        </table>
+        <!--<table schema="GRADUATION_PROJECT" tableName="TB_HOME_WORK" domainObjectName="HomeWork">-->
+            <!--<generatedKey column="ID" sqlStatement="MySql" identity="true"/>-->
+        <!--</table>-->
         <!--<table schema="GRADUATION_PROJECT" tableName="TB_HOME_WORK_COMMIT" domainObjectName="HomeWorkCommit">-->
             <!--<generatedKey column="ID" sqlStatement="MySql" identity="true"/>-->
         <!--</table>-->

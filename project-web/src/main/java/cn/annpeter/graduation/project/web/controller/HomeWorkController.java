@@ -35,7 +35,6 @@ public class HomeWorkController {
      *
      * @apiParam {int} currPage  当前页(默认值0)
      * @apiParam {int} pageSize  页的大小(默认值10)
-     * @apiParam {int} courseId  课程id
      *
      * @apiSuccessExample {json} Response 200 Example
      *   {
@@ -65,11 +64,17 @@ public class HomeWorkController {
      */
     // @formatter:on
     @GetMapping(value = "list")
-    public ResultModel getHomeWorkList(@NotNull(message = "courseId不能为空") Integer courseId,
-                                       @RequestParam(defaultValue = "0") int currPage,
+    public ResultModel getHomeWorkList(@RequestParam(defaultValue = "0") int currPage,
                                        @Min(message = "pageSize 最小为1", value = 1)
-                                       @RequestParam(defaultValue = "10") int pageSize) {
-        return ResultModel.success(homeWorkService.getHomeWorkListByCourseId(currPage, pageSize, courseId));
+                                       @RequestParam(defaultValue = "10") int pageSize,
+                                       HttpSession session) {
+        User sessionUser = (User) session.getAttribute(web.loggedUserInfo);
+        Integer teacherId = null;
+        if (sessionUser.getTeacherId() == null && sessionUser.getIsAdmin() == 1) {
+            teacherId = sessionUser.getId();
+        }
+
+        return ResultModel.success(homeWorkService.getHomeWorkListByTeacherId(currPage, pageSize, teacherId));
     }
 
 
@@ -81,7 +86,7 @@ public class HomeWorkController {
      *
      * @apiParam {int} currPage  当前页(默认值0)
      * @apiParam {int} pageSize  页的大小(默认值10)
-     * @apiParam {int} courseId  课程id
+     * @apiParam {int} homeWorkId 作业id
      *
      * @apiSuccessExample {json} Response 200 Example
      * {

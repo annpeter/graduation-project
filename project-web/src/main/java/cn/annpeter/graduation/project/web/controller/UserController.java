@@ -141,10 +141,41 @@ public class UserController {
     // @formatter:on
     @GetMapping(value = "list")
     public ResultModel list() {
-        throw new RuntimeException("测试系统抛出异常");
-        //return ResultModel.success(userService.list());
+        return ResultModel.success(userService.list());
     }
 
+
+
+    // @formatter:off
+    /**
+     * @api {post} /api/user/getTeacherList 课程的老师列表列表
+     * @apiName getTeacherList
+     * @apiGroup User
+     *
+     * @apiParam {int} courseId 课程id
+     *
+     * @apiSuccessExample {json} Response 200 Example
+     *  {
+     *    "code": 200,
+     *    "data": [
+     *      {
+     *        "id": 1,
+     *        "name": "曹文浩",
+     *        "is_admin": 1,
+     *        "course_id": 1,
+     *        "create_time": "2017-05-02 09:26:34",
+     *        "update_time": "2017-05-02 09:26:57"
+     *      }
+     *    ],
+     *    "result_msg": "执行成功",
+     *    "error_stack_trace": null
+     *  }
+     */
+    // @formatter:on
+    @GetMapping(value = "getTeacherList")
+    public ResultModel getTeacherList(@NotNull(message = "courseId不能为空") Integer courseId){
+        return ResultModel.success(userService.list(courseId));
+    }
 
     // @formatter:off
     /**

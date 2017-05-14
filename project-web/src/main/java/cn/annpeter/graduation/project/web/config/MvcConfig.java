@@ -108,7 +108,6 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
                 .excludePathPatterns("/api/course/info.htm")
                 .excludePathPatterns("/checkpreload.htm");
         super.addInterceptors(registry);
-
     }
 
     @Override
