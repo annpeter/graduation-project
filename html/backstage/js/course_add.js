@@ -1,26 +1,18 @@
 $(document).ready(function(){
 
-	// 作业上传功能
+	//图片url
+	var imageurl="";
+
+	// 图片上传功能
     var upLoadFuc = function() {
-        var imageurl;
-
-        // 给所有的作业上传事件绑定
-        $('.course_form li:last' ).on('click', '.lesson_work_upload', function() {
-            imageurl = $( this ).parents( '.lessson_work_item' ).attr('data-id');
-            
-            // 切换显示状态并绑定 id
-            $(".lesson_main").hide();
-            $('.lesson_upload').show().attr('data-id', imageurl);
-
-        });
-
 
         // 上传文件
-        $('#homeworkSubmit').on('click', function() {
+        $('#imageSubmit').on('click', function() {
+
             var file = $('#fileField')[0].files[0];
 
             if ( file ) {
-                var form = new FormData();
+            	var form = new FormData();
                 form.append('file', file );
 
                 $.ajax({
@@ -32,8 +24,11 @@ $(document).ready(function(){
                     contentType: false,
                     processData: false,
                     success: function( res ) {
-                        var fileUrl = res.data.file_url || "";
-                        upLoad( fileUrl );
+                       	if(res.code==200){
+                       		alert(res.result_msg);
+                       		imageurl = res.data.file_url || "";
+                       	}
+                        alert("上传失败");
                     }
                 })
             } else {
@@ -41,7 +36,7 @@ $(document).ready(function(){
             }
 
 
-            function upLoad( fileUrl ) {
+            /*function upLoad( fileUrl ) {
                 var data = {
                     url : fileUrl,
                     imageurl : imageurl,
@@ -53,14 +48,22 @@ $(document).ready(function(){
                     dataType: "json",
                     type: 'post',
                     success: function() {
-                        alert( "作业提交成功" );
+                        alert( "图片上传成功" );
                     }
-                })
-            }
+                });
+            }*/
 
             return false;
         });
 
     };
     upLoadFuc();
+
+    //添加功能
+    $(".btn").click(function(){
+    	var courseName=$(".forminfo li").eq(0).children("input").val();
+    	KE.sync("#content7");
+    	var courseInfo=$("#content7").val();
+    	console.log(courseInfo);
+    });
 });
