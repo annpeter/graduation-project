@@ -78,7 +78,7 @@ public class NoticeController {
      */
     // @formatter:on
     @PostMapping(value = "add")
-    public ResultModel addNotice(@NotNull(message = "courseId不能为空") Integer courseId,
+    public ResultModel addNotice(Integer courseId,
                                  @NotNull(message = "type不能为空") Integer type,
                                  @NotNull(message = "title不能为空") String title,
                                  @NotNull(message = "content不能为空") String content) {
