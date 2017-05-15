@@ -104,7 +104,7 @@ public class NoticeController {
      * }
      */
     // @formatter:on
-    @GetMapping(value = "list")
+    @GetMapping(value = "delete")
     public ResultModel delete(Integer noticeId) {
         noticeService.deleteNotice(noticeId);
         return ResultModel.success();
