@@ -34,7 +34,7 @@ public class NoticeService {
 
         example.setOrderByClause(" update_time DESC ");
 
-        return noticeMapper.selectPageByExample(example, new PageRowBounds(0, 5));
+        return noticeMapper.selectPageByExample(example, new PageRowBounds(0, 20));
     }
 
     public void addNotice(Integer courseId, Integer type, String title, String content) {
