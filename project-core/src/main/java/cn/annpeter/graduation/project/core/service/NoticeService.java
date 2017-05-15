@@ -23,9 +23,15 @@ public class NoticeService {
 
     public List<Notice> getNoticeListByCourseId(Integer courseId, Integer type) {
         NoticeExample example = new NoticeExample();
-        example.createCriteria()
-                .andCourseIdEqualTo(courseId)
-                .andTypeEqualTo(type);
+        NoticeExample.Criteria criteria = example.createCriteria();
+
+        if (courseId != null) {
+            criteria.andCourseIdEqualTo(courseId);
+        }
+        if (type != null) {
+            criteria.andTypeEqualTo(type);
+        }
+
         example.setOrderByClause(" update_time DESC ");
 
         return noticeMapper.selectPageByExample(example, new PageRowBounds(0, 5));
@@ -39,5 +45,9 @@ public class NoticeService {
         notice.setContent(content);
         notice.setCreateTime(new Date());
         noticeMapper.insertSelective(notice);
+    }
+
+    public void deleteNotice(Integer noticeId) {
+        noticeMapper.deleteByPrimaryKey(noticeId);
     }
 }

@@ -26,7 +26,7 @@ public class NoticeController {
 
     // @formatter:off
     /**
-     * @api {post} /api/notice/list 公告列表
+     * @api {get} /api/notice/list 公告列表
      * @apiName list
      * @apiGroup Notice
      *
@@ -53,8 +53,8 @@ public class NoticeController {
      */
     // @formatter:on
     @GetMapping(value = "list")
-    public ResultModel getNoticeList(@NotNull(message = "courseId不能为空") Integer courseId,
-                                     @NotNull(message = "type不能为空") Integer type) {
+    public ResultModel getNoticeList(Integer courseId,
+                                     Integer type) {
         return ResultModel.success(noticeService.getNoticeListByCourseId(courseId, type));
     }
 
@@ -84,5 +84,29 @@ public class NoticeController {
                                  @NotNull(message = "content不能为空") String content) {
         noticeService.addNotice(courseId, type, title, content);
         return ResultModel.success(null, "添加成功");
+    }
+
+
+    // @formatter:off
+    /**
+     * @api {get} /api/notice/delete 公告删除
+     * @apiName delete
+     * @apiGroup Notice
+     *
+     * @apiParam {int} noticeId 公告id
+     *
+     * @apiSuccessExample {json} Response 200 Example
+     * {
+     *     "code": 200,
+     *     "data": null,
+     *     "result_msg": "执行成功",
+     *     "error_stack_trace": null
+     * }
+     */
+    // @formatter:on
+    @GetMapping(value = "list")
+    public ResultModel delete(Integer noticeId) {
+        noticeService.deleteNotice(noticeId);
+        return ResultModel.success();
     }
 }
