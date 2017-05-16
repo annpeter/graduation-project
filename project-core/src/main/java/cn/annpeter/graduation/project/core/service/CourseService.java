@@ -55,4 +55,7 @@ public class CourseService {
         courseMapper.insertSelective(course);
     }
 
+    public void delete(Integer courseId) {
+        courseMapper.deleteByPrimaryKey(courseId);
+    }
 }

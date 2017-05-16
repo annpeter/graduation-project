@@ -9,10 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.ws.rs.DefaultValue;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.MediaType;
 
 /**
  * Created on 2017/04/15
@@ -147,5 +143,29 @@ public class CourseController {
                                  @NotEmpty(message = "intro不能为空") String intro) {
         courseService.addCourse(name, imgUrl, intro);
         return ResultModel.success(null, "添加成功");
+    }
+
+
+    // @formatter:off
+    /**
+     * @api {get} /api/course/delete 课程删除
+     * @apiName delete
+     * @apiGroup Course
+     *
+     * @apiParam {int} courseId 课程id
+     *
+     * @apiSuccessExample {json} Response 200 Example
+     * {
+     *     "code": 200,
+     *     "data": null,
+     *     "result_msg": "删除成功",
+     *     "error_stack_trace": null
+     * }
+     */
+    // @formatter:on
+    @GetMapping(value = "delete")
+    public ResultModel delete(@NotNull(message = "courseId不能为空") Integer courseId) {
+        courseService.delete(courseId);
+        return ResultModel.success(null, "删除成功");
     }
 }
