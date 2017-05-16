@@ -8,11 +8,11 @@ $(document).ready(function () {
     var islogin = localStorage.getItem("islogin");
     if (islogin == "1") {
         $(".warning").hide();
-        $(".lesson_commnunity").show();
+        $(".chat-box").show();
     }
     else {
         $(".warning").show();
-        $(".lesson_commnunity").hide();
+        $(".chat-box").hide();
     }
 });
 
