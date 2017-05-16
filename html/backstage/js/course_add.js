@@ -62,8 +62,18 @@ $(document).ready(function(){
     //添加功能
     $(".btn").click(function(){
     	var courseName=$(".forminfo li").eq(0).children("input").val();
-    	KE.sync("#content7");
     	var courseInfo=$("#content7").val();
-    	console.log(courseInfo);
+
+    	$.ajax({
+    		url:'/api/course/add',
+    		data:{
+    			name:courseName,
+    			imgUrl:imageurl,
+    			intro:courseInfo
+    		}
+    		success:function(){
+    			alert("添加成功");
+    		}
+    	});
     });
 });

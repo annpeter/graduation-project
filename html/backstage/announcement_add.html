@@ -5,16 +5,17 @@
 <title>无标题文档</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <link href="css/select.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/announcement.js"></script>
 <script type="text/javascript" src="js/jquery.idTabs.min.js"></script>
 <script type="text/javascript" src="js/select-ui.min.js"></script>
 <script type="text/javascript" src="editor/kindeditor.js"></script>
 
 <script type="text/javascript">
-    KE.show({
+    /*KE.show({
         id : 'content7',
         cssPath : './index.css'
-    });
+    });*/
   </script>
   
 <script type="text/javascript">
@@ -59,12 +60,7 @@ $(document).ready(function(e) {
 
     <div class="vocation">
     <select class="select1">
-    <option>校内</option>
-    <option>计算机学院</option>
-    <option>数理学院</option>
-    <option>土木学院</option>
-    <option>机械学院</option>
-    <option>船舶学院</option>
+    <option data-id=0 >校内</option>
     </select>
     </div>
     
@@ -73,7 +69,7 @@ $(document).ready(function(e) {
     <li><label>公告内容<b>*</b></label>
     
 
-    <textarea id="content7" name="content" style="width:700px;height:250px;visibility:hidden;"></textarea>
+    <textarea id="content7" name="content" style="width:700px;height:250px;border: 1px solid #ccc;"></textarea>
     
     </li>
 
