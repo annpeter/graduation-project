@@ -35,8 +35,6 @@ public class UserController {
     private UserService userService;
     @Resource
     private CountingService countingService;
-    @Resource
-    private CourseService courseService;
 
 
     // @formatter:off
