@@ -42,10 +42,9 @@ public class HomeWorkService {
         return PageUtils.getPageInfo(resourcePage);
     }
 
-    public Map getHomeWorkCommitListByHomeWorkId(Integer currPage, Integer pageSize, Integer homeWorkId, Integer userId){
+    public Map getHomeWorkCommitListByHomeWorkId(Integer currPage, Integer pageSize, Integer homeWorkId){
         HomeWorkCommitExample example = new HomeWorkCommitExample();
         example.createCriteria()
-                .andUserIdEqualTo(userId)
                 .andHomeWorkIdEqualTo(homeWorkId);
 
         example.setOrderByClause(" create_time ASC  ");

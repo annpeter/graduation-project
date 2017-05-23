@@ -120,11 +120,8 @@ public class HomeWorkController {
     public ResultModel getHomeWorkCommitList(@RequestParam(defaultValue = "0") Integer currPage,
                                              @Min(message = "pageSize 最小为1", value = 1)
                                              @RequestParam(defaultValue = "10") Integer pageSize,
-                                             @NotNull(message = "homeWorkId不能为空") Integer homeWorkId,
-                                             HttpSession session) {
-        User sessionUser = (User) session.getAttribute(web.loggedUserInfo);
-
-        return ResultModel.success(homeWorkService.getHomeWorkCommitListByHomeWorkId(currPage, pageSize, homeWorkId, sessionUser.getId()));
+                                             @NotNull(message = "homeWorkId不能为空") Integer homeWorkId) {
+        return ResultModel.success(homeWorkService.getHomeWorkCommitListByHomeWorkId(currPage, pageSize, homeWorkId));
     }
 
 
