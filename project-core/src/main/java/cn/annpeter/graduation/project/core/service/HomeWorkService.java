@@ -49,7 +49,7 @@ public class HomeWorkService {
 
         example.setOrderByClause(" create_time ASC  ");
 
-        Page resourcePage = homeWorkCommitMapper.selectPageByExample(example, new PageRowBounds(currPage, pageSize));
+        Page resourcePage = homeWorkCommitMapper.selectPageByExampleWithStudentName(example, new PageRowBounds(currPage, pageSize));
         return PageUtils.getPageInfo(resourcePage);
     }
 

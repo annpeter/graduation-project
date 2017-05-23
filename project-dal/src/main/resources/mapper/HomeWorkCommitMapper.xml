@@ -3,6 +3,7 @@
 <mapper namespace="cn.annpeter.graduation.project.dal.dao.HomeWorkCommitMapper">
   <resultMap id="BaseResultMap" type="cn.annpeter.graduation.project.dal.model.HomeWorkCommit">
     <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="url" jdbcType="VARCHAR" property="url" />
     <result column="score" jdbcType="REAL" property="score" />
@@ -262,6 +263,21 @@
     </if>
     <include refid="Base_Column_List" />
     from TB_HOME_WORK_COMMIT
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+    <if test="example.orderByClause != null">
+      order by ${example.orderByClause}
+    </if>
+  </select>
+
+  <select id="selectPageByExampleWithStudentName" parameterType="cn.annpeter.graduation.project.dal.model.HomeWorkCommitExample" resultMap="BaseResultMap">
+    select
+    <if test="example.distinct">
+      distinct
+    </if>
+    TB_HOME_WORK_COMMIT.*, TB_USER.name AS user_name
+    from TB_HOME_WORK_COMMIT LEFT JOIN TB_USER ON TB_USER.id = TB_HOME_WORK_COMMIT.user_id
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

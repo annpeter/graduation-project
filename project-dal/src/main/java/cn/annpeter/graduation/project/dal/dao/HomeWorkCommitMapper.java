@@ -34,4 +34,6 @@ public interface HomeWorkCommitMapper {
     int updateByPrimaryKey(HomeWorkCommit record);
 
     Page<HomeWorkCommit> selectPageByExample(@Param("example") HomeWorkCommitExample example, PageRowBounds rowBounds);
+
+    Page<HomeWorkCommit> selectPageByExampleWithStudentName(@Param("example") HomeWorkCommitExample example, PageRowBounds rowBounds);
 }

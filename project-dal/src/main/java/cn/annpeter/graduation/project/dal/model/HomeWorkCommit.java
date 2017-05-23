@@ -16,6 +16,8 @@ public class HomeWorkCommit implements Serializable {
      */
     private Integer userId;
 
+    private String userName;
+
     /**
      * VARCHAR(256)
      * 作业地址
@@ -68,6 +70,14 @@ public class HomeWorkCommit implements Serializable {
      */
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     /**
