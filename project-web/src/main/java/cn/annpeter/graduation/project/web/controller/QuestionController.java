@@ -118,4 +118,26 @@ public class QuestionController {
     }
 
 
+    // @formatter:off
+    /**
+     * @api {post} /api/question/delete 删除问题
+     * @apiName delete
+     * @apiGroup Question
+     *
+     * @apiParam {int} questionId  问题id
+     *
+     * @apiSuccessExample {json} Response 200 Example
+     *  {
+     *    "code": 200,
+     *    "data": null,
+     *    "resultMsg": "执行成功",
+     *    "errorStackTrace": null
+     *  }
+     */
+    // @formatter:on
+    @GetMapping(value = "delete")
+    public ResultModel deleteQuestion(@NotNull(message = "questionId不能为空") Integer questionId) {
+        questionService.delete(questionId);
+        return ResultModel.success();
+    }
 }

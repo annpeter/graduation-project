@@ -274,4 +274,5 @@ public class UserController {
         userService.updateUser(user);
         return ResultModel.success(null, "修改成功");
     }
+
 }

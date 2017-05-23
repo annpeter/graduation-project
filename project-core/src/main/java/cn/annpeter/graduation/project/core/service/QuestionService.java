@@ -57,4 +57,8 @@ public class QuestionService {
         question.setAnswer(answer);
         questionMapper.updateByExampleSelective(question, example);
     }
+
+    public void delete(Integer questionId) {
+        questionMapper.deleteByPrimaryKey(questionId);
+    }
 }
