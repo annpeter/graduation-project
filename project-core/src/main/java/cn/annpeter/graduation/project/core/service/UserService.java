@@ -15,6 +15,7 @@ import javax.annotation.Resource;
 import java.util.List;
 import java.util.Objects;
 
+import static cn.annpeter.graduation.project.base.common.model.ResultCodeEnum.FORBIDDEN;
 import static cn.annpeter.graduation.project.base.common.model.ResultCodeEnum.RESOURCE_NOT_FOUND;
 
 
@@ -62,9 +63,14 @@ public class UserService {
                 if (outUser.getIsAdmin() != 2 && !Objects.equals(outUser.getCourseId(), user.getCourseId())) {
                     throw new CommonException(RESOURCE_NOT_FOUND, "您所登录的课程不正确");
                 }
+
+                if (outUser.getState() != 1) {
+                    throw new CommonException(FORBIDDEN, "用户未激活");
+                }
+
                 return outUser;
             } else {
-                throw new CommonException(ResultCodeEnum.FORBIDDEN, "密码错误");
+                throw new CommonException(FORBIDDEN, "密码错误");
             }
         }
     }
