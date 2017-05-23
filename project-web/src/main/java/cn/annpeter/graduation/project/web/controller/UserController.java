@@ -49,6 +49,7 @@ public class UserController {
      * @apiParam {string} pwd 用户密码
      * @apiParam {int} isAdmin 是否为管理员, 0否 1是
      * @apiParam {int} courseId 课程id
+     * @apiParam {int} teacherId 老师id
      *
      * @apiSuccess (Code) {string} 200 注册成功
      * @apiSuccess (Code) {string} 409 此用户名已被注册
@@ -65,13 +66,15 @@ public class UserController {
     public ResultModel register(@NotEmpty(message = "name不能为空") String name,
                                 @NotEmpty(message = "pwd不能为空") String pwd,
                                 @NotNull(message = "isAdmin不能为空") Integer isAdmin,
-                                @NotNull(message = "courseId不能为空") Integer courseId) {
+                                @NotNull(message = "courseId不能为空") Integer courseId,
+                                Integer teacherId) {
 
         User user = new User();
         user.setName(name);
         user.setPwd(pwd);
         user.setIsAdmin(isAdmin.shortValue());
         user.setCourseId(courseId);
+        user.setTeacherId(teacherId);
 
         if (1 == userService.register(user)) {
             return ResultModel.success();
