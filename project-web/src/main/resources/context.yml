@@ -2,7 +2,7 @@
 web:
   loggedUserFlag: LOGIN_USER_FLAG
   loggedUserInfo: LOGIN_USER_INFO
-  fileUploadBaseDir: C:\Users\lenovo\Desktop\fileUpload\
+  fileUploadBaseDir: /Users/annpeter/Desktop/fileUpload/
 
 redis:
   pool:
