@@ -56,11 +56,31 @@
 	padding: 50px;
 	background-color: #fff;
 	box-sizing: border-box;
-	overflow: auto;
+	overflow-x: hidden;
+	overflow-y: auto;
+	position: relative;
 }
 .preview_content div{
 	margin: auto !important;
 	margin-top: 50px !important;
+}
+.preview_content video{
+	width: 80%;
+}
+.video_div{
+	text-align: center;
+}
+.ppt_list{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+.ppt_list li{
+	float: left;
+	text-align: center;
+}
+.ppt_list li img{
+	text-align: center;
 }
 .preview_close{
 	width: 30px;
@@ -70,6 +90,7 @@
 	top: 20px;
 	cursor: pointer;
 	overflow: hidden;
+	z-index: 10;
 }
 .preview_close img{
 	width: 100%;
