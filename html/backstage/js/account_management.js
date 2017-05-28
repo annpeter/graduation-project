@@ -25,14 +25,28 @@ $(document).ready(function(){
                 var course_name="";
                 var course_id=item.courseId;
 
-                ret+='<tr>'+
-                    '<td>'+item.id+'</td>'+
-                    '<td>'+item.name+'</td>'+
-                    '<td>'+admin_level+'</td>'+
-                    '<td>'+course_id+'</td>'+
-                    '<td>'+item.createTime+'</td>'+
-                    '<td><a id="check_account" class="tablelink" data-id="'+item.id+'" href="javascript:">审核通过</a> <a href="password_change.html?userId='+item.id+'" target="_self" class="tablelink">修改密码</a> <a href="javascript:" class="userdelete tablelink" data-id='+item.id+'>删除</a></td>'+
-                    '</tr> '
+                if(item.state==1){
+                    ret+='<tr>'+
+                        '<td>'+item.id+'</td>'+
+                        '<td>'+item.name+'</td>'+
+                        '<td>'+admin_level+'</td>'+
+                        '<td>'+course_id+'</td>'+
+                        '<td>'+item.createTime+'</td>'+
+                        '<td><a href="password_change.html?userId='+item.id+'" target="_self" class="tablelink">修改密码</a> <a href="javascript:" class="userdelete tablelink" data-id='+item.id+'>删除</a> <a class="tablelink" data-id="'+item.id+'" href="javascript:">已审核</a></td>'+
+                        '</tr> '
+                }
+                else{
+                    ret+='<tr>'+
+                        '<td>'+item.id+'</td>'+
+                        '<td>'+item.name+'</td>'+
+                        '<td>'+admin_level+'</td>'+
+                        '<td>'+course_id+'</td>'+
+                        '<td>'+item.createTime+'</td>'+
+                        '<td><a href="password_change.html?userId='+item.id+'" target="_self" class="tablelink">修改密码</a> <a href="javascript:" class="userdelete tablelink" data-id='+item.id+'>删除</a> <a id="check_account" class="tablelink" data-id="'+item.id+'" href="javascript:">审核通过</a></td>'+
+                        '</tr> '
+                }
+
+
 
             });
 
