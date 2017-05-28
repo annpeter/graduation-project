@@ -106,4 +106,28 @@ public class ResourceController {
         resourceService.addResource(type, name, url, courseId);
         return ResultModel.success();
     }
+
+
+    // @formatter:off
+    /**
+     * @api {get} /api/resource/delete 删除资源
+     * @apiName delete
+     * @apiGroup Resource
+     *
+     * @apiParam {int} resourceId  资源id
+     *
+     * @apiSuccessExample {json} Response 200 Example
+     * {
+     *     "code": 200,
+     *     "data": null,
+     *     "result_msg": "执行成功",
+     *     "error_stack_trace": null
+     * }
+     */
+    // @formatter:on
+    @GetMapping(value = "delete")
+    public ResultModel deleteResource(@NotNull(message = "resourceId不能为空") Integer resourceId) {
+        resourceService.deleteResource(resourceId);
+        return ResultModel.success();
+    }
 }

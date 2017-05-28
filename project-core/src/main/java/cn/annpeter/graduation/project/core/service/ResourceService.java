@@ -43,4 +43,8 @@ public class ResourceService {
         resourceMapper.insertSelective(resource);
     }
 
+    public void deleteResource(Integer resourceId) {
+        resourceMapper.deleteByPrimaryKey(resourceId);
+    }
+
 }
