@@ -84,7 +84,7 @@ $(document).ready(function(){
     $("#modify_btn").click(function(){
         var courseName=$(".forminfo li").eq(0).children("input").val();
         var courseInfo=$("#content7").val();
-        var courseid=$(this).attr("data-id");
+        var courseid=localStorage.getItem("courseId");
 
         $.ajax({
             url:'/api/course/add.htm',
@@ -102,3 +102,11 @@ $(document).ready(function(){
         });
     });
 });
+
+
+//获取url中的参数
+function getUrlParam(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+    var r = window.location.search.substr(1).match(reg); //匹配目标参数
+    if (r != null) return unescape(r[2]); return null; //返回参数值
+}
