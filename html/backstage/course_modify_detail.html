@@ -1,122 +1,124 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>无标题文档</title>
-<link href="css/style.css" rel="stylesheet" type="text/css" />
-<link href="css/select.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/jquery.idTabs.min.js"></script>
-<script type="text/javascript" src="js/select-ui.min.js"></script>
-<script type="text/javascript" src="editor/kindeditor.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/select.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.idTabs.min.js"></script>
+    <script type="text/javascript" src="js/select-ui.min.js"></script>
+    <script type="text/javascript" src="editor/kindeditor.js"></script>
+    <script type="text/javascript" src="js/course_add.js"></script>
 
-<script type="text/javascript">
-    KE.show({
-        id : 'content7',
-        cssPath : './index.css'
-    });
-  </script>
-  
-<script type="text/javascript">
-$(document).ready(function(e) {
-    $(".select1").uedSelect({
-		width : 345			  
-	});
-	$(".select2").uedSelect({
-		width : 167  
-	});
-	$(".select3").uedSelect({
-		width : 100
-	});
-});
-</script>
+    <script type="text/javascript">
+        /*KE.show({
+         id : 'content7',
+         cssPath : './index.css'
+         });*/
+
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function(e) {
+            $(".select1").uedSelect({
+                width : 345
+            });
+            $(".select2").uedSelect({
+                width : 167
+            });
+            $(".select3").uedSelect({
+                width : 100
+            });
+        });
+    </script>
 </head>
 
 <body>
 
-	<div class="place">
+<div class="place">
     <span>位置：</span>
     <ul class="placeul">
-    <li><a href="#">首页</a></li>
-    <li><a href="#">系统设置</a></li>
+        <li><a href="#">首页</a></li>
+        <li><a href="#">系统设置</a></li>
     </ul>
-    </div>
-    
+</div>
+
+<form>
     <div class="formbody">
-    
-    
-    <div id="usual1" class="usual"> 
-    
-  	<div id="tab1" class="tabson">
-    
-    
-    <form class="course_form">
-    <ul class="forminfo">
-    <li><label>课程名称<b>*</b></label><input name="" type="text" class="dfinput" placeholder="请填写课程名称"  style="width:518px;"/></li>
 
-    <li>
-        <label>上传logo<b>*</b></label>
-        <form action="" method="post" enctype="multipart/form-data">
-            <input type="file" name="fileField" class="file" id="fileField" size="28" onchange="document.getElementById('textfield').value=this.value" />
-            <input type="submit" name="submit" class="upload" value="上传" />
-        </form>
-    </li>
-   
-    <!-- <li><label>所属学院<b>*</b></label>  
-    
 
-    <div class="vocation">
-    <select class="select1">
-    <option>计算机学院</option>
-    <option>数理学院</option>
-    <option>土木学院</option>
-    <option>机械学院</option>
-    <option>船舶学院</option>
-    </select>
+        <div id="usual1" class="usual">
+
+            <div id="tab1" class="tabson">
+
+
+                <ul class="forminfo">
+                    <li><label>课程名称<b>*</b></label><input name="" type="text" class="dfinput" placeholder="请填写课程名称"  style="width:518px;"/></li>
+
+                    <li>
+                        <label>上传logo<b>*</b></label>
+                        <form  action="#"  method="post" enctype="multipart/form-data">
+                            <input type="file" name="fileField" class="file" id="fileField" size="28" />
+                            <input type="submit" name="submit" value="上传" id="imageSubmit" />
+                        </form>
+                    </li>
+
+                    <!-- <li><label>所属学院<b>*</b></label>
+
+
+                    <div class="vocation">
+                    <select class="select1">
+                    <option>计算机学院</option>
+                    <option>数理学院</option>
+                    <option>土木学院</option>
+                    <option>机械学院</option>
+                    <option>船舶学院</option>
+                    </select>
+                    </div>
+
+                    </li>
+
+                    <li><label>班级<b>*</b></label>
+
+                    <input name="" type="text" class="dfinput" placeholder="请输入班级"  style="width:518px;"/><b>多个班级中间用“，”分隔</b>
+
+
+
+
+                    </li> -->
+                    <li><label>课程介绍<b>*</b></label>
+
+
+                        <textarea id="content7" name="content" style="width:700px;height:250px;border: 1px solid #ccc;"></textarea>
+
+                    </li>
+
+                    <li><label>&nbsp;</label><input name="" type="button" class="btn" id="modify_btn" value="提交"/></li>
+
+                </ul>
+
+
+            </div>
+
+        </div>
+
     </div>
-    
-    </li>
-    
-    <li><label>班级<b>*</b></label>
-    
-    <input name="" type="text" class="dfinput" placeholder="请输入班级"  style="width:518px;"/><b>多个班级中间用“，”分隔</b>
-    
-    
-    
-    
-    </li> -->
-    <li><label>课程介绍<b>*</b></label>
-    
+</form>
 
-    <textarea id="content7" name="content" style="width:700px;height:250px;visibility:hidden;"></textarea>
-    
-    </li>
+<script type="text/javascript">
+    $("#usual1 ul").idTabs();
+</script>
 
-    <li><label>&nbsp;</label><input name="" type="button" class="btn" value="提交"/></li>
+<script type="text/javascript">
+    $('.tablelist tbody tr:odd').addClass('odd');
+</script>
 
-    </ul>
 
-    </form>
-    
-    </div> 
-    
-    </div>  
-       
-	</div> 
- 
-	<script type="text/javascript"> 
-      $("#usual1 ul").idTabs();
-    </script>
-    
-    <script type="text/javascript">
-	$('.tablelist tbody tr:odd').addClass('odd');
-	</script>
-    
-    
-    
-    
-    
-    </div>
+
+
+
+</div>
 
 
 </body>

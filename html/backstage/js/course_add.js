@@ -1,9 +1,9 @@
 $(document).ready(function(){
 
-	//图片url
-	var imageurl="";
+    //图片url
+    var imageurl="";
 
-	// 图片上传功能
+    // 图片上传功能
     var upLoadFuc = function() {
 
         // 上传文件
@@ -12,7 +12,7 @@ $(document).ready(function(){
             var file = $('#fileField')[0].files[0];
 
             if ( file ) {
-            	var form = new FormData();
+                var form = new FormData();
                 form.append('file', file );
 
                 $.ajax({
@@ -24,12 +24,11 @@ $(document).ready(function(){
                     contentType: false,
                     processData: false,
                     success: function( res ) {
-                       	if(res.code==200){
-                       		imageurl = res.data.file_url || "";
-                       		alert(imageurl);
-                       	}
-                       	else{
-                       	    alert('上传失败');
+                        if(res.code==200){
+                            imageurl = res.data.file_url || "";
+                        }
+                        else{
+                            alert('上传成功');
                         }
                     }
                 })
@@ -39,21 +38,21 @@ $(document).ready(function(){
 
 
             /*function upLoad( fileUrl ) {
-                var data = {
-                    url : fileUrl,
-                    imageurl : imageurl,
-                }
+             var data = {
+             url : fileUrl,
+             imageurl : imageurl,
+             }
 
-                $.ajax({
-                    url: '/api/homework/commit.htm',
-                    data: data,
-                    dataType: "json",
-                    type: 'post',
-                    success: function() {
-                        alert( "图片上传成功" );
-                    }
-                });
-            }*/
+             $.ajax({
+             url: '/api/homework/commit.htm',
+             data: data,
+             dataType: "json",
+             type: 'post',
+             success: function() {
+             alert( "图片上传成功" );
+             }
+             });
+             }*/
 
             return false;
         });
@@ -62,21 +61,44 @@ $(document).ready(function(){
     upLoadFuc();
 
     //添加功能
-    $(".btn").click(function(){
-    	var courseName=$(".forminfo li").eq(0).children("input").val();
-    	var courseInfo=$("#content7").val();
+    $("#add_btn").click(function(){
+        var courseName=$(".forminfo li").eq(0).children("input").val();
+        var courseInfo=$("#content7").val();
 
-    	$.ajax({
-    		url:'/api/course/add',
-    		data:{
-    			name:courseName,
-    			imgUrl:imageurl,
-    			intro:courseInfo
-    		},
+        $.ajax({
+            url:'/api/course/add.htm',
             type:'post',
-    		success:function(){
-    			alert("添加成功");
-    		}
-    	});
+            dataType:'json',
+            data:{
+                name:courseName,
+                imgUrl:imageurl,
+                intro:courseInfo
+            },
+            success:function(){
+                alert("添加成功");
+            }
+        });
+    });
+
+    //修改功能
+    $("#modify_btn").click(function(){
+        var courseName=$(".forminfo li").eq(0).children("input").val();
+        var courseInfo=$("#content7").val();
+        var courseid=$(this).attr("data-id");
+
+        $.ajax({
+            url:'/api/course/add.htm',
+            type:'post',
+            dataType:'json',
+            data:{
+                courseId:courseid,
+                name:courseName,
+                imgUrl:imageurl,
+                intro:courseInfo
+            },
+            success:function(){
+                alert("修改成功");
+            }
+        });
     });
 });
