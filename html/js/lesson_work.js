@@ -61,7 +61,7 @@ $(document).ready(function(){
                         '<p>'+item.title+'</p>'+
                         '</div>'+
                         '<div class="lesson_work_option">'+
-                        '<a class="lesson_work_delete" href="javascript:">删除</a>'+
+                        '<a class="lesson_work_delete" data-id='+ item.id +'  href="javascript:">删除</a>'+
                         '<a class="lesson_work_check" href="javascript:" data-id='+ item.id +'>审阅</a>'+
                         '</div>'+
                         '</li>';
@@ -69,6 +69,22 @@ $(document).ready(function(){
                 });
                 $(".lesson_work_management .lesson_work_list ul").html(ret);
 
+
+                //删除
+                $(".lesson_work_delete").click(function(){
+                    var homework_id=$(this).attr("data-id");
+                    $.ajax({
+                        url:'/api/homework/delete.htm',
+                        data:{
+                            homeWorkId:homework_id
+                        },
+                        type:"get",
+                        success:function(res){
+                            alert("删除成功");
+                            location.reload();
+                        }
+                    });
+                });
 
 
                 //分页

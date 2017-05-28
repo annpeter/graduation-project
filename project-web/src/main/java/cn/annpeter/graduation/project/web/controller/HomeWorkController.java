@@ -215,4 +215,28 @@ public class HomeWorkController {
         homeWorkService.checkHomeWorkCommit(homeWorkCommitId, score, comment);
         return ResultModel.success(null, "提交成功");
     }
+
+
+    // @formatter:off
+    /**
+     * @api {get} /api/homework/delete 删除资源
+     * @apiName delete
+     * @apiGroup HomeWork
+     *
+     * @apiParam {int} homeWorkId  作业id
+     *
+     * @apiSuccessExample {json} Response 200 Example
+     * {
+     *     "code": 200,
+     *     "data": null,
+     *     "result_msg": "执行成功",
+     *     "error_stack_trace": null
+     * }
+     */
+    // @formatter:on
+    @GetMapping(value = "delete")
+    public ResultModel deleteHomeWork(@NotNull(message = "homeWorkId不能为空") Integer homeWorkId) {
+        homeWorkService.deleteHomeWork(homeWorkId);
+        return ResultModel.success();
+    }
 }

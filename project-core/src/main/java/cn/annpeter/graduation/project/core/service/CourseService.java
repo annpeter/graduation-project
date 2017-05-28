@@ -46,13 +46,20 @@ public class CourseService {
         }
     }
 
-    public void addCourse(String name, String imgUrl, String intro) {
+    public void addOrUpdateCourse(Integer courseId, String name, String imgUrl, String intro) {
+
         Course course = new Course();
         course.setName(name);
         course.setImgUrl(imgUrl);
         course.setIntro(intro);
         course.setCreateTime(new Date());
-        courseMapper.insertSelective(course);
+
+        if (courseId != null) {
+            course.setId(courseId);
+            courseMapper.updateByPrimaryKey(course);
+        } else {
+            courseMapper.insertSelective(course);
+        }
     }
 
     public void delete(Integer courseId) {
