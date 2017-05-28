@@ -63,7 +63,7 @@ $(document).ready(function(){
             			id:$(this).attr("data-id")
             		},
             		success:function(result){
-            			console.log(result);
+                        alert("删除成功");
             		}
             	})
             });

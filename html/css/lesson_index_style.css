@@ -1,6 +1,6 @@
 .outside_announcement{
 	width: 540px;
-	height: 200px;
+	height: 190px;
 	float: left;
 	overflow: hidden;
 }
@@ -28,7 +28,7 @@
 }
 .inside_announcement{
 	width: 540px;
-	height: 200px;
+	height: 190px;
 	float: right;
 	overflow: hidden;
 }

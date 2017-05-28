@@ -73,7 +73,7 @@ a img{border: none;}
 .line_nav li{
 	width: 80px;
 	font-size: 14px;
-	text-align: center; 
+	text-align: center;
 	color: #aaa;
 	float: left;
 	margin-left: 20px;
@@ -135,14 +135,14 @@ a img{border: none;}
 	width: 40px;
 	height: 40px;
 	float: left;
-	margin-top: 10px;
 }
 .lesson_login_button button{
 	width: 40px;
-	height: 40px;
+	height: 25px;
 	font-size: 12px;
 	color: #333;
 	padding: 0px;
+	margin-bottom: 5px;
 }
 .head_bottom{
 	width: 1100px;

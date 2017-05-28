@@ -37,7 +37,7 @@ $(document).ready(function(){
 		var course_name=$(".main_search_div input").val();
 		if(course_name!=""){
 			$.ajax({
-				url:'/api/course/infoByName',
+				url:'/api/course/infoByName.htm',
 				data:{
 					courseName:course_name
 				},

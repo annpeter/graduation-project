@@ -25,19 +25,19 @@ $(document).ready(function(){
             $(".tablelist tbody").html(ret);
 
             //删除课程
-           /* $(".coursedelete").click(function(){
-            	$.ajax({
-            		url:"/api/user/delete.htm",
-            		type:"POST",
-            		datatype:"json",
-            		data:{
-            			id:$(this).attr("data-id")
-            		},
-            		success:function(result){
-            			console.log(result);
-            		}
-            	})
-            });*/
+            $(".coursedelete").click(function(){
+                $.ajax({
+                    url:"/api/course/delete.htm",
+                    type:"get",
+                    dataType:"json",
+                    data:{
+                        courseId:$(this).attr("data-id")
+                    },
+                    success:function(result){
+                        alert(result);
+                    }
+                })
+            });
 
         }
 

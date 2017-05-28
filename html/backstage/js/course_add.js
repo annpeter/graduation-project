@@ -25,10 +25,12 @@ $(document).ready(function(){
                     processData: false,
                     success: function( res ) {
                        	if(res.code==200){
-                       		alert(res.result_msg);
                        		imageurl = res.data.file_url || "";
+                       		alert(imageurl);
                        	}
-                        alert("上传失败");
+                       	else{
+                       	    alert('上传失败');
+                        }
                     }
                 })
             } else {
@@ -70,7 +72,8 @@ $(document).ready(function(){
     			name:courseName,
     			imgUrl:imageurl,
     			intro:courseInfo
-    		}
+    		},
+            type:'post',
     		success:function(){
     			alert("添加成功");
     		}

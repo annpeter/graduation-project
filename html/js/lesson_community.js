@@ -37,7 +37,7 @@ $(document).ready(function () {
     }
 
     if (window.WebSocket) {
-        var socket = new WebSocket("ws://localhost:9999/im");
+        var socket = new WebSocket("ws://" + document.location.hostname + ":9999/im");
         socket.onmessage = function (e) {
             console.log("获取到消息" + e.data);
             var reg = /\[CHAT\]\[(\d+)\]\[(.*)\] - (.*)/;

@@ -11,23 +11,23 @@ $(document).ready(function(){
 			var password=$(".forminfo input").eq(1).val();
 
 			//用户名
-			var username=$(".forminfo input").eq(3).val();
+			//var username=$(".forminfo input").eq(3).val();
 
 			//班级
-			var courseId=$(".forminfo input").eq(4).val();
+			var courseName=$(".forminfo input").eq(3).val();
 
 			//用户组
-			var isadmin=$(".forminfo input").eq(5).val();
+			var isadmin=$(".forminfo input").eq(4).val();
 
 			$.ajax({
 				url:"/api/user/register.htm",
 				dataType:"json",
 				type:"POST",
 				data:{
-					name:username,
+					name:account,
 					pwd:password,
 					isAdmin:isadmin,
-					courseId:courseId
+					courseName:courseName
 				},
 				success:function(result){
 					alert("添加成功");

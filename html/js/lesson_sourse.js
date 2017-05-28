@@ -3,7 +3,7 @@ $(document).ready(function(){
         $(".lesson_main").hide();
         $(".lesson_upload").show();
     });
-    $("#sourse_management").click(function(){
+    $("#sourse_link").click(function(){
         $(".lesson_main").show();
         $(".lesson_upload").hide();
     });
@@ -15,11 +15,11 @@ $(document).ready(function(){
     });
 
     var localhost = window.location.host;
+    var id = localStorage.getItem('id');
 
 
     // 底部资源渲染
     function questionLoad() {
-        var id = localStorage.getItem('id');
 
         $.get("/api/resource/list.htm",{courseId:id},function( res ) {
 
@@ -29,7 +29,6 @@ $(document).ready(function(){
             $('.lesson_sourse_list > ul').html("");
             $.each( dataArr, function( index, item ) {
                 var sourse_url="http://"+localhost+item.url;
-                //alert(sourse_url);
                 var str = `<li>
                                 <div class="lesson_sourse_name"><p>${item.name}</p></div>
                                 <div class="lesson_sourse_option">
@@ -46,18 +45,26 @@ $(document).ready(function(){
             //登录判断
 
             var isadmin=localStorage.getItem("isadmin");
-            
+
             if(isadmin=="0"){
                 $(".lesson_sourse_download").show();
+                $(".sourse_upload").hide();
             }
             else if(isadmin=="1"){
                 $(".lesson_sourse_download").show();
                 $(".lesson_sourse_delete").show();
+                $(".sourse_upload").show();
             }
             else{
                 $(".lesson_sourse_download").hide();
                 $(".lesson_sourse_delete").hide();
             }
+
+            //删除
+            $(".lesson_sourse_delete").click(function(){
+                alert("删除成功");
+                $(this).parent("li").hide();
+            });
 
         }, "json");
 
@@ -70,17 +77,76 @@ $(document).ready(function(){
     $('.lesson_sourse_list').on('click', '.lesson_sourse_preview', function() {
         $(".preview_div").show();
     })
+
+
+    // 课程资源上传功能
+    var upLoadFuc = function() {
+        var sourseId;
+
+
+        // 上传文件
+        $('#sourseSubmit').on('click', function() {
+            var file = $('#fileField')[0].files[0];
+
+            if ( file ) {
+                var form = new FormData();
+                form.append('file', file );
+
+                $.ajax({
+                    url: '/api/file/upload/single.htm',
+                    data: form,
+                    cache: false,
+                    dataType: 'json',
+                    type: "post",
+                    contentType: false,
+                    processData: false,
+                    success: function( res ) {
+                        var fileUrl = res.data.file_url || "";
+                        upLoad( fileUrl );
+                    }
+                })
+            } else {
+                alert( '请先选择文件' );
+            }
+
+
+            function upLoad( fileUrl ) {
+                var fileName = $(".file").val().substring(12);
+
+                var data = {
+                    type : "doc",
+                    courseId : id,
+                    url : fileUrl,
+                    name : fileName
+                }
+
+                $.ajax({
+                    url: '/api/resource/add.htm',
+                    data: data,
+                    dataType: "json",
+                    type: 'post',
+                    success: function() {
+                        alert( "资源上传成功" );
+                    }
+                })
+            }
+
+            return false;
+        });
+
+    };
+    upLoadFuc();
 });
 
 function preview(url){
-     $.ajax({
-            url: '/api/poi/word.htm',
-            data: {url, url},
-            cache: false,
-            dataType: 'json',
-            type: "post",
-            success: function( res ) {
-                $(".preview_content").html(res.data);
-            }
-        })
+    $.ajax({
+        url: '/api/poi/word.htm',
+        data: {url, url},
+        cache: false,
+        dataType: 'json',
+        type: "post",
+        success: function( res ) {
+            $(".preview_content").html(res.data);
+        }
+    })
 }
