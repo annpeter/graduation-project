@@ -19,16 +19,11 @@ $(document).ready(function(){
 			console.log(res);
 			if(res.code==200){
 				alert("登录成功");
-			}
-			else if (res.code==403) {
-				alert("密码错误");
+			}else {
+				alert(res.resultMsg);
 				return false;
 			}
-			else if(res.code==404){
-				alert("用户不存在");
-				return false;
-			}
-			username=res.data.name;
+
 			localStorage.setItem("name",res.data.name);					//用户名
 			localStorage.setItem("isadmin",res.data.isAdmin);			//0学生，1老师
 			localStorage.setItem("islogin","1");

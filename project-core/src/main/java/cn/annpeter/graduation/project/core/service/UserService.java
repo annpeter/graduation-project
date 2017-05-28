@@ -47,6 +47,11 @@ public class UserService {
         return userMapper.insertSelective(user);
     }
 
+    public void audit(User user){
+        user.setState(1);
+        userMapper.updateByPrimaryKeySelective(user);
+    }
+
     public User login(User user) {
         UserExample example = new UserExample();
 

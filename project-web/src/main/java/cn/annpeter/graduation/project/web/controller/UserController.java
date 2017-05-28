@@ -4,9 +4,7 @@ import cn.annpeter.graduation.project.base.common.exception.CommonException;
 import cn.annpeter.graduation.project.base.common.model.ResultCodeEnum;
 import cn.annpeter.graduation.project.base.common.model.ResultModel;
 import cn.annpeter.graduation.project.core.service.CountingService;
-import cn.annpeter.graduation.project.core.service.CourseService;
 import cn.annpeter.graduation.project.core.service.UserService;
-import cn.annpeter.graduation.project.dal.model.Course;
 import cn.annpeter.graduation.project.dal.model.User;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.validation.annotation.Validated;
@@ -82,6 +80,33 @@ public class UserController {
     }
 
 
+       // @formatter:off
+    /**
+     * @api {post} /api/user/audit 用户审核
+     * @apiName audit
+     * @apiGroup User
+     *
+     * @apiParam {int} userId 用户id
+     *
+     * @apiSuccessExample {json} Response 200 Example
+     *  {
+     *      "code": 200,
+     *      "data": null,
+     *      "result_msg": "审核通过",
+     *      "error_stack_trace": null
+     *  }
+     */
+    // @formatter:on
+    @PostMapping(value = "audit")
+    public ResultModel audit(@NotNull Integer userId) {
+
+        User user = new User();
+        user.setId(userId);
+        userService.audit(user);
+        return ResultModel.success("审核通过");
+    }
+
+
     // @formatter:off
     /**
      * @api {post} /api/user/delete 用户删除
@@ -144,7 +169,6 @@ public class UserController {
     }
 
 
-
     // @formatter:off
     /**
      * @api {post} /api/user/getTeacherList 课程的老师列表列表
@@ -172,7 +196,7 @@ public class UserController {
      */
     // @formatter:on
     @GetMapping(value = "getTeacherList")
-    public ResultModel getTeacherList(@NotNull(message = "courseId不能为空") Integer courseId){
+    public ResultModel getTeacherList(@NotNull(message = "courseId不能为空") Integer courseId) {
         return ResultModel.success(userService.list(courseId));
     }
 
