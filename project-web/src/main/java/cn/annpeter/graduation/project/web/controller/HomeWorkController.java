@@ -196,6 +196,8 @@ public class HomeWorkController {
      * @apiGroup HomeWork
      *
      * @apiParam {int} homeWorkCommitId 作业id
+     * @apiParam {float} score 分数
+     * @apiParam {string} comment 评语
      *
      * @apiSuccessExample {json} Response 200 Example
      * {
