@@ -136,13 +136,35 @@ a img{border: none;}
 	height: 40px;
 	float: left;
 }
-.lesson_login_button button{
+.login_button{
 	width: 40px;
 	height: 25px;
-	font-size: 12px;
-	color: #333;
 	padding: 0px;
 	margin-bottom: 5px;
+	text-align: center;
+	border: 1px solid #666;
+	box-sizing: border-box;
+}
+.login_register{
+	width: 40px;
+	height: 25px;
+	padding: 0px;
+	margin-bottom: 5px;
+	text-align: center;
+	border: 1px solid #666;
+	box-sizing: border-box;
+}
+.login_button a{
+	font-size: 12px;
+	color: #333;
+	display: block;
+	line-height: 25px;
+}
+.login_register a{
+	font-size: 12px;
+	color: #333;
+	display: block;
+	line-height: 25px;
 }
 .head_bottom{
 	width: 1100px;

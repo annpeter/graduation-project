@@ -12,6 +12,7 @@ $(document).ready(function(){
     $("#sourse_link").click(function(){
         $(".lesson_main").show();
         $(".lesson_upload").hide();
+        location.reload();
     });
 
     var localhost = window.location.host;

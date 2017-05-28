@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>精品课程</title>
+    <link href="backstage/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="backstage/css/select.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="backstage/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="backstage/js/jquery.idTabs.min.js"></script>
+    <script type="text/javascript" src="backstage/js/select-ui.min.js"></script>
+    <script type="text/javascript" src="backstage/editor/kindeditor.js"></script>
+    <script type="text/javascript" src="backstage/js/Validform.js"></script>
+    <script type="text/javascript" src="js/account_add.js"></script>
+
+    <script type="text/javascript">
+        KE.show({
+            id : 'content7',
+            cssPath : './index.css'
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function(e) {
+            $(".select1").uedSelect({
+                width : 345
+            });
+            $(".select2").uedSelect({
+                width : 167
+            });
+            $(".select3").uedSelect({
+                width : 100
+            });
+        });
+    </script>
+    <style type="text/css">
+        .usual{
+            width: 700px;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="formbody">
+
+
+    <div id="usual1" class="usual">
+
+        <div class="itab">
+            <ul>
+                <li><a href="#tab1" class="selected">学生注册</a></li>
+                <li><a href="#tab2">教师注册</a></li>
+            </ul>
+        </div>
+
+        <div id="tab1" class="tabson">
+
+
+            <form class="useradd_form_s">
+                <ul class="forminfo">
+                    <li><label>帐号<b>*</b></label><input name="account" type="text" class="dfinput" placeholder="请输入帐号,帐号即姓名"  style="width:518px;" datatype="s" nullmsg="请输入帐号" errormsg="帐号中包含特殊字符" /></li>
+                    <li><label>密码<b>*</b></label><input name="password1" type="password" class="dfinput" placeholder="请输入密码"  style="width:518px;" datatype="s3-12" nullmsg="请输入密码" errormsg="密码范围在3到12位之间" /></li>
+                    <li><label>确认密码<b>*</b></label><input name="password2" type="password" class="dfinput" placeholder="请再次输入密码"  style="width:518px;" datatype="*" recheck="password1" nullmsg="请再次输入密码" errormsg="两次输入密码不一致" /></li>
+                    <li><label>课程<b>*</b></label><input name="" type="text" class="dfinput" placeholder="请输入课程号"  style="width:518px;" datatype="n1-2" nullmsg="请输入课程号" errormsg="请填写正确的课程号" /></li>
+                    <li><label>教师<b>*</b></label><input name="" type="text" class="dfinput" placeholder="请输入教师id"  style="width:518px;" datatype="n1-1" nullmsg="请输入教师id" errormsg="请输入正确的教师id" /></li>
+
+                    <li><label>&nbsp;</label><input id="student_register" name="" type="submit" class="btn" value="提交"/></li>
+
+                </ul>
+            </form>
+
+        </div>
+
+
+        <div id="tab2" class="tabson">
+
+            <form class="useradd_form_t">
+                <ul class="forminfo">
+                    <li><label>帐号<b>*</b></label><input name="account" type="text" class="dfinput" placeholder="请输入帐号,帐号即姓名"  style="width:518px;" datatype="s" nullmsg="请输入帐号" errormsg="帐号中包含特殊字符" /></li>
+                    <li><label>密码<b>*</b></label><input name="password1" type="password" class="dfinput" placeholder="请输入密码"  style="width:518px;" datatype="s3-12" nullmsg="请输入密码" errormsg="密码范围在3到12位之间" /></li>
+                    <li><label>确认密码<b>*</b></label><input name="password2" type="password" class="dfinput" placeholder="请再次输入密码"  style="width:518px;" datatype="*" recheck="password1" nullmsg="请再次输入密码" errormsg="两次输入密码不一致" /></li>
+                    <li><label>课程<b>*</b></label><input name="" type="text" class="dfinput" placeholder="请输入课程号"  style="width:518px;" datatype="n1-2" nullmsg="请输入课程号" errormsg="请填写正确的课程号" /></li>
+
+                    <li><label>&nbsp;</label><input id="teacher_register" name="" type="submit" class="btn" value="提交"/></li>
+
+                </ul>
+            </form>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    $("#usual1 ul").idTabs();
+</script>
+
+<script type="text/javascript">
+    $('.tablelist tbody tr:odd').addClass('odd');
+</script>
+
+
+
+</body>
+
+</html>

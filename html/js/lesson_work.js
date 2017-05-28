@@ -106,7 +106,6 @@ $(document).ready(function(){
 
                 $(".lesson_work_check").click(function(){
                     var homeworkId=$(this).attr("data-id");
-                    console.log(homeworkId);
                     $(".lesson_work_management").hide();
                     $(".lesson_work_check_list").show();
 
@@ -131,7 +130,7 @@ $(document).ready(function(){
                                     '<p>'+item.userName+'</p>'+
                                     '</div>'+
                                     '<div class="lesson_work_option">'+
-                                    '<a class="lesson_work_upload" href="javascript:">批改</a>'+
+                                    '<a class="lesson_work_score" href="javascript:" data-id="'+item.id+'">批改</a>'+
                                     '<a class="lesson_work_download" href="'+item.url+'">下载</a>'+
                                     '</div>'+
                                     '</li>';
@@ -172,6 +171,42 @@ $(document).ready(function(){
                             $(".page ul li").eq(currentPage+1).addClass("select");
 
                             //分页结束
+
+
+                            //批改
+                            $(".lesson_work_score").click(function(){
+                                $(".lesson_score_bg").show();
+
+                                //作业id
+                                var homeworkid=$(this).attr("data-id");
+
+                                $(".commit_btn").click(function(){
+
+                                    //分数
+                                    var score=parseInt($(".lesson_score input").val());
+
+                                    //评语
+                                    var comment=$(".lesson_score textarea").val();
+
+                                    $.ajax({
+                                        url:'/api/homework/check.htm',
+                                        type:'post',
+                                        dataType:'json',
+                                        data:{
+                                            score:score,
+                                            comment:comment,
+                                            homeWorkCommitId:homeworkid
+                                        },
+                                        success:function(res){
+                                            if(res.code==200){
+                                                alert("批改成功");
+                                                $(".lesson_score_bg").hide();
+                                            }
+                                        }
+                                    });
+                                });
+
+                            });
                         }
                     });
                 });
