@@ -138,10 +138,11 @@ public class CourseController {
      */
     // @formatter:on
     @PostMapping(value = "add")
-    public ResultModel addCourse(@NotEmpty(message = "name不能为空") String name,
+    public ResultModel addCourse(Integer courseId,
+                                 @NotEmpty(message = "name不能为空") String name,
                                  @NotEmpty(message = "imgUrl不能为空") String imgUrl,
                                  @NotEmpty(message = "intro不能为空") String intro) {
-        courseService.addCourse(name, imgUrl, intro);
+        courseService.addOrUpdateCourse(courseId, name, imgUrl, intro);
         return ResultModel.success(null, "添加成功");
     }
 

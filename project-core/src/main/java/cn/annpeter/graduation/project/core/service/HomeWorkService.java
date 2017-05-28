@@ -80,4 +80,10 @@ public class HomeWorkService {
         commit.setComment(comment);
         homeWorkCommitMapper.updateByPrimaryKeySelective(commit);
     }
+
+
+    public void deleteHomeWork(Integer homeWorkId) {
+        homeWorkMapper.deleteByPrimaryKey(homeWorkId);
+    }
+
 }
