@@ -25,7 +25,7 @@ public class NoticeService {
         NoticeExample example = new NoticeExample();
         NoticeExample.Criteria criteria = example.createCriteria();
 
-        if (courseId != null) {
+        if (courseId != null && type != 0) {
             criteria.andCourseIdEqualTo(courseId);
         }
         if (type != null) {

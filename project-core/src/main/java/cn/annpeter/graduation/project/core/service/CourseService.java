@@ -56,7 +56,7 @@ public class CourseService {
 
         if (courseId != null) {
             course.setId(courseId);
-            courseMapper.updateByPrimaryKey(course);
+            courseMapper.updateByPrimaryKeySelective(course);
         } else {
             courseMapper.insertSelective(course);
         }
